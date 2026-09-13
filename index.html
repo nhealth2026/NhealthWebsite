@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NHealth Technologies — Healthcare at Your Doorstep | Telemedicine & Healthcare Marketplace</title>
+  <meta name="description" content="NHealth Technologies is an enterprise-grade healthcare marketplace and telemedicine platform providing doctor consultations, doorstep e-pharmacy, home diagnostics, nursing, and 24/7 smart ambulance dispatch." />
+  
+  <!-- Favicon / Logo Icon -->
+  <link rel="icon" type="image/png" href="assets/images/logo-icon.png" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+
+  <!-- ========================================================================
+       STICKY GLASSMORPHISM NAVIGATION
+       ======================================================================== -->
+  <header class="nh-header">
+    <div class="nh-container">
+      <div class="nh-nav-inner">
+        <!-- Logo Branding -->
+        <a href="#" class="nh-brand-logo-link">
+          <img src="assets/images/logo-transparent.png" alt="NHealth Technologies Logo" class="nh-brand-logo-img" />
+        </a>
+
+        <!-- Navigation Links -->
+        <ul class="nh-nav-menu">
+          <li class="nh-nav-item"><a href="#home" class="nh-nav-link active">Home</a></li>
+          <li class="nh-nav-item"><a href="#services" class="nh-nav-link">Services</a></li>
+          <li class="nh-nav-item"><a href="#network" class="nh-nav-link">Coverage</a></li>
+          <li class="nh-nav-item"><a href="#telemedicine" class="nh-nav-link">Telemedicine <span class="nh-nav-badge">Live</span></a></li>
+          <li class="nh-nav-item"><a href="#portals" class="nh-nav-link">Portals</a></li>
+          <li class="nh-nav-item"><a href="#analytics" class="nh-nav-link">Analytics</a></li>
+          <li class="nh-nav-item"><a href="#contact" class="nh-nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Action Controls -->
+        <div class="nh-nav-actions">
+          <!-- Role Switcher -->
+          <select id="rolePickerSelect" class="role-picker-select" title="Switch Portal View">
+            <option value="" disabled selected>🏥 Select Portal Page ⌵</option>
+            <option value="doctor">👨‍⚕️ Doctor Portal</option>
+            <option value="patient">🩺 Patient Portal</option>
+            <option value="pharmacy">💊 Pharmacy Hub</option>
+            <option value="diagnostics">🔬 Diagnostics Lab</option>
+            <option value="ambulance">🚑 Ambulance Dispatch</option>
+            <option value="admin">📊 Executive Admin</option>
+          </select>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+          </button>
+
+          <!-- Book Doctor CTA -->
+          <button class="nh-btn nh-btn-primary open-booking-modal-btn" data-service="Doctor Consultation">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Book Doctor
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION — NHealth Technologies
+       ======================================================================== -->
+  <section class="nh-hero" id="home">
+    <!-- NHealth Background Video -->
+    <div class="nh-hero-video-container">
+      <video class="nh-hero-video-bg" autoplay muted loop playsinline poster="assets/images/logo.png">
+        <source src="Nhealthvideo.mp4" type="video/mp4" />
+        <source src="assets/videos/Nhealthvideo.mp4" type="video/mp4" />
+      </video>
+      <div class="nh-hero-video-overlay"></div>
+    </div>
+
+    <div class="nh-container">
+      <div class="nh-hero-grid">
+        <!-- Hero Content -->
+        <div class="nh-hero-content">
+          <div class="nh-hero-pill">
+            <span class="badge-cross">+</span>
+            <span>Next-Generation Healthcare Ecosystem</span>
+          </div>
+
+          <h1 class="nh-hero-title">
+            NHealth Technologies<br />
+            <span class="text-gradient-ribbon">Healthcare at Your Doorstep</span>
+          </h1>
+
+          <div class="nh-hero-tagline">
+            Complete Digital Health Marketplace & Telemedicine
+          </div>
+
+          <p class="nh-hero-description">
+            Experience hospital-grade care from the comfort of your home. Connect with certified doctors in under 15 minutes, order genuine medicines delivered in 2 hours, book NABL lab tests at home, and access 24/7 smart ambulance dispatch.
+          </p>
+
+          <div class="nh-hero-ctas">
+            <button class="nh-btn nh-btn-accent nh-btn-lg open-booking-modal-btn" data-service="Doctor Consultation">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+              Book Doctor Consultation
+            </button>
+            <a href="#services" class="nh-btn nh-btn-secondary nh-btn-lg" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);">
+              Explore All Services
+            </a>
+          </div>
+
+          <!-- Hero Value Highlights -->
+          <div class="nh-hero-features">
+            <div class="nh-hero-feat-item">
+              <div class="nh-hero-feat-icon">⚡</div>
+              <div class="nh-hero-feat-text">
+                <strong>15-Min Response</strong>
+                <span>Instant Video Consultations</span>
+              </div>
+            </div>
+            <div class="nh-hero-feat-item">
+              <div class="nh-hero-feat-icon">💊</div>
+              <div class="nh-hero-feat-text">
+                <strong>2-Hour Delivery</strong>
+                <span>100% Genuine Pharmacy</span>
+              </div>
+            </div>
+            <div class="nh-hero-feat-item">
+              <div class="nh-hero-feat-icon">🚑</div>
+              <div class="nh-hero-feat-text">
+                <strong>24/7 Smart Fleet</strong>
+                <span>GPS-Tracked Ambulances</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Professional Video Showcase (Nhealthvideo2.mp4) -->
+        <div class="nh-hero-visual">
+          <div class="nh-hero-video-card">
+            <!-- Main Professional Video -->
+            <video class="nh-hero-main-video" autoplay muted loop playsinline poster="assets/images/image1.jpg">
+              <source src="Nhealthvideo2.mp4" type="video/mp4" />
+              <source src="assets/videos/Nhealthvideo2.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CORE SERVICES CARDS (Matching Logo Visual Identity)
+       ======================================================================== -->
+  <section class="nh-section" id="services">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Comprehensive Healthcare Suite</span>
+        <h2 class="nh-section-title">Everything You Need For Your Family's Health</h2>
+        <p class="nh-section-subtitle">
+          Six integrated healthcare verticals unified under the trusted NHealth ecosystem.
+        </p>
+      </div>
+
+      <div class="nh-services-grid">
+        <!-- 1. Doctor Consultation -->
+        <div class="nh-service-card">
+          <div class="service-icon-wrapper">🩺</div>
+          <h3 class="service-card-title">Doctor Consultation</h3>
+          <p class="service-card-desc">
+            Connect with 500+ board-certified general physicians and super-specialists via HD video or book priority in-clinic visits.
+          </p>
+          <ul class="service-card-features">
+            <li><span class="check-icon">✓</span> 15-Minute Instant Telemedicine</li>
+            <li><span class="check-icon">✓</span> Free Follow-Up For 7 Days</li>
+            <li><span class="check-icon">✓</span> Digital E-Prescription with WhatsApp Delivery</li>
+          </ul>
+          <div class="service-card-footer">
+            <div class="service-price-tag">Starts at <strong>₹499</strong></div>
+            <button class="nh-btn nh-btn-primary nh-btn-sm open-booking-modal-btn" data-service="Doctor Consultation">
+              Consult Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Doorstep E-Pharmacy -->
+        <div class="nh-service-card">
+          <div class="service-icon-wrapper">💊</div>
+          <h3 class="service-card-title">Doorstep E-Pharmacy</h3>
+          <p class="service-card-desc">
+            Upload your prescription for instant pharmacist validation. Enjoy authentic temperature-controlled doorstep medicine delivery.
+          </p>
+          <ul class="service-card-features">
+            <li><span class="check-icon">✓</span> 100% Genuine Certified Medicines</li>
+            <li><span class="check-icon">✓</span> 2-Hour Express Delivery Guarantee</li>
+            <li><span class="check-icon">✓</span> Flat 20% Discount on Monthly Refills</li>
+          </ul>
+          <div class="service-card-footer">
+            <div class="service-price-tag">Express <strong>Free > ₹500</strong></div>
+            <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="switchPortalDirect('pharmacy'); location.href='#portals';">
+              Order Medicines
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Home Diagnostics -->
+        <div class="nh-service-card">
+          <div class="service-icon-wrapper">🔬</div>
+          <h3 class="service-card-title">Home Diagnostics</h3>
+          <p class="service-card-desc">
+            Certified phlebotomists arrive at your doorstep with sealed vacutainer kits for blood, urine, and pathology sample collection.
+          </p>
+          <ul class="service-card-features">
+            <li><span class="check-icon">✓</span> NABL & CAP Accredited Testing</li>
+            <li><span class="check-icon">✓</span> 100% Painless Safe Blood Draw</li>
+            <li><span class="check-icon">✓</span> Verified Smart PDF Reports in 6 Hours</li>
+          </ul>
+          <div class="service-card-footer">
+            <div class="service-price-tag">Packages from <strong>₹699</strong></div>
+            <button class="nh-btn nh-btn-primary nh-btn-sm open-booking-modal-btn" data-service="Home Diagnostics">
+              Book Lab Test
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Specialized Home Nursing -->
+        <div class="nh-service-card">
+          <div class="service-icon-wrapper">👩‍⚕️</div>
+          <h3 class="service-card-title">Specialized Nursing</h3>
+          <p class="service-card-desc">
+            Compassionate, qualified nurses for post-operative recovery, elderly assistance, wound dressing, catheter management, and home ICU.
+          </p>
+          <ul class="service-card-features">
+            <li><span class="check-icon">✓</span> Background-Verified Registered Nurses</li>
+            <li><span class="check-icon">✓</span> 12-Hour & 24-Hour Attendant Shifts</li>
+            <li><span class="check-icon">✓</span> Vital Monitoring & Medication Management</li>
+          </ul>
+          <div class="service-card-footer">
+            <div class="service-price-tag">Per Shift from <strong>₹1,200</strong></div>
+            <button class="nh-btn nh-btn-secondary nh-btn-sm open-booking-modal-btn" data-service="Nursing Care">
+              Book Nurse
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. 24/7 Smart Ambulance -->
+        <div class="nh-service-card">
+          <div class="service-icon-wrapper">🚑</div>
+          <h3 class="service-card-title">24/7 Smart Ambulance</h3>
+          <p class="service-card-desc">
+            Emergency GPS dispatch linking you to the nearest Advanced Life Support (ALS) and Basic Life Support (BLS) ambulances.
+          </p>
+          <ul class="service-card-features">
+            <li><span class="check-icon">✓</span> 8-Minute Average Arrival Time</li>
+            <li><span class="check-icon">✓</span> Onboard Ventilator, Defibrillator & O2</li>
+            <li><span class="check-icon">✓</span> Hospital Emergency Room Pre-Sync</li>
+          </ul>
+          <div class="service-card-footer">
+            <div class="service-price-tag">Emergency <strong>Toll-Free SOS</strong></div>
+            <button class="nh-btn nh-btn-danger nh-btn-sm" onclick="switchPortalDirect('ambulance'); location.href='#portals';">
+              🚨 Dispatch SOS
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Preventive Health Checks -->
+        <div class="nh-service-card">
+          <div class="service-icon-wrapper">🛡️</div>
+          <h3 class="service-card-title">Full Body Screening</h3>
+          <p class="service-card-desc">
+            Comprehensive annual preventive health packages covering 85+ parameters including Cardiac Risk, Liver, Kidney, and Diabetes.
+          </p>
+          <ul class="service-card-features">
+            <li><span class="check-icon">✓</span> Free Doctor Consultation Included</li>
+            <li><span class="check-icon">✓</span> AI-Powered Health Risk Assessment</li>
+            <li><span class="check-icon">✓</span> Complete Family Health Passports</li>
+          </ul>
+          <div class="service-card-footer">
+            <div class="service-price-tag">Comprehensive <strong>₹1,999</strong></div>
+            <button class="nh-btn nh-btn-accent nh-btn-sm open-booking-modal-btn" data-service="Preventive Health Package">
+              Book Package
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       OPERATIONAL NETWORK — PAN-INDIA COVERAGE & ANDHRA PRADESH OPERATIONS HUB
+       ======================================================================== -->
+  <section class="nh-section" id="network" style="position: relative; background: radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.04) 0%, rgba(10, 27, 51, 0.3) 60%, transparent 100%);">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge nh-badge-gold">
+          <span class="gold-pulse-dot"></span>
+          Operational Footprint
+        </span>
+        <h2 class="nh-section-title">
+          Pan-India Healthcare Network with <span class="nh-gold-highlight">Andhra Pradesh Hub</span>
+        </h2>
+        <p class="nh-section-subtitle">
+          Rapid hospital-grade doorstep care, certified specialist tele-consultations, and emergency ambulance dispatch across India, anchored by our state-wide command hub in Andhra Pradesh.
+        </p>
+      </div>
+
+      <div class="nh-network-grid">
+        <!-- Left: Golden Andhra Pradesh India Map -->
+        <div class="nh-network-map-card">
+          <div class="nh-map-card-header">
+            <div class="nh-map-pill">
+              <span class="gold-pulse-dot"></span>
+              <strong>Primary Hub: Andhra Pradesh</strong>
+            </div>
+            <div class="nh-map-status-badge">24/7 Grid Active</div>
+          </div>
+
+          <div class="nh-map-viewport">
+            <img src="assets/images/india_ap_golden.svg" alt="India Map with Andhra Pradesh Highlighted in Golden Border and Glow" class="nh-india-map-graphic" />
+          </div>
+
+          <!-- Map Legend -->
+          <div class="nh-map-legend-bar">
+            <div class="nh-legend-pill">
+              <span class="legend-swatch ap-gold-swatch"></span>
+              <span><strong>Andhra Pradesh</strong> (Active Rapid Doorstep Hub)</span>
+            </div>
+            <div class="nh-legend-pill">
+              <span class="legend-swatch national-white-swatch"></span>
+              <span>Pan-India Telemedicine & Partner Grid</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Andhra Pradesh Healthcare Operations Dashboard -->
+        <div class="nh-network-info-card">
+          <div class="nh-hub-card-header">
+            <div class="nh-hub-icon-badge">🏛️</div>
+            <div>
+              <span class="nh-hub-tag">State Operations Headquarters</span>
+              <h3 class="nh-hub-title">Andhra Pradesh Healthcare Network</h3>
+              <p class="nh-hub-location">📍 Central Operations: Vijayawada / Amaravati Command Center</p>
+            </div>
+          </div>
+
+          <!-- Key Metrics Grid -->
+          <div class="nh-hub-stats-grid">
+            <div class="nh-hub-stat">
+              <div class="stat-num text-gold">26 / 26</div>
+              <div class="stat-label">Districts Active in AP</div>
+            </div>
+            <div class="nh-hub-stat">
+              <div class="stat-num text-teal">&lt; 8 Mins</div>
+              <div class="stat-label">Emergency SOS Dispatch</div>
+            </div>
+            <div class="nh-hub-stat">
+              <div class="stat-num text-blue">2 Hours</div>
+              <div class="stat-label">Doorstep Medicine Delivery</div>
+            </div>
+            <div class="nh-hub-stat">
+              <div class="stat-num text-mint">1,200+</div>
+              <div class="stat-label">Verified MD Specialists</div>
+            </div>
+          </div>
+
+          <!-- Regional Hubs in AP -->
+          <div class="nh-hub-districts-card">
+            <h4 class="districts-title">Regional Hubs Across Andhra Pradesh</h4>
+            <div class="districts-tags-wrap">
+              <span class="district-chip">🌊 Visakhapatnam</span>
+              <span class="district-chip">🏛️ Vijayawada</span>
+              <span class="district-chip">🏥 Guntur</span>
+              <span class="district-chip">🛕 Tirupati</span>
+              <span class="district-chip">⚡ Kurnool</span>
+              <span class="district-chip">🌿 Rajahmundry</span>
+              <span class="district-chip">🌾 Nellore</span>
+              <span class="district-chip">☀️ Anantapur</span>
+            </div>
+          </div>
+
+          <!-- Coverage Features -->
+          <ul class="nh-hub-feature-list">
+            <li>
+              <span class="gold-bullet">✓</span>
+              <div>
+                <strong>State-wide Home Sample Collection</strong>
+                <p>Certified phlebotomists arrive within 30 minutes with calibrated cold-chain preservation kits.</p>
+              </div>
+            </li>
+            <li>
+              <span class="gold-bullet">✓</span>
+              <div>
+                <strong>GPS-Tracked ALS & BLS Ambulance Fleet</strong>
+                <p>Real-time vehicle telemetry routed directly to major trauma and super-specialty hospitals.</p>
+              </div>
+            </li>
+            <li>
+              <span class="gold-bullet">✓</span>
+              <div>
+                <strong>Telugu & English Multilingual Support</strong>
+                <p>Consult senior doctors in Telugu and receive instant digital prescriptions and lab reports.</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Action Buttons -->
+          <div class="nh-hub-actions">
+            <button class="nh-btn nh-btn-accent open-booking-modal-btn" data-service="Doctor Consultation">
+              Book AP Doorstep Visit
+            </button>
+            <a href="tel:1800NHEALTH" class="nh-btn nh-btn-secondary" style="border-color: rgba(255,215,0,0.35); color: #FFD700;">
+              📞 24/7 AP SOS Dispatch
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       TELEMEDICINE VIDEO CONSULTATION PAGE VIDEO CONSULTATION PAGE (Virtual Clinic)
+       ======================================================================== -->
+  <section class="nh-section nh-section-alt" id="telemedicine">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Next-Gen Telemedicine</span>
+        <h2 class="nh-section-title">Virtual Clinic Video Consultation</h2>
+        <p class="nh-section-subtitle">
+          Real-time encrypted consultation room with synchronized vitals telemetry and instant digital prescription generation.
+        </p>
+      </div>
+
+      <!-- Telemedicine Container -->
+      <div class="telemed-container">
+        <!-- Main Video Area -->
+        <div class="telemed-video-area">
+          <!-- Top Bar Overlay -->
+          <div class="telemed-header-bar">
+            <div class="telemed-doctor-tag">
+              <span class="pulse-dot"></span>
+              <strong>Dr. Priya Sharma (Cardiology)</strong>
+              <span style="opacity: 0.7;">• Consultation #NH-7821</span>
+            </div>
+            <div class="telemed-live-indicator">
+              <span>● LIVE</span>
+              <span>14:32</span>
+            </div>
+          </div>
+
+          <!-- Video Stream Simulation -->
+          <div class="telemed-video-placeholder" id="videoMainStream">
+            <div class="video-sim-doctor">
+              <div class="video-sim-avatar">🩺</div>
+              <div>
+                <h3 style="color: white; margin-bottom: 0.35rem;">Dr. Priya Sharma, MD</h3>
+                <p style="color: #A2C4E5; font-size: 0.875rem;">Senior Consultant Cardiologist • Fortis Healthcare Partner</p>
+                <div style="margin-top: 0.5rem; display: inline-flex; gap: 0.5rem;">
+                  <span class="nh-badge nh-badge-teal">Verified MD</span>
+                  <span class="nh-badge nh-badge-primary">Audio/Video Synchronized</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vitals Telemetry HUD (Heads Up Display) -->
+          <div class="telemed-vitals-overlay">
+            <div class="hud-vital-chip">
+              <span>❤️ Pulse:</span>
+              <span class="hud-val" id="hudHeartRate">74 BPM</span>
+            </div>
+            <div class="hud-vital-chip">
+              <span>🫁 SpO2:</span>
+              <span class="hud-val">99% Normal</span>
+            </div>
+            <div class="hud-vital-chip">
+              <span>🩸 BP:</span>
+              <span class="hud-val">120/80 mmHg</span>
+            </div>
+          </div>
+
+          <!-- Picture in Picture (Patient Feed) -->
+          <div class="telemed-pip">
+            <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">👤</div>
+            <strong style="color: white;">Rahul Verma (You)</strong>
+            <span>Audio/Video Active</span>
+          </div>
+
+          <!-- Bottom Control Bar -->
+          <div class="telemed-controls-bar">
+            <button class="call-control-btn" id="btnCallMute" title="Mute/Unmute Audio">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+              </svg>
+            </button>
+            <button class="call-control-btn" id="btnCallVideo" title="Start/Stop Video">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+            </button>
+            <button class="call-control-btn" id="btnCallShare" title="Share Screen / Lab Reports">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </button>
+            <button class="call-control-btn btn-end-call" id="btnCallEnd" title="End Consultation">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.684A1 1 0 008.279 3H5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Telemedicine Side Panel (Chat & Notes) -->
+        <div class="telemed-sidepanel">
+          <div class="sidepanel-tabs">
+            <button class="sidepanel-tab-btn active">💬 Consultation Chat</button>
+            <button class="sidepanel-tab-btn" onclick="alert('Digital E-Prescription #NPX-8920: Tab Amlodipine 5mg OD, Tab Atorvastatin 10mg HS. Verified by Dr. Priya Sharma.')">📋 Prescription</button>
+          </div>
+
+          <!-- Messages Body -->
+          <div class="sidepanel-messages" id="telemedChatMessages">
+            <div class="msg-bubble msg-incoming">
+              <div>Hello Rahul! I can see your ECG telemetry is stable today. How is the mild chest heaviness you mentioned?</div>
+              <div class="msg-time">10:14 AM • Dr. Priya Sharma</div>
+            </div>
+            <div class="msg-bubble msg-outgoing">
+              <div>Good morning Doctor! Much better since yesterday, no shortness of breath, but slight fatigue after lunch.</div>
+              <div class="msg-time">10:15 AM • You</div>
+            </div>
+            <div class="msg-bubble msg-incoming">
+              <div>Good to hear. I've sent a 10-day refill for your cardiorespiratory medication directly to your WhatsApp and registered pharmacy.</div>
+              <div class="msg-time">10:16 AM • Dr. Priya Sharma</div>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <form class="sidepanel-input-area" id="telemedChatForm">
+            <input type="text" id="telemedChatInput" class="chat-input" placeholder="Type message to doctor..." />
+            <button type="submit" class="nh-btn nh-btn-primary nh-btn-sm" style="border-radius: var(--radius-full); padding: 0.5rem 1rem;">
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ENTERPRISE MULTI-ROLE PORTALS
+       ======================================================================== -->
+  <section class="nh-section" id="portals">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Unified Platform Portals</span>
+        <h2 class="nh-section-title">One Brand Ecosystem for Every Healthcare Stakeholder</h2>
+        <p class="nh-section-subtitle">
+          Dedicated specialized interfaces for Doctors, Patients, Pharmacies, Diagnostic Centers, Ambulance fleets, and Executive Admins.
+        </p>
+      </div>
+
+      <!-- Portal Wrapper Component -->
+      <div class="nh-portal-wrapper">
+        <!-- Tabs Bar -->
+        <div class="nh-portal-tabs">
+          <button class="nh-portal-tab active" data-role="doctor">👨‍⚕️ Doctor Console</button>
+          <button class="nh-portal-tab" data-role="patient">🩺 Patient Portal</button>
+          <button class="nh-portal-tab" data-role="pharmacy">💊 E-Pharmacy Hub</button>
+          <button class="nh-portal-tab" data-role="diagnostics">🔬 Diagnostics Center</button>
+          <button class="nh-portal-tab" data-role="ambulance">🚑 Ambulance Dispatch</button>
+          <button class="nh-portal-tab" data-role="admin">📊 Executive Admin</button>
+        </div>
+
+        <!-- ==================== VIEW 1: DOCTOR PORTAL ==================== -->
+        <div class="portal-content-view active" id="view-doctor">
+          <div class="dashboard-grid">
+            <!-- Sidebar -->
+            <div class="dashboard-sidebar">
+              <div class="dash-user-profile">
+                <div class="dash-user-avatar">DR</div>
+                <div class="dash-user-meta">
+                  <h5>Dr. Priya Sharma</h5>
+                  <span>Cardiology • Senior Lead</span>
+                </div>
+              </div>
+              <ul class="dash-nav-list">
+                <li><a class="dash-nav-link active">📊 Doctor Dashboard</a></li>
+                <li><a class="dash-nav-link">📅 Patient Appointments (8)</a></li>
+                <li><a class="dash-nav-link">📹 Virtual Video Queue</a></li>
+                <li><a class="dash-nav-link">📝 E-Prescriptions Issued</a></li>
+                <li><a class="dash-nav-link">💳 Earnings & Payouts</a></li>
+                <li><a class="dash-nav-link">⚙️ Availability Schedule</a></li>
+              </ul>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="dashboard-main">
+              <div class="dash-stat-row">
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Today's Consultations</span>
+                    <div class="stat-icon">🩺</div>
+                  </div>
+                  <div class="stat-number">14</div>
+                  <div class="stat-trend trend-up">↑ 3 more than yesterday</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Active Waiting Queue</span>
+                    <div class="stat-icon">⏳</div>
+                  </div>
+                  <div class="stat-number">3 Patients</div>
+                  <div class="stat-trend">Avg wait: 4 mins</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Monthly Payout</span>
+                    <div class="stat-icon">₹</div>
+                  </div>
+                  <div class="stat-number">₹1,84,500</div>
+                  <div class="stat-trend trend-up">↑ 18% vs last month</div>
+                </div>
+              </div>
+
+              <!-- Enterprise Table: Doctor's Queue -->
+              <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Today's Patient Schedule & Status</h4>
+              <div class="nh-table-container">
+                <table class="nh-table">
+                  <thead>
+                    <tr>
+                      <th>Patient Name</th>
+                      <th>Type</th>
+                      <th>Time Slot</th>
+                      <th>Chief Complaint</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Rahul Verma</strong> (34M)</td>
+                      <td><span class="nh-badge nh-badge-primary">Telemedicine</span></td>
+                      <td>10:30 AM</td>
+                      <td>Post-Op Cardiac Follow-up</td>
+                      <td><span class="nh-badge nh-badge-teal">In Call</span></td>
+                      <td><a href="#telemedicine" class="nh-btn nh-btn-primary nh-btn-sm">Enter Room</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Ananya Deshmukh</strong> (28F)</td>
+                      <td><span class="nh-badge nh-badge-primary">Telemedicine</span></td>
+                      <td>11:15 AM</td>
+                      <td>Hypertension Review</td>
+                      <td><span class="nh-badge nh-badge-warning">Waiting</span></td>
+                      <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Admitted Ananya Deshmukh to consultation room')">Admit</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Suresh Kulkarni</strong> (62M)</td>
+                      <td><span class="nh-badge nh-badge-teal">Home Visit</span></td>
+                      <td>02:00 PM</td>
+                      <td>ECG & Vital Check</td>
+                      <td><span class="nh-badge nh-badge-success">Confirmed</span></td>
+                      <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Home nurse assigned to assist Dr. Sharma')">View Route</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 2: PATIENT PORTAL ==================== -->
+        <div class="portal-content-view" id="view-patient">
+          <div class="dashboard-grid">
+            <div class="dashboard-sidebar">
+              <div class="dash-user-profile">
+                <div class="dash-user-avatar">RV</div>
+                <div class="dash-user-meta">
+                  <h5>Rahul Verma</h5>
+                  <span>Patient ID: #NH-9042</span>
+                </div>
+              </div>
+              <ul class="dash-nav-list">
+                <li><a class="dash-nav-link active">🏠 Patient Hub</a></li>
+                <li><a class="dash-nav-link">📋 My Consultations</a></li>
+                <li><a class="dash-nav-link">💊 Medicine Orders (2)</a></li>
+                <li><a class="dash-nav-link">🧪 Diagnostic Reports (5)</a></li>
+                <li><a class="dash-nav-link">🛡️ Health Insurance Cards</a></li>
+                <li><a class="dash-nav-link">⚙️ Family Profiles</a></li>
+              </ul>
+            </div>
+
+            <div class="dashboard-main">
+              <div class="dash-stat-row">
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Next Doctor Appointment</span>
+                    <div class="stat-icon">📅</div>
+                  </div>
+                  <div class="stat-number" style="font-size: 1.35rem;">Today, 10:30 AM</div>
+                  <div class="stat-trend trend-up">Dr. Priya Sharma • Video</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Active Medicine Order</span>
+                    <div class="stat-icon">🚚</div>
+                  </div>
+                  <div class="stat-number" style="font-size: 1.35rem;">Out For Delivery</div>
+                  <div class="stat-trend">ETA: 28 mins • Express</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Lab Reports</span>
+                    <div class="stat-icon">🔬</div>
+                  </div>
+                  <div class="stat-number" style="font-size: 1.35rem;">Ready to View</div>
+                  <div class="stat-trend trend-up">Complete Lipid Panel (NABL)</div>
+                </div>
+              </div>
+
+              <!-- Patient Records Table -->
+              <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">My Prescriptions & Lab Results</h4>
+              <div class="nh-table-container">
+                <table class="nh-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Service / Doctor</th>
+                      <th>Record Type</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>11 Sep 2026</td>
+                      <td>Dr. Priya Sharma</td>
+                      <td>Digital E-Prescription #NPX-8920</td>
+                      <td><span class="nh-badge nh-badge-success">Active Refill</span></td>
+                      <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Downloading Prescription PDF...')">Download PDF</button></td>
+                    </tr>
+                    <tr>
+                      <td>09 Sep 2026</td>
+                      <td>NHealth Diagnostic Lab</td>
+                      <td>Lipid Profile & HbA1c Panel</td>
+                      <td><span class="nh-badge nh-badge-teal">Verified NABL</span></td>
+                      <td><button class="nh-btn nh-btn-primary nh-btn-sm" onclick="showToast('Opening Smart Lab Report Viewer...')">View Report</button></td>
+                    </tr>
+                    <tr>
+                      <td>02 Sep 2026</td>
+                      <td>NHealth Express Pharmacy</td>
+                      <td>Order #ORD-6621 (3 Items)</td>
+                      <td><span class="nh-badge nh-badge-success">Delivered</span></td>
+                      <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Reordered medicines with 20% refill discount!')">Reorder Refill</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 3: PHARMACY PORTAL ==================== -->
+        <div class="portal-content-view" id="view-pharmacy">
+          <div class="dashboard-grid">
+            <div class="dashboard-sidebar">
+              <div class="dash-user-profile">
+                <div class="dash-user-avatar">PH</div>
+                <div class="dash-user-meta">
+                  <h5>Apex MedHub Hub #4</h5>
+                  <span>Verified Partner • License #DL-8812</span>
+                </div>
+              </div>
+              <ul class="dash-nav-list">
+                <li><a class="dash-nav-link active">📦 Live Orders Queue (18)</a></li>
+                <li><a class="dash-nav-link">🔍 Rx Verification Desk</a></li>
+                <li><a class="dash-nav-link">🛵 Delivery Rider Fleet</a></li>
+                <li><a class="dash-nav-link">📊 Inventory & Cold Chain</a></li>
+                <li><a class="dash-nav-link">💰 Settlement Ledger</a></li>
+              </ul>
+            </div>
+
+            <div class="dashboard-main">
+              <div class="dash-stat-row">
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Pending Orders</span>
+                    <div class="stat-icon">📋</div>
+                  </div>
+                  <div class="stat-number">18 Orders</div>
+                  <div class="stat-trend trend-up">6 urgent 2-hr orders</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Active Riders En Route</span>
+                    <div class="stat-icon">🛵</div>
+                  </div>
+                  <div class="stat-number">9 Dispatched</div>
+                  <div class="stat-trend">Avg fulfillment: 32 mins</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Today's Sales</span>
+                    <div class="stat-icon">₹</div>
+                  </div>
+                  <div class="stat-number">₹84,290</div>
+                  <div class="stat-trend trend-up">↑ 14% vs weekday avg</div>
+                </div>
+              </div>
+
+              <!-- Orders Table -->
+              <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Prescription Dispensing & Dispatch</h4>
+              <div class="nh-table-container">
+                <table class="nh-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Patient</th>
+                      <th>Items / Rx</th>
+                      <th>Delivery Partner</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#ORD-7740</td>
+                      <td>Rahul Verma</td>
+                      <td>Amlodipine 5mg, Atorvastatin 10mg</td>
+                      <td>Express Rider #R-42</td>
+                      <td>₹780.00</td>
+                      <td><span class="nh-badge nh-badge-teal">Out For Delivery</span></td>
+                      <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Tracking Rider #R-42 on live GPS map...')">Track Rider</button></td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-7741</td>
+                      <td>Sneha Rao</td>
+                      <td>Augmentin 625, Pan-D, VSL#3</td>
+                      <td>Assigning Rider...</td>
+                      <td>₹1,240.00</td>
+                      <td><span class="nh-badge nh-badge-warning">Packed & Ready</span></td>
+                      <td><button class="nh-btn nh-btn-primary nh-btn-sm" onclick="showToast('Rider #R-19 assigned to Order #ORD-7741')">Dispatch</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 4: DIAGNOSTICS PORTAL ==================== -->
+        <div class="portal-content-view" id="view-diagnostics">
+          <div class="dashboard-grid">
+            <div class="dashboard-sidebar">
+              <div class="dash-user-profile">
+                <div class="dash-user-avatar">LAB</div>
+                <div class="dash-user-meta">
+                  <h5>NHealth Central Lab</h5>
+                  <span>NABL ISO 15189 Certified</span>
+                </div>
+              </div>
+              <ul class="dash-nav-list">
+                <li><a class="dash-nav-link active">🧪 Sample Processing</a></li>
+                <li><a class="dash-nav-link">🚴 Phlebotomist Dispatch (12)</a></li>
+                <li><a class="dash-nav-link">📄 Pathologist Approval Queue</a></li>
+                <li><a class="dash-nav-link">📊 Analyzer Instrument Sync</a></li>
+              </ul>
+            </div>
+
+            <div class="dashboard-main">
+              <div class="dash-stat-row">
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Samples In Batch</span>
+                    <div class="stat-icon">🧪</div>
+                  </div>
+                  <div class="stat-number">46 Samples</div>
+                  <div class="stat-trend trend-up">All cold-chain compliant</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Home Collections Today</span>
+                    <div class="stat-icon">🏠</div>
+                  </div>
+                  <div class="stat-number">38 Completed</div>
+                  <div class="stat-trend">8 appointments upcoming</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Reports Delivered</span>
+                    <div class="stat-icon">📄</div>
+                  </div>
+                  <div class="stat-number">124 Today</div>
+                  <div class="stat-trend trend-up">Avg TAT: 5.2 hours</div>
+                </div>
+              </div>
+
+              <!-- Lab Queue Table -->
+              <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Pathology Test Batches</h4>
+              <div class="nh-table-container">
+                <table class="nh-table">
+                  <thead>
+                    <tr>
+                      <th>Sample Barcode</th>
+                      <th>Patient</th>
+                      <th>Test Name</th>
+                      <th>Collection Time</th>
+                      <th>SLA Target</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#SMP-99218</td>
+                      <td>Meera Iyer (45F)</td>
+                      <td>Thyroid Profile Total (T3, T4, TSH)</td>
+                      <td>07:30 AM</td>
+                      <td>01:30 PM (6 Hrs)</td>
+                      <td><span class="nh-badge nh-badge-teal">Analysis Complete</span></td>
+                      <td><button class="nh-btn nh-btn-primary nh-btn-sm" onclick="showToast('Report verified by Pathologist Dr. Roy & sent to WhatsApp!')">Sign & Publish</button></td>
+                    </tr>
+                    <tr>
+                      <td>#SMP-99219</td>
+                      <td>Rajesh Khurana (58M)</td>
+                      <td>HbA1c & Fasting Glucose</td>
+                      <td>08:15 AM</td>
+                      <td>02:15 PM (6 Hrs)</td>
+                      <td><span class="nh-badge nh-badge-warning">In Centrifuge</span></td>
+                      <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Analyzer synced with Barcode #SMP-99219')">View Vials</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 5: AMBULANCE PORTAL ==================== -->
+        <div class="portal-content-view" id="view-ambulance">
+          <div class="dashboard-grid">
+            <div class="dashboard-sidebar">
+              <div class="dash-user-profile">
+                <div class="dash-user-avatar" style="background: var(--nh-danger);">SOS</div>
+                <div class="dash-user-meta">
+                  <h5>Emergency Command</h5>
+                  <span>Smart Fleet Dispatch</span>
+                </div>
+              </div>
+              <ul class="dash-nav-list">
+                <li><a class="dash-nav-link active">🚨 Emergency SOS Dispatch</a></li>
+                <li><a class="dash-nav-link">📍 GPS Fleet Radar (24 Active)</a></li>
+                <li><a class="dash-nav-link">🏥 Hospital ER Handover</a></li>
+                <li><a class="dash-nav-link">📊 Response Time Telemetry</a></li>
+              </ul>
+            </div>
+
+            <div class="dashboard-main">
+              <div class="dash-stat-row">
+                <div class="nh-stat-box" style="border-left: 4px solid var(--nh-danger);">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Active Distress Calls</span>
+                    <div class="stat-icon" style="color: var(--nh-danger);">🚨</div>
+                  </div>
+                  <div class="stat-number" style="color: var(--nh-danger);">2 In Progress</div>
+                  <div class="stat-trend trend-down">Units dispatched</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Average Response Time</span>
+                    <div class="stat-icon">⏱️</div>
+                  </div>
+                  <div class="stat-number">7.8 Mins</div>
+                  <div class="stat-trend trend-up">↓ 1.2 mins faster than SLA</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Available Fleet</span>
+                    <div class="stat-icon">🚑</div>
+                  </div>
+                  <div class="stat-number">18 Vehicles</div>
+                  <div class="stat-trend">12 ALS • 6 BLS Ready</div>
+                </div>
+              </div>
+
+              <!-- Emergency Units Table -->
+              <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Emergency Fleet Live Status</h4>
+              <div class="nh-table-container">
+                <table class="nh-table">
+                  <thead>
+                    <tr>
+                      <th>Vehicle ID</th>
+                      <th>Type</th>
+                      <th>Driver & Paramedic</th>
+                      <th>Location</th>
+                      <th>Status</th>
+                      <th>ETA / Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>#KA-03-9182</strong></td>
+                      <td><span class="nh-badge nh-badge-danger">ALS (Ventilator)</span></td>
+                      <td>Suresh M. / EMT John</td>
+                      <td>Indiranagar 100ft Rd</td>
+                      <td><span class="nh-badge nh-badge-danger">En Route SOS</span></td>
+                      <td><strong style="color: var(--nh-danger);">ETA: 4 Mins</strong></td>
+                    </tr>
+                    <tr>
+                      <td><strong>#KA-01-4412</strong></td>
+                      <td><span class="nh-badge nh-badge-primary">BLS (Oxygen)</span></td>
+                      <td>Vinod K. / EMT Sarah</td>
+                      <td>Koramangala 4th Block</td>
+                      <td><span class="nh-badge nh-badge-success">Standby Available</span></td>
+                      <td><button class="nh-btn nh-btn-danger nh-btn-sm" onclick="showToast('Manual SOS Dispatch triggered for Unit #KA-01-4412')">Dispatch</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 6: EXECUTIVE ADMIN PORTAL ==================== -->
+        <div class="portal-content-view" id="view-admin">
+          <div class="dashboard-grid">
+            <div class="dashboard-sidebar">
+              <div class="dash-user-profile">
+                <div class="dash-user-avatar">ADM</div>
+                <div class="dash-user-meta">
+                  <h5>Executive Admin</h5>
+                  <span>NHealth Technologies HQ</span>
+                </div>
+              </div>
+              <ul class="dash-nav-list">
+                <li><a class="dash-nav-link active">📈 Platform Overview</a></li>
+                <li><a class="dash-nav-link">👨‍⚕️ Doctor Onboarding & KYC</a></li>
+                <li><a class="dash-nav-link">🏬 Pharmacies & Labs</a></li>
+                <li><a class="dash-nav-link">💳 Financial Settlement</a></li>
+                <li><a class="dash-nav-link">🛡️ System Security & HIPAA</a></li>
+              </ul>
+            </div>
+
+            <div class="dashboard-main">
+              <div class="dash-stat-row">
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Platform GMV (Monthly)</span>
+                    <div class="stat-icon">💰</div>
+                  </div>
+                  <div class="stat-number">₹3.85 Cr</div>
+                  <div class="stat-trend trend-up">↑ 24.6% MoM Growth</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Doctors Online</span>
+                    <div class="stat-icon">🩺</div>
+                  </div>
+                  <div class="stat-number">348 Specialists</div>
+                  <div class="stat-trend trend-up">98.4% CSAT Rating</div>
+                </div>
+                <div class="nh-stat-box">
+                  <div class="stat-box-top">
+                    <span class="stat-label">Completed Consultations</span>
+                    <div class="stat-icon">📹</div>
+                  </div>
+                  <div class="stat-number">24,890</div>
+                  <div class="stat-trend">Zero SLA violations</div>
+                </div>
+              </div>
+
+              <!-- Admin Revenue Summary Table -->
+              <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Marketplace Transaction Ledger</h4>
+              <div class="nh-table-container">
+                <table class="nh-table">
+                  <thead>
+                    <tr>
+                      <th>Transaction ID</th>
+                      <th>Service Vertical</th>
+                      <th>Payer / Patient</th>
+                      <th>Amount</th>
+                      <th>Platform Fee</th>
+                      <th>Settlement</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#TXN-90812</td>
+                      <td>Telemedicine Cardiology</td>
+                      <td>Rahul Verma</td>
+                      <td>₹499.00</td>
+                      <td>₹74.85 (15%)</td>
+                      <td><span class="nh-badge nh-badge-success">Settled UPI</span></td>
+                    </tr>
+                    <tr>
+                      <td>#TXN-90813</td>
+                      <td>Comprehensive Lab Panel</td>
+                      <td>Meera Iyer</td>
+                      <td>₹1,999.00</td>
+                      <td>₹399.80 (20%)</td>
+                      <td><span class="nh-badge nh-badge-success">Settled Card</span></td>
+                    </tr>
+                    <tr>
+                      <td>#TXN-90814</td>
+                      <td>E-Pharmacy Doorstep Delivery</td>
+                      <td>Suresh Kulkarni</td>
+                      <td>₹2,450.00</td>
+                      <td>₹245.00 (10%)</td>
+                      <td><span class="nh-badge nh-badge-teal">Processing</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ENTERPRISE ANALYTICS & CHARTS
+       ======================================================================== -->
+  <section class="nh-section nh-section-alt" id="analytics">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Data-Driven Healthcare</span>
+        <h2 class="nh-section-title">Investor & Operational Analytics</h2>
+        <p class="nh-section-subtitle">
+          Real-time metrics rendered using the dynamic brand palette extracted from the NHealth logo.
+        </p>
+      </div>
+
+      <div class="charts-grid">
+        <!-- 1. Revenue Chart -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h4>Monthly Platform GMV & Revenue Growth</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Navy to Mint Gradient Spectrum</span>
+            </div>
+            <span class="nh-badge nh-badge-teal">+24.6% YoY</span>
+          </div>
+          <div class="chart-svg-wrapper" id="revenueChartSvg"></div>
+        </div>
+
+        <!-- 2. Appointments Chart -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h4>Weekly Telemedicine Consultations</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Daily Completed Sessions</span>
+            </div>
+            <span class="nh-badge nh-badge-primary">480 Peak</span>
+          </div>
+          <div class="chart-svg-wrapper" id="appointmentsChartSvg"></div>
+        </div>
+
+        <!-- 3. Doctor Specialty Distribution -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h4>Consultation Volume by Specialty</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Top Clinical Categories</span>
+            </div>
+            <span class="nh-badge nh-badge-teal">Cardiology #1</span>
+          </div>
+          <div id="specialtyChartSvg"></div>
+        </div>
+
+        <!-- 4. Pharmacy Orders Hourly -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <h4>Pharmacy Express Delivery Volume</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Prescriptions Filled by Time of Day</span>
+            </div>
+            <span class="nh-badge nh-badge-success">Avg 28 Mins</span>
+          </div>
+          <div class="chart-svg-wrapper" id="pharmacyChartSvg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       WHATSAPP & LIVE NOTIFICATIONS SHOWCASE
+       ======================================================================== -->
+  <section class="nh-section" id="whatsappShowcaseSection">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Frictionless Patient Engagement</span>
+        <h2 class="nh-section-title">WhatsApp & Real-Time Alerts</h2>
+        <p class="nh-section-subtitle">
+          Patients receive verifiable booking links, e-prescriptions, and ambulance GPS updates directly via official WhatsApp.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem; align-items: center;">
+        <!-- Left: WhatsApp Card Mockup -->
+        <div>
+          <div class="whatsapp-card">
+            <div class="whatsapp-header">
+              <div class="wa-brand">
+                <div class="wa-icon-bubble">💬</div>
+                <div class="wa-brand-text">
+                  <strong>NHealth Technologies Verified</strong>
+                  <span>Official Healthcare Account ✔</span>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Instant Notification</span>
+            </div>
+
+            <div class="wa-body" id="whatsappPreviewBody">
+              <strong>NHealth Technologies Booking Confirmation</strong><br />
+              Dear <strong>Rahul Verma</strong>, your telemedicine consultation is confirmed with <strong>Dr. Priya Sharma (Cardiology)</strong>.<br /><br />
+              📅 Date: <strong>Today, 11 Sep 2026</strong><br />
+              ⏰ Time: <strong>10:30 AM (15 Mins)</strong><br />
+              🔗 Secure Room: <span style="color:var(--nh-blue-600); font-weight:600;">nhealth.tech/v/cardio-7821</span><br /><br />
+              <em>Doctor is reviewing your vitals. You will receive an SMS reminder 5 minutes prior.</em>
+              <div class="wa-msg-meta">
+                <span>10:25 AM</span>
+                <span style="color: #53bdeb;">✓✓</span>
+              </div>
+            </div>
+
+            <div class="wa-actions">
+              <button class="nh-btn nh-btn-primary nh-btn-sm" style="flex: 1;" onclick="location.href='#telemedicine'">
+                Join Video Call
+              </button>
+              <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Prescription PDF resent to WhatsApp!')">
+                Resend Rx
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Notification Center Highlights -->
+        <div style="padding: 1rem;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Omnichannel Patient Lifecycle</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+            NHealth integrates enterprise SMS, automated WhatsApp Business API webhooks, and push notifications to eliminate no-shows and keep patients informed at every step of their treatment journey.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(2,191,180,0.15); color: var(--nh-teal-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem;">
+                ✓
+              </div>
+              <div>
+                <strong>Immediate Instant Confirmation</strong>
+                <p style="font-size: 0.875rem; margin: 0;">Sent within 1.2 seconds of appointment booking with calendar invite.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(0,96,209,0.15); color: var(--nh-blue-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem;">
+                📍
+              </div>
+              <div>
+                <strong>Live GPS Tracking For Emergency & Pharmacy</strong>
+                <p style="font-size: 0.875rem; margin: 0;">Watch your ambulance or medicine delivery rider navigate to your doorstep in real-time.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(5,150,105,0.15); color: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem;">
+                📄
+              </div>
+              <div>
+                <strong>NABL Lab Reports Direct Download</strong>
+                <p style="font-size: 0.875rem; margin: 0;">Tamper-proof encrypted PDF reports sent immediately upon senior pathologist sign-off.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MODAL 1: APPOINTMENT BOOKING
+       ======================================================================== -->
+  <div class="nh-modal-backdrop" id="bookingModal">
+    <div class="nh-modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem;">Book Healthcare Service</h3>
+          <span style="font-size: 0.8125rem; color: var(--text-muted);">NHealth Technologies — Healthcare at Your Doorstep</span>
+        </div>
+        <button class="modal-close-btn close-booking-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="appointmentBookingForm">
+          <div class="form-group">
+            <label class="form-label">Service Required</label>
+            <select class="form-control" id="bookServiceSelect">
+              <option value="Doctor Consultation">Doctor Video Consultation (15-Min Instant)</option>
+              <option value="Home Diagnostics">Home Diagnostics & Lab Tests</option>
+              <option value="E-Pharmacy Delivery">Prescription Medicine Order</option>
+              <option value="Nursing Care">Home Nursing Care Attendant</option>
+              <option value="Preventive Health Package">Full Body Preventive Health Checkup</option>
+            </select>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Patient Full Name</label>
+              <input type="text" class="form-control" id="bookPatientName" placeholder="e.g. Rahul Verma" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number (For WhatsApp)</label>
+              <input type="tel" class="form-control" id="bookPatientPhone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Clinical Specialty</label>
+              <select class="form-control" id="bookSpecialtySelect">
+                <option value="Dr. Priya Sharma (Cardiology)">Cardiology (Heart & Blood Pressure)</option>
+                <option value="Dr. Arvind Patel (General Medicine)">General Physician (Fever, Cough, Vitals)</option>
+                <option value="Dr. Sneha Roy (Pediatrics)">Pediatrics (Child Healthcare)</option>
+                <option value="Dr. Ankit Mehta (Dermatology)">Dermatology (Skin & Hair)</option>
+                <option value="Dr. Kavita Nair (Endocrinology)">Endocrinology (Diabetes & Thyroid)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Consultation Date</label>
+              <input type="date" class="form-control" id="bookDate" value="2026-09-11" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Time Slot</label>
+            <select class="form-control" id="bookTime">
+              <option value="Immediate 15-Minute Slot">⚡ Immediate 15-Minute Slot (Doctor Ready)</option>
+              <option value="Today 11:30 AM">Today 11:30 AM</option>
+              <option value="Today 02:00 PM">Today 02:00 PM</option>
+              <option value="Today 05:30 PM">Today 05:30 PM</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Chief Symptoms / Notes (Optional)</label>
+            <textarea class="form-control" rows="2" placeholder="Describe symptoms, duration, or current medications..."></textarea>
+          </div>
+
+          <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; font-size: 0.8125rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+              <span>Consultation Fee:</span>
+              <strong>₹499.00</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: var(--nh-success); font-weight: 600;">
+              <span>Digital Health Pass Discount:</span>
+              <span>- ₹100.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-light); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.9375rem; font-weight: 700;">
+              <span>Total Payable:</span>
+              <span style="color: var(--nh-blue-600);">₹399.00</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+            <button type="button" class="nh-btn nh-btn-secondary close-booking-modal-btn">Cancel</button>
+            <button type="submit" class="nh-btn nh-btn-primary">
+              Confirm & Send WhatsApp Alert
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: DESIGN SYSTEM & BRAND TOKENS INSPECTOR
+       ======================================================================== -->
+  <div class="nh-modal-backdrop" id="designSystemModal">
+    <div class="nh-modal-box" style="max-width: 780px;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem;">NHealth Technologies Design System</h3>
+          <span style="font-size: 0.8125rem; color: var(--text-muted);">Extracted directly from Brand Logo</span>
+        </div>
+        <button class="modal-close-btn close-ds-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">1. Core Brand Color Tokens</h4>
+        <div class="color-swatches-grid">
+          <div class="swatch-box" style="background: #003169; cursor: pointer;" onclick="copyToken('#003169')">
+            <div>Primary Navy</div>
+            <div class="swatch-hex">#003169</div>
+          </div>
+          <div class="swatch-box" style="background: #0060D1; cursor: pointer;" onclick="copyToken('#0060D1')">
+            <div>Royal Blue</div>
+            <div class="swatch-hex">#0060D1</div>
+          </div>
+          <div class="swatch-box" style="background: #02BFB4; color: #001A3D; cursor: pointer;" onclick="copyToken('#02BFB4')">
+            <div>Medical Mint</div>
+            <div class="swatch-hex">#02BFB4</div>
+          </div>
+          <div class="swatch-box" style="background: #00B4DB; cursor: pointer;" onclick="copyToken('#00B4DB')">
+            <div>Cyan Azure</div>
+            <div class="swatch-hex">#00B4DB</div>
+          </div>
+          <div class="swatch-box" style="background: #54718C; cursor: pointer;" onclick="copyToken('#54718C')">
+            <div>Slate Steel</div>
+            <div class="swatch-hex">#54718C</div>
+          </div>
+        </div>
+
+        <h4 style="font-size: 1rem; margin: 1.25rem 0 0.75rem 0;">2. Button Hierarchy</h4>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <button class="nh-btn nh-btn-primary">Primary Gradient</button>
+          <button class="nh-btn nh-btn-secondary">Secondary Outline</button>
+          <button class="nh-btn nh-btn-accent">Accent Mint</button>
+          <button class="nh-btn nh-btn-success">Success</button>
+          <button class="nh-btn nh-btn-danger">Danger SOS</button>
+        </div>
+
+        <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">3. Status Badges</h4>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <span class="nh-badge nh-badge-primary">● In Consultation</span>
+          <span class="nh-badge nh-badge-teal">● NABL Verified</span>
+          <span class="nh-badge nh-badge-success">● Delivered</span>
+          <span class="nh-badge nh-badge-warning">● Pending Rx</span>
+          <span class="nh-badge nh-badge-danger">● Emergency SOS</span>
+        </div>
+
+        <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">4. Typography Hierarchy</h4>
+        <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.875rem;">
+          <div><strong style="font-family: var(--font-heading); font-size: 1.25rem;">Plus Jakarta Sans (600/700/800)</strong> — Headings, Wordmark, Action CTAs</div>
+          <div style="margin: 0.5rem 0;"><strong style="font-family: var(--font-body); font-size: 1rem;">Inter (400/500/600)</strong> — Body Text, Clinical Form Controls, Enterprise Tables</div>
+          <div><strong style="font-family: var(--font-mono); font-size: 0.95rem;">JetBrains Mono (500/700)</strong> — Telemetry Vitals, Patient IDs, Dosages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="nh-footer" id="contact">
+    <div class="nh-container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand -->
+        <div class="footer-brand">
+          <a href="#" class="nh-brand-logo-link">
+            <img src="assets/images/logo-white-text.png" alt="NHealth Technologies Logo" style="height: 44px; width: auto;" />
+          </a>
+          <p>
+            NHealth Technologies is an enterprise healthcare marketplace and digital telemedicine infrastructure pioneer, connecting patients, doctors, pharmacies, diagnostics, and emergency ambulance providers nationwide.
+          </p>
+          <div style="font-size: 0.8125rem; color: #A6EDEB;">
+            📍 Registered Office: NHealth HealthTech Tower, Bangalore, KA, India<br />
+            📧 Support: support@nhealthtechnologies.com
+          </div>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div class="footer-column">
+          <h4>Healthcare Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Doctor Video Consultation</a></li>
+            <li><a href="#services">Doorstep E-Pharmacy Refills</a></li>
+            <li><a href="#services">Home Pathology Diagnostics</a></li>
+            <li><a href="#services">Specialized Home Nursing</a></li>
+            <li><a href="#services">24/7 Smart Ambulance SOS</a></li>
+            <li><a href="#services">Executive Preventive Packages</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Portals -->
+        <div class="footer-column">
+          <h4>Enterprise Portals</h4>
+          <ul class="footer-links">
+            <li><a href="#portals" onclick="switchPortalDirect('doctor')">Doctor Clinical Console</a></li>
+            <li><a href="#portals" onclick="switchPortalDirect('patient')">Patient Health Dashboard</a></li>
+            <li><a href="#portals" onclick="switchPortalDirect('pharmacy')">Pharmacy Dispensing Hub</a></li>
+            <li><a href="#portals" onclick="switchPortalDirect('diagnostics')">Diagnostic Lab Network</a></li>
+            <li><a href="#portals" onclick="switchPortalDirect('ambulance')">Emergency Ambulance Fleet</a></li>
+            <li><a href="#portals" onclick="switchPortalDirect('admin')">Executive Administration</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Trust & Compliance -->
+        <div class="footer-column">
+          <h4>Certifications & Trust</h4>
+          <ul class="footer-links">
+            <li><a href="#">HIPAA Privacy & Security Rules</a></li>
+            <li><a href="#">ISO 27001 Information Security</a></li>
+            <li><a href="#">NABL Accredited Pathology Protocol</a></li>
+            <li><a href="#">Ayushman Bharat Digital Mission (ABDM)</a></li>
+            <li><a href="#">Verified WhatsApp Business API</a></li>
+            <li><a href="#">Doctor Verification Standards</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Badges Strip -->
+      <div class="footer-badges-strip">
+        <div class="compliance-badges">
+          <div class="compliance-badge-item">
+            <span class="badge-check">✓</span> <span>HIPAA Compliant</span>
+          </div>
+          <div class="compliance-badge-item">
+            <span class="badge-check">✓</span> <span>ISO 27001 Certified</span>
+          </div>
+          <div class="compliance-badge-item">
+            <span class="badge-check">✓</span> <span>NABL Accredited Labs</span>
+          </div>
+          <div class="compliance-badge-item">
+            <span class="badge-check">✓</span> <span>256-Bit SSL Encryption</span>
+          </div>
+        </div>
+        <div>
+          © 2026 NHealth Technologies Inc. All rights reserved. Healthcare at Your Doorstep.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       FLOATING WHATSAPP BUTTON (Direct 24/7 Healthcare Contact)
+       ======================================================================== -->
+  <div class="nh-whatsapp-float">
+    <a href="https://wa.me/?text=Hello%20NHealth%20Technologies,%20I%20would%20like%20to%20consult%20a%20doctor%20or%20book%20a%20service." target="_blank" class="nh-whatsapp-btn-circle" aria-label="Chat with NHealth on WhatsApp" title="Chat with Doctor / Support on WhatsApp">
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
+

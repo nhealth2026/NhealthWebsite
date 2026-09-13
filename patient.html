@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Health Portal — NHealth Technologies</title>
+  <link rel="icon" type="image/png" href="assets/images/logo-icon.png" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="nh-header">
+    <div class="nh-container">
+      <div class="nh-nav-inner">
+        <a href="index.html" class="nh-brand-logo-link">
+          <img src="assets/images/logo-transparent.png" alt="NHealth Technologies Logo" class="nh-brand-logo-img" />
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <a href="index.html" class="nh-btn nh-btn-ghost nh-btn-sm">← Back to Main Site</a>
+          
+          <select id="rolePickerSelect" class="role-picker-select" title="Switch Portal View">
+            <option value="doctor">👨‍⚕️ Doctor Portal</option>
+            <option value="patient" selected>🩺 Patient Portal</option>
+            <option value="pharmacy">💊 Pharmacy Hub</option>
+            <option value="diagnostics">🔬 Diagnostics Lab</option>
+            <option value="ambulance">🚑 Ambulance Dispatch</option>
+            <option value="admin">📊 Executive Admin</option>
+          </select>
+
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+          </button>
+
+          <button class="nh-btn nh-btn-primary nh-btn-sm" onclick="location.href='index.html#home'">
+            Book New Doctor
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Patient Portal Content -->
+  <main class="nh-section" style="padding-top: 2rem;">
+    <div class="nh-container">
+      <!-- Welcome Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 58px; height: 58px; border-radius: 50%; background: var(--nh-blue-600); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; border: 3px solid var(--nh-teal-400);">
+            RV
+          </div>
+          <div>
+            <h1 style="font-size: 1.85rem; margin-bottom: 0.2rem;">Welcome, Rahul Verma</h1>
+            <p style="margin: 0; font-size: 0.9rem;">Patient ID: <strong>#NH-9042</strong> • Primary Doctor: <strong>Dr. Priya Sharma</strong> • <span class="nh-badge nh-badge-teal">Family Care Plan Active</span></p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="location.href='pharmacy.html'">💊 Order Medicine Refill</button>
+          <button class="nh-btn nh-btn-accent nh-btn-sm" onclick="location.href='index.html#telemedicine'">📹 Join Video Consultation</button>
+        </div>
+      </div>
+
+      <!-- Quick Status Cards -->
+      <div class="dash-stat-row">
+        <div class="nh-stat-box">
+          <div class="stat-box-top">
+            <span class="stat-label">Upcoming Consultation</span>
+            <div class="stat-icon">🩺</div>
+          </div>
+          <div class="stat-number" style="font-size: 1.35rem;">Today, 10:30 AM</div>
+          <div class="stat-trend trend-up">Dr. Priya Sharma • Video Room Ready</div>
+        </div>
+        <div class="nh-stat-box">
+          <div class="stat-box-top">
+            <span class="stat-label">Doorstep Medicine Order</span>
+            <div class="stat-icon">🚚</div>
+          </div>
+          <div class="stat-number" style="font-size: 1.35rem;">Out for Delivery</div>
+          <div class="stat-trend">Rider #R-42 • ETA: 24 mins</div>
+        </div>
+        <div class="nh-stat-box">
+          <div class="stat-box-top">
+            <span class="stat-label">NABL Pathology Report</span>
+            <div class="stat-icon">🧪</div>
+          </div>
+          <div class="stat-number" style="font-size: 1.35rem;">Report Ready</div>
+          <div class="stat-trend trend-up">Lipid Panel & HbA1c (Normal)</div>
+        </div>
+        <div class="nh-stat-box">
+          <div class="stat-box-top">
+            <span class="stat-label">Smart Health Pass</span>
+            <div class="stat-icon">🛡️</div>
+          </div>
+          <div class="stat-number" style="font-size: 1.35rem;">ABDM Linked</div>
+          <div class="stat-trend trend-up">Cashless Insurance Verified</div>
+        </div>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="dashboard-grid" style="margin-top: 2rem;">
+        <!-- Left Sidebar -->
+        <div class="dashboard-sidebar">
+          <h4 style="font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Patient Care</h4>
+          <ul class="dash-nav-list">
+            <li><a class="dash-nav-link active">🏠 Health Overview</a></li>
+            <li><a class="dash-nav-link" onclick="location.href='index.html#telemedicine'">📹 Telemedicine Video</a></li>
+            <li><a class="dash-nav-link" onclick="alert('Viewing 4 active digital e-prescriptions')">📋 My Prescriptions (4)</a></li>
+            <li><a class="dash-nav-link" onclick="alert('Opening NABL Lab Reports vault...')">🔬 Diagnostic Test Reports</a></li>
+            <li><a class="dash-nav-link" onclick="location.href='pharmacy.html'">💊 Medicine Orders</a></li>
+            <li><a class="dash-nav-link" onclick="location.href='ambulance.html'">🚨 Emergency SOS Ambulance</a></li>
+          </ul>
+
+          <div style="margin-top: 2rem; padding: 1.25rem; background: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🚑</div>
+            <h5 style="margin-bottom: 0.35rem;">Need An Ambulance?</h5>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.85rem;">Average arrival in your area is 8 minutes.</p>
+            <button class="nh-btn nh-btn-danger nh-btn-sm" style="width: 100%;" onclick="location.href='ambulance.html'">
+              Dispatch Ambulance
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Body -->
+        <div class="dashboard-main">
+          <!-- Active Prescriptions -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="font-size: 1.25rem;">Active Medications & Prescriptions</h3>
+            <span class="nh-badge nh-badge-success">Sync with E-Pharmacy Active</span>
+          </div>
+
+          <div class="nh-table-container">
+            <table class="nh-table">
+              <thead>
+                <tr>
+                  <th>Medication</th>
+                  <th>Dosage / Schedule</th>
+                  <th>Prescribed By</th>
+                  <th>Refill Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tab Amlodipine 5mg</strong></td>
+                  <td>1 tab OD (Morning after meal)</td>
+                  <td>Dr. Priya Sharma</td>
+                  <td><span class="nh-badge nh-badge-success">22 Days Remaining</span></td>
+                  <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="alert('Order placed for 30-day refill! Express delivery in 2 hours.')">Order Refill (20% Off)</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Tab Atorvastatin 10mg</strong></td>
+                  <td>1 tab HS (Bedtime)</td>
+                  <td>Dr. Priya Sharma</td>
+                  <td><span class="nh-badge nh-badge-warning">4 Days Left</span></td>
+                  <td><button class="nh-btn nh-btn-primary nh-btn-sm" onclick="alert('Reordered! Apex MedHub will dispatch via 2-Hour Express.')">Refill Now</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Tab Shelcal 500</strong></td>
+                  <td>1 tab OD with lunch</td>
+                  <td>Dr. Arvind Patel</td>
+                  <td><span class="nh-badge nh-badge-success">Adequate Stock</span></td>
+                  <td><button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="alert('Added to monthly subscription schedule')">Schedule Monthly</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pathology Lab Reports -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0 1rem 0;">
+            <h3 style="font-size: 1.25rem;">Diagnostic Test Results (NABL Certified)</h3>
+            <button class="nh-btn nh-btn-ghost nh-btn-sm" onclick="location.href='diagnostics.html'">Book New Lab Test →</button>
+          </div>
+
+          <div class="nh-table-container">
+            <table class="nh-table">
+              <thead>
+                <tr>
+                  <th>Test Name</th>
+                  <th>Sample Date</th>
+                  <th>Key Result</th>
+                  <th>Status</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Comprehensive Lipid Profile</strong></td>
+                  <td>09 Sep 2026</td>
+                  <td>Total Cholesterol: 174 mg/dL (Normal)</td>
+                  <td><span class="nh-badge nh-badge-teal">Verified by Pathologist</span></td>
+                  <td><button class="nh-btn nh-btn-primary nh-btn-sm" onclick="alert('Downloading Lipid Profile PDF report...')">📥 Download PDF</button></td>
+                </tr>
+                <tr>
+                  <td><strong>HbA1c & Blood Glucose (Fasting)</strong></td>
+                  <td>09 Sep 2026</td>
+                  <td>HbA1c: 5.6% (Non-Diabetic)</td>
+                  <td><span class="nh-badge nh-badge-teal">Verified by Pathologist</span></td>
+                  <td><button class="nh-btn nh-btn-primary nh-btn-sm" onclick="alert('Downloading HbA1c PDF report...')">📥 Download PDF</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating WhatsApp Button -->
+  <div class="nh-whatsapp-float">
+    <a href="https://wa.me/?text=Hello%20NHealth%20Support,%20I%20am%20Rahul%20Verma%20(#NH-9042)." target="_blank" class="nh-whatsapp-btn-circle" title="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
