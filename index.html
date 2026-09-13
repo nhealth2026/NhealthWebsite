@@ -42,33 +42,40 @@
 
 
 
-  <!-- ========================================================================
-       STICKY GLASSMORPHISM NAVIGATION
+    <!-- ========================================================================
+       STICKY NAVIGATION (Exact Design from Reference Image 2)
        ======================================================================== -->
-  <header class="nh-header">
+  <header class="nh-header nh-header-image2">
     <div class="nh-container">
       <div class="nh-nav-inner">
         <!-- Logo Branding -->
         <a href="#" class="nh-brand-logo-link">
-          <img src="assets/images/logo-transparent.png" alt="NHealth Technologies Logo" class="nh-brand-logo-img" />
+          <img src="assets/images/logo-transparent.png" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 44px;" />
         </a>
 
-        <!-- Navigation Links -->
+        <!-- Navigation Links (Matching Image 2) -->
         <ul class="nh-nav-menu">
-          <li class="nh-nav-item"><a href="#home" class="nh-nav-link active">Home</a></li>
-          <li class="nh-nav-item"><a href="#services" class="nh-nav-link">Services</a></li>
-          <li class="nh-nav-item"><a href="#network" class="nh-nav-link">Coverage</a></li>
-          <li class="nh-nav-item"><a href="#telemedicine" class="nh-nav-link">Telemedicine <span class="nh-nav-badge">Live</span></a></li>
-          <li class="nh-nav-item"><a href="#portals" class="nh-nav-link">Portals</a></li>
-          <li class="nh-nav-item"><a href="#analytics" class="nh-nav-link">Analytics</a></li>
-          <li class="nh-nav-item"><a href="#contact" class="nh-nav-link">Contact</a></li>
+          <li class="nh-nav-item"><a href="#home" class="nh-nav-link-image2 active">Home</a></li>
+          <li class="nh-nav-item dropdown">
+            <a href="#services" class="nh-nav-link-image2">Our Services ⌵</a>
+          </li>
+          <li class="nh-nav-item"><a href="#network" class="nh-nav-link-image2">How It Works</a></li>
+          <li class="nh-nav-item"><a href="#telemedicine" class="nh-nav-link-image2">About Us</a></li>
+          <li class="nh-nav-item"><a href="#contact" class="nh-nav-link-image2">Contact</a></li>
         </ul>
 
         <!-- Action Controls -->
-        <div class="nh-nav-actions">
-          <!-- Role Switcher -->
-          <select id="rolePickerSelect" class="role-picker-select" title="Switch Portal View">
-            <option value="" disabled selected>🏥 Select Portal Page ⌵</option>
+        <div class="nh-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+          <!-- Search Icon Button -->
+          <button class="nh-btn-search" style="background: none; border: none; cursor: pointer; color: #64748B; font-size: 1.15rem; display: flex; align-items: center; padding: 6px;" aria-label="Search">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+
+          <!-- Portal Select Dropdown (Discreet & Functional) -->
+          <select id="rolePickerSelect" class="role-picker-select" title="Switch Portal View" style="border-radius: 9999px; padding: 6px 14px; font-size: 0.85rem; border: 1px solid #CBD5E1; color: #334155; background: #FFFFFF;">
+            <option value="" disabled selected>🏥 Portals ⌵</option>
             <option value="doctor">👨‍⚕️ Doctor Portal</option>
             <option value="patient">🩺 Patient Portal</option>
             <option value="pharmacy">💊 Pharmacy Hub</option>
@@ -77,106 +84,187 @@
             <option value="admin">📊 Executive Admin</option>
           </select>
 
-          <!-- Theme Toggle -->
-          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-            </svg>
+          <!-- Login Button -->
+          <button class="nh-btn-login-outline" onclick="window.location.href='patient.html'">
+            Login
           </button>
 
-          <!-- Book Doctor CTA -->
-          <button class="nh-btn nh-btn-primary open-booking-modal-btn" data-service="Doctor Consultation">
-            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            Book Doctor
+          <!-- Book Now Button (Teal) -->
+          <button class="nh-btn-book-teal open-booking-modal-btn" data-service="General Consultation">
+            Book Now
           </button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ========================================================================
-       HERO SECTION — NHealth Technologies
+    <!-- ========================================================================
+       HERO SECTION (Exact Design from Reference Image 2)
+       Warm living room background + 3D India Map with Golden Andhra Pradesh
        ======================================================================== -->
-  <section class="nh-hero" id="home">
-    <!-- NHealth Background Video -->
-    <div class="nh-hero-video-container">
-      <video class="nh-hero-video-bg" autoplay muted loop playsinline poster="assets/images/logo.png">
-        <source src="Nhealthvideo.mp4" type="video/mp4" />
-        <source src="assets/videos/Nhealthvideo.mp4" type="video/mp4" />
-      </video>
-      <div class="nh-hero-video-overlay"></div>
-    </div>
-
+  <section class="nh-hero-image2" id="home">
     <div class="nh-container">
-      <div class="nh-hero-grid">
-        <!-- Hero Content -->
-        <div class="nh-hero-content">
-          <div class="nh-hero-pill">
-            <span class="badge-cross">+</span>
-            <span>Next-Generation Healthcare Ecosystem</span>
+      <div class="nh-hero-grid-image2">
+        <!-- Left Hero Content -->
+        <div class="nh-hero-content-image2">
+          <!-- Badge Pill -->
+          <div class="nh-badge-allinone">
+            <span>Complete Healthcare</span>
+            <span style="opacity: 0.5;">•</span>
+            <span>All in One Place</span>
           </div>
 
-          <h1 class="nh-hero-title">
-            NHealth Technologies<br />
-            <span class="text-gradient-ribbon">Healthcare at Your Doorstep</span>
+          <!-- Large Brand Title -->
+          <h1 class="nh-hero-title-image2">
+            Powering the Future of<br />
+            <span class="nh-title-teal-highlight">Healthcare at Home</span>
           </h1>
 
-          <div class="nh-hero-tagline">
-            Complete Digital Health Marketplace & Telemedicine
-          </div>
-
-          <p class="nh-hero-description">
-            Experience hospital-grade care from the comfort of your home. Connect with certified doctors in under 15 minutes, order genuine medicines delivered in 2 hours, book NABL lab tests at home, and access 24/7 smart ambulance dispatch.
+          <!-- Description -->
+          <p class="nh-hero-desc-image2">
+            Expert doctors, trusted labs, quality medicines and complete home healthcare — all in one platform. Because your health should never be out of reach.
           </p>
 
-          <div class="nh-hero-ctas">
-            <button class="nh-btn nh-btn-accent nh-btn-lg open-booking-modal-btn" data-service="Doctor Consultation">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          <!-- Hero CTAs -->
+          <div class="nh-hero-ctas-image2">
+            <button class="btn-cta-teal open-booking-modal-btn" data-service="Home Healthcare">
+              <span>Get Started</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
-              Book Doctor Consultation
             </button>
-            <a href="#services" class="nh-btn nh-btn-secondary nh-btn-lg" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);">
-              Explore All Services
-            </a>
-          </div>
-
-          <!-- Hero Value Highlights -->
-          <div class="nh-hero-features">
-            <div class="nh-hero-feat-item">
-              <div class="nh-hero-feat-icon">⚡</div>
-              <div class="nh-hero-feat-text">
-                <strong>15-Min Response</strong>
-                <span>Instant Video Consultations</span>
-              </div>
-            </div>
-            <div class="nh-hero-feat-item">
-              <div class="nh-hero-feat-icon">💊</div>
-              <div class="nh-hero-feat-text">
-                <strong>2-Hour Delivery</strong>
-                <span>100% Genuine Pharmacy</span>
-              </div>
-            </div>
-            <div class="nh-hero-feat-item">
-              <div class="nh-hero-feat-icon">🚑</div>
-              <div class="nh-hero-feat-text">
-                <strong>24/7 Smart Fleet</strong>
-                <span>GPS-Tracked Ambulances</span>
-              </div>
-            </div>
+            <button class="btn-cta-watch-video" id="openVideoModalBtn" type="button">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span>Watch Video</span>
+            </button>
           </div>
         </div>
 
-        <!-- Hero Visual: Professional Video Showcase (Nhealthvideo2.mp4) -->
-        <div class="nh-hero-visual">
-          <div class="nh-hero-video-card">
-            <!-- Main Professional Video -->
-            <video class="nh-hero-main-video" autoplay muted loop playsinline poster="assets/images/image1.jpg">
-              <source src="Nhealthvideo2.mp4" type="video/mp4" />
-              <source src="assets/videos/Nhealthvideo2.mp4" type="video/mp4" />
-            </video>
+        <!-- Right: 3D India Map with Golden-Bordered Andhra Pradesh & "Proudly from Andhra Pradesh" -->
+        <div class="nh-hero-map-wrap">
+          <img src="assets/images/hero_india_map_3d.png" alt="India 3D Map Proudly from Andhra Pradesh" class="nh-3d-india-map-img" />
+        </div>
+      </div>
+
+      <!-- ========================================================================
+           FLOATING 9-SERVICES DOCK (Exact from Image 2)
+           ======================================================================== -->
+      <div class="nh-services-dock-container" id="servicesDock">
+        <div class="nh-services-dock-card">
+          <!-- 1. Online Doctor Consultation -->
+          <a href="#telemedicine" class="nh-dock-item open-booking-modal-btn" data-service="Online Doctor Consultation">
+            <div class="nh-dock-icon-bubble bubble-blue">👨‍⚕️</div>
+            <span class="nh-dock-label">Online Doctor Consultation</span>
+          </a>
+
+          <!-- 2. Doctor Home Visits -->
+          <a href="#services" class="nh-dock-item open-booking-modal-btn" data-service="Doctor Home Visits">
+            <div class="nh-dock-icon-bubble bubble-mint">🏠</div>
+            <span class="nh-dock-label">Doctor Home Visits</span>
+          </a>
+
+          <!-- 3. Lab Tests at Home -->
+          <a href="diagnostics.html" class="nh-dock-item">
+            <div class="nh-dock-icon-bubble bubble-flask">🧪</div>
+            <span class="nh-dock-label">Lab Tests at Home</span>
+          </a>
+
+          <!-- 4. X-Ray at Home -->
+          <a href="#services" class="nh-dock-item open-booking-modal-btn" data-service="X-Ray at Home">
+            <div class="nh-dock-icon-bubble bubble-purple">🩻</div>
+            <span class="nh-dock-label">X-Ray at Home</span>
+          </a>
+
+          <!-- 5. Pharmacy to Home -->
+          <a href="pharmacy.html" class="nh-dock-item">
+            <div class="nh-dock-icon-bubble bubble-green">💊</div>
+            <span class="nh-dock-label">Pharmacy to Home</span>
+          </a>
+
+          <!-- 6. Premium OPD Memberships -->
+          <a href="#services" class="nh-dock-item open-booking-modal-btn" data-service="Premium OPD Memberships">
+            <div class="nh-dock-icon-bubble bubble-amber">👑</div>
+            <span class="nh-dock-label">Premium OPD Memberships</span>
+          </a>
+
+          <!-- 7. Eldercare -->
+          <a href="#services" class="nh-dock-item open-booking-modal-btn" data-service="Eldercare">
+            <div class="nh-dock-icon-bubble bubble-pink">👵</div>
+            <span class="nh-dock-label">Eldercare</span>
+          </a>
+
+          <!-- 8. Bedside Assistant -->
+          <a href="#services" class="nh-dock-item open-booking-modal-btn" data-service="Bedside Assistant">
+            <div class="nh-dock-icon-bubble bubble-teal">🛏️</div>
+            <span class="nh-dock-label">Bedside Assistant</span>
+          </a>
+
+          <!-- 9. Physiotherapy -->
+          <a href="#services" class="nh-dock-item open-booking-modal-btn" data-service="Physiotherapy">
+            <div class="nh-dock-icon-bubble bubble-violet">🧘</div>
+            <span class="nh-dock-label">Physiotherapy</span>
+          </a>
+
+          <!-- 10. and more... -->
+          <a href="#services" class="nh-dock-item">
+            <div class="nh-dock-icon-bubble bubble-cyan">➕</div>
+            <span class="nh-dock-label">and more...</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TRUST & METRICS ROW (Exact from Image 2)
+         ======================================================================== -->
+    <div class="nh-trust-bar-image2">
+      <div class="nh-container">
+        <div class="nh-trust-grid-image2">
+          <!-- 1. Happy Families -->
+          <div class="nh-trust-stat-col">
+            <div class="nh-trust-icon-wrap" style="color: #0060D1;">
+              🛡️
+            </div>
+            <div class="nh-trust-stat-info">
+              <span class="nh-trust-stat-title">Trusted by</span>
+              <span class="nh-trust-stat-num">10,000+</span>
+              <span class="nh-trust-stat-desc">Happy Families</span>
+            </div>
+          </div>
+
+          <!-- 2. Verified Doctors -->
+          <div class="nh-trust-stat-col">
+            <div class="nh-trust-icon-wrap" style="color: #02BFB4;">
+              👨‍⚕️
+            </div>
+            <div class="nh-trust-stat-info">
+              <span class="nh-trust-stat-num">1500+</span>
+              <span class="nh-trust-stat-desc">Verified Doctors & Specialists</span>
+            </div>
+          </div>
+
+          <!-- 3. Diagnostic Partners -->
+          <div class="nh-trust-stat-col">
+            <div class="nh-trust-icon-wrap" style="color: #00B4DB;">
+              🧪
+            </div>
+            <div class="nh-trust-stat-info">
+              <span class="nh-trust-stat-num">500+</span>
+              <span class="nh-trust-stat-desc">Diagnostic Partners</span>
+            </div>
+          </div>
+
+          <!-- 4. Pharmacy Partners -->
+          <div class="nh-trust-stat-col">
+            <div class="nh-trust-icon-wrap" style="color: #D97706;">
+              ⭐
+            </div>
+            <div class="nh-trust-stat-info">
+              <span class="nh-trust-stat-num">200+</span>
+              <span class="nh-trust-stat-desc">Pharmacy Partners</span>
+            </div>
           </div>
         </div>
       </div>
