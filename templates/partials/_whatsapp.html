@@ -1,0 +1,94 @@
+  <!-- ========================================================================
+       WHATSAPP & LIVE NOTIFICATIONS SHOWCASE
+       ======================================================================== -->
+  <section class="nh-section" id="whatsappShowcaseSection">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Frictionless Patient Engagement</span>
+        <h2 class="nh-section-title">WhatsApp & Real-Time Alerts</h2>
+        <p class="nh-section-subtitle">
+          Patients receive verifiable booking links, e-prescriptions, and ambulance GPS updates directly via official WhatsApp.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem; align-items: center;">
+        <!-- Left: WhatsApp Card Mockup -->
+        <div>
+          <div class="whatsapp-card">
+            <div class="whatsapp-header">
+              <div class="wa-brand">
+                <div class="wa-icon-bubble">💬</div>
+                <div class="wa-brand-text">
+                  <strong>NHealth Technologies Verified</strong>
+                  <span>Official Healthcare Account ✔</span>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Instant Notification</span>
+            </div>
+
+            <div class="wa-body" id="whatsappPreviewBody">
+              <strong>NHealth Technologies Booking Confirmation</strong><br />
+              Dear <strong>Rahul Verma</strong>, your telemedicine consultation is confirmed with <strong>Dr. Priya Sharma (Cardiology)</strong>.<br /><br />
+              📅 Date: <strong>Today, 11 Sep 2026</strong><br />
+              ⏰ Time: <strong>10:30 AM (15 Mins)</strong><br />
+              🔗 Secure Room: <span style="color:var(--nh-blue-600); font-weight:600;">nhealth.tech/v/cardio-7821</span><br /><br />
+              <em>Doctor is reviewing your vitals. You will receive an SMS reminder 5 minutes prior.</em>
+              <div class="wa-msg-meta">
+                <span>10:25 AM</span>
+                <span style="color: #53bdeb;">✓✓</span>
+              </div>
+            </div>
+
+            <div class="wa-actions">
+              <button class="nh-btn nh-btn-primary nh-btn-sm" style="flex: 1;" onclick="location.href='#telemedicine'">
+                Join Video Call
+              </button>
+              <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Prescription PDF resent to WhatsApp!')">
+                Resend Rx
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Notification Center Highlights -->
+        <div style="padding: 1rem;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Omnichannel Patient Lifecycle</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+            NHealth integrates enterprise SMS, automated WhatsApp Business API webhooks, and push notifications to eliminate no-shows and keep patients informed at every step of their treatment journey.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(2,191,180,0.15); color: var(--nh-teal-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem;">
+                ✓
+              </div>
+              <div>
+                <strong>Immediate Instant Confirmation</strong>
+                <p style="font-size: 0.875rem; margin: 0;">Sent within 1.2 seconds of appointment booking with calendar invite.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(0,96,209,0.15); color: var(--nh-blue-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem;">
+                📍
+              </div>
+              <div>
+                <strong>Live GPS Tracking For Emergency & Pharmacy</strong>
+                <p style="font-size: 0.875rem; margin: 0;">Watch your ambulance or medicine delivery rider navigate to your doorstep in real-time.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(5,150,105,0.15); color: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem;">
+                📄
+              </div>
+              <div>
+                <strong>NABL Lab Reports Direct Download</strong>
+                <p style="font-size: 0.875rem; margin: 0;">Tamper-proof encrypted PDF reports sent immediately upon senior pathologist sign-off.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

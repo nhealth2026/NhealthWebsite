@@ -1,0 +1,56 @@
+/* Responsive Overrides */
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .nh-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .nh-hero-tagline {
+    justify-content: center;
+  }
+  .nh-hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nh-hero-ctas {
+    justify-content: center;
+  }
+  .nh-hero-features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .telemed-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .telemed-video-area {
+    height: 420px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nh-nav-menu {
+    display: none;
+  }
+  .nh-hero-title {
+    font-size: 2.4rem;
+  }
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+

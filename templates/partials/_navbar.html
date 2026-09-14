@@ -1,0 +1,39 @@
+  <header class="nh-header nh-header-image2">
+    <div class="nh-container">
+      <div class="nh-nav-inner">
+        <!-- Logo Branding -->
+        <a href="#" class="nh-brand-logo-link">
+          <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 44px;" />
+        </a>
+
+        <!-- Navigation Links (Matching Image 2) -->
+        <ul class="nh-nav-menu">
+          <li class="nh-nav-item"><a href="#home" class="nh-nav-link-image2 active">Home</a></li>
+          <li class="nh-nav-item dropdown">
+            <a href="#services" class="nh-nav-link-image2">Our Services ⌵</a>
+          </li>
+          <li class="nh-nav-item"><a href="#services" class="nh-nav-link-image2">How It Works</a></li>
+          <li class="nh-nav-item"><a href="#telemedicine" class="nh-nav-link-image2">About Us</a></li>
+          <li class="nh-nav-item"><a href="#contact" class="nh-nav-link-image2">Contact</a></li>
+        </ul>
+
+        <!-- Action Controls -->
+        <div class="nh-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+          <!-- Search Icon Button -->
+          <button class="nh-btn-search" style="background: none; border: none; cursor: pointer; color: #64748B; font-size: 1.15rem; display: flex; align-items: center; padding: 6px;" aria-label="Search">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+
+          <!-- Login Button -->
+          <button class="nh-btn-login-outline">Login</button>
+
+          <!-- Book Now Button (Teal) -->
+          <button class="nh-btn-book-teal open-booking-modal-btn" data-service="General Consultation">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>

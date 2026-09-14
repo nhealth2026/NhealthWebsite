@@ -1,0 +1,93 @@
+  <!-- ========================================================================
+       MODAL 1: APPOINTMENT BOOKING
+       ======================================================================== -->
+  <div class="nh-modal-backdrop" id="bookingModal">
+    <div class="nh-modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size: 1.25rem;">Book Healthcare Service</h3>
+          <span style="font-size: 0.8125rem; color: var(--text-muted);">NHealth Technologies — Healthcare at Your Doorstep</span>
+        </div>
+        <button class="modal-close-btn close-booking-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="appointmentBookingForm">
+          <div class="form-group">
+            <label class="form-label">Service Required</label>
+            <select class="form-control" id="bookServiceSelect">
+              <option value="Doctor Consultation">Doctor Video Consultation (15-Min Instant)</option>
+              <option value="Home Diagnostics">Home Diagnostics & Lab Tests</option>
+              <option value="E-Pharmacy Delivery">Prescription Medicine Order</option>
+              <option value="Nursing Care">Home Nursing Care Attendant</option>
+              <option value="Preventive Health Package">Full Body Preventive Health Checkup</option>
+            </select>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Patient Full Name</label>
+              <input type="text" class="form-control" id="bookPatientName" placeholder="e.g. Rahul Verma" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number (For WhatsApp)</label>
+              <input type="tel" class="form-control" id="bookPatientPhone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Clinical Specialty</label>
+              <select class="form-control" id="bookSpecialtySelect">
+                <option value="Dr. Priya Sharma (Cardiology)">Cardiology (Heart & Blood Pressure)</option>
+                <option value="Dr. Arvind Patel (General Medicine)">General Physician (Fever, Cough, Vitals)</option>
+                <option value="Dr. Sneha Roy (Pediatrics)">Pediatrics (Child Healthcare)</option>
+                <option value="Dr. Ankit Mehta (Dermatology)">Dermatology (Skin & Hair)</option>
+                <option value="Dr. Kavita Nair (Endocrinology)">Endocrinology (Diabetes & Thyroid)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Consultation Date</label>
+              <input type="date" class="form-control" id="bookDate" value="2026-09-11" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Time Slot</label>
+            <select class="form-control" id="bookTime">
+              <option value="Immediate 15-Minute Slot">⚡ Immediate 15-Minute Slot (Doctor Ready)</option>
+              <option value="Today 11:30 AM">Today 11:30 AM</option>
+              <option value="Today 02:00 PM">Today 02:00 PM</option>
+              <option value="Today 05:30 PM">Today 05:30 PM</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Chief Symptoms / Notes (Optional)</label>
+            <textarea class="form-control" rows="2" placeholder="Describe symptoms, duration, or current medications..."></textarea>
+          </div>
+
+          <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; font-size: 0.8125rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+              <span>Consultation Fee:</span>
+              <strong>₹499.00</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: var(--nh-success); font-weight: 600;">
+              <span>Digital Health Pass Discount:</span>
+              <span>- ₹100.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-light); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.9375rem; font-weight: 700;">
+              <span>Total Payable:</span>
+              <span style="color: var(--nh-blue-600);">₹399.00</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+            <button type="button" class="nh-btn nh-btn-secondary close-booking-modal-btn">Cancel</button>
+            <button type="submit" class="nh-btn nh-btn-primary">
+              Confirm & Send WhatsApp Alert
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

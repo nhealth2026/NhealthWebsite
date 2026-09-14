@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}NHealth Technologies — Healthcare at Your Doorstep{% endblock %}</title>
+  <meta name="description" content="NHealth Technologies is an enterprise-grade healthcare marketplace and telemedicine platform providing doctor consultations, doorstep e-pharmacy, home diagnostics, nursing, and 24/7 smart ambulance dispatch.">
+  
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo-icon.png') }}">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/telemedicine.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/analytics.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/whatsapp.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/modals.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/intro.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+</head>
+<body>
+  {% block body %}{% endblock %}
+
+  <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/intro.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/telemedicine.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

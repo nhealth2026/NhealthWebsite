@@ -1,0 +1,24 @@
+  <!-- ========================================================================
+       LANDING INTRO ANIMATION OVERLAY (landingvideo.mp4)
+       After this animation finishes, the homepage smoothly reveals.
+       ======================================================================== -->
+  <div id="nhLandingIntro" class="nh-landing-intro-overlay" title="Click anywhere to skip intro">
+    <div class="nh-landing-video-container">
+      <video id="nhLandingVideo" class="nh-landing-video" autoplay muted playsinline preload="auto">
+        <source src="{{ url_for('static', filename='videos/landingvideo.mp4') }}" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Skip Button -->
+    <button id="nhSkipIntroBtn" class="nh-skip-intro-btn" type="button" aria-label="Skip Intro">
+      <span>Skip Intro</span>
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <!-- Bottom Progress Tracker -->
+    <div class="nh-intro-progress-bar">
+      <div id="nhIntroProgressFill" class="nh-intro-progress-fill"></div>
+    </div>
+  </div>

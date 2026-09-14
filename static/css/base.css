@@ -1,0 +1,196 @@
+/* Base & Variables */
+/* ==========================================================================
+   NHEALTH TECHNOLOGIES — DESIGN SYSTEM & PLATFORM STYLESHEET
+   Extracted & Derived directly from NHealth Brand Logo
+   Palette: Deep Trust Navy (#003169) | Electric Royal Blue (#0060D1) 
+            Medical Mint Teal (#02BFB4) | Cyan Sky Azure (#00B4DB)
+            Slate Steel (#54718C)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Logo Core Palette */
+  --nh-navy-950: #001228;
+  --nh-navy-900: #001A3D;
+  --nh-navy-800: #002552;
+  --nh-navy-700: #003169; /* Dominant Wordmark Primary */
+  --nh-navy-600: #07418A;
+  --nh-navy-500: #0D52AB;
+  
+  --nh-blue-700: #0047A3;
+  --nh-blue-600: #0060D1; /* Ribbon Royal Blue */
+  --nh-blue-500: #1A7BEE;
+  --nh-blue-400: #4697F8;
+  --nh-blue-100: #E6F0FD;
+  --nh-blue-50:  #F2F7FE;
+
+  --nh-teal-700: #008F83;
+  --nh-teal-600: #01A698;
+  --nh-teal-500: #02BFB4; /* Accent Medical Cross & Ribbon Tip */
+  --nh-teal-400: #01CCB6; /* Vibrant Emerald Mint */
+  --nh-teal-200: #9CEAE2;
+  --nh-teal-100: #E0FAF7;
+  --nh-teal-50:  #F0FCFB;
+
+  --nh-cyan-600: #0093B3;
+  --nh-cyan-500: #00B4DB; /* Ribbon Sky Azure */
+  --nh-cyan-400: #29C6EA;
+  --nh-cyan-100: #E2F8FC;
+
+  --nh-slate-900: #1E293B;
+  --nh-slate-700: #33475B;
+  --nh-slate-600: #435A70;
+  --nh-slate-500: #54718C; /* Logo Subtitle Color */
+  --nh-slate-400: #7892A8;
+  --nh-slate-300: #BAC7D5;
+  --nh-slate-200: #DEE6EE;
+  --nh-slate-100: #EEF4F8;
+  --nh-slate-50:  #F7FAFC;
+
+  /* Functional Status */
+  --nh-success: #059669;
+  --nh-success-bg: #ECFDF5;
+  --nh-warning: #D97706;
+  --nh-warning-bg: #FFFBEB;
+  --nh-danger: #DC2626;
+  --nh-danger-bg: #FEF2F2;
+  --nh-info: #0284C7;
+  --nh-info-bg: #F0F9FF;
+
+  /* Light Mode Semantic Surfaces */
+  --bg-app: #F5F8FC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #EDF3F9;
+  --bg-surface-elevated: #FFFFFF;
+  --bg-hero: linear-gradient(135deg, #001A3D 0%, #003169 55%, #004F9E 100%);
+  --bg-gradient-ribbon: linear-gradient(135deg, #01CCB6 0%, #0060D1 50%, #00B4DB 100%);
+  --bg-gradient-subtle: linear-gradient(180deg, rgba(2,191,180,0.06) 0%, rgba(0,96,209,0.03) 100%);
+  
+  --text-primary: #001A3D;
+  --text-secondary: #54718C;
+  --text-muted: #7E95AA;
+  --text-on-navy: #FFFFFF;
+  --text-accent: #0060D1;
+
+  --border-light: #E1E8F2;
+  --border-subtle: #EDF2F7;
+  --border-focus: #0060D1;
+  --border-accent: #02BFB4;
+
+  --shadow-sm: 0 1px 3px rgba(0, 49, 105, 0.06), 0 1px 2px rgba(0, 49, 105, 0.04);
+  --shadow-md: 0 4px 14px rgba(0, 49, 105, 0.08), 0 2px 6px rgba(0, 49, 105, 0.04);
+  --shadow-lg: 0 10px 30px rgba(0, 49, 105, 0.12), 0 4px 12px rgba(0, 49, 105, 0.06);
+  --shadow-glow-blue: 0 0 24px rgba(0, 96, 209, 0.25);
+  --shadow-glow-teal: 0 0 20px rgba(2, 191, 180, 0.3);
+
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --nav-glass: rgba(255, 255, 255, 0.92);
+  --nav-border: rgba(0, 49, 105, 0.08);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark Mode Overrides (Dedicated Enterprise Clinical Dark Theme) */
+[data-theme="dark"] {
+  --bg-app: #061224;
+  --bg-surface: #0B1C36;
+  --bg-surface-alt: #102544;
+  --bg-surface-elevated: #152E54;
+  --bg-hero: linear-gradient(135deg, #030B18 0%, #06152B 50%, #0A2449 100%);
+  --bg-gradient-subtle: linear-gradient(180deg, rgba(2,191,180,0.08) 0%, rgba(0,96,209,0.04) 100%);
+
+  --text-primary: #F0F6FC;
+  --text-secondary: #97B0C7;
+  --text-muted: #6C859E;
+  --text-on-navy: #FFFFFF;
+  --text-accent: #29C6EA;
+
+  --border-light: #183359;
+  --border-subtle: #122846;
+  --border-focus: #00B4DB;
+  --border-accent: #02BFB4;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.65);
+  --shadow-glow-blue: 0 0 30px rgba(0, 180, 219, 0.25);
+  --shadow-glow-teal: 0 0 25px rgba(2, 191, 180, 0.35);
+
+  --nav-glass: rgba(6, 18, 36, 0.92);
+  --nav-border: rgba(24, 51, 89, 0.8);
+
+  --nh-slate-100: #102544;
+  --nh-slate-50:  #0B1C36;
+  --nh-blue-50:   #0B2244;
+  --nh-teal-50:   #062D38;
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--nh-blue-600);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--nh-teal-600);
+}
+
+img, svg {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+

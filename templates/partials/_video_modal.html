@@ -1,0 +1,11 @@
+<!-- Video Player Modal -->
+<div class="nh-modal-backdrop" id="videoPlayerModal">
+  <div class="nh-modal-box" style="max-width: 900px; padding: 0; overflow: hidden; border-radius: 16px;">
+    <div style="position: relative;">
+      <button class="modal-close-btn close-video-modal-btn" style="position: absolute; top: 12px; right: 12px; z-index: 10; background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+      <video id="videoPlayerElement" controls style="width: 100%; display: block;" preload="metadata">
+        <source src="{{ url_for('static', filename='videos/Nhealthvideo.mp4') }}" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</div>

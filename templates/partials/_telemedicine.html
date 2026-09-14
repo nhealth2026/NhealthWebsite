@@ -1,0 +1,127 @@
+  <!-- ========================================================================
+       TELEMEDICINE VIDEO CONSULTATION PAGE VIDEO CONSULTATION PAGE (Virtual Clinic)
+       ======================================================================== -->
+  <section class="nh-section nh-section-alt" id="telemedicine">
+    <div class="nh-container">
+      <div class="nh-section-header">
+        <span class="nh-section-badge">Next-Gen Telemedicine</span>
+        <h2 class="nh-section-title">Virtual Clinic Video Consultation</h2>
+        <p class="nh-section-subtitle">
+          Real-time encrypted consultation room with synchronized vitals telemetry and instant digital prescription generation.
+        </p>
+      </div>
+
+      <!-- Telemedicine Container -->
+      <div class="telemed-container">
+        <!-- Main Video Area -->
+        <div class="telemed-video-area">
+          <!-- Top Bar Overlay -->
+          <div class="telemed-header-bar">
+            <div class="telemed-doctor-tag">
+              <span class="pulse-dot"></span>
+              <strong>Dr. Priya Sharma (Cardiology)</strong>
+              <span style="opacity: 0.7;">• Consultation #NH-7821</span>
+            </div>
+            <div class="telemed-live-indicator">
+              <span>● LIVE</span>
+              <span>14:32</span>
+            </div>
+          </div>
+
+          <!-- Video Stream Simulation -->
+          <div class="telemed-video-placeholder" id="videoMainStream">
+            <div class="video-sim-doctor">
+              <div class="video-sim-avatar">🩺</div>
+              <div>
+                <h3 style="color: white; margin-bottom: 0.35rem;">Dr. Priya Sharma, MD</h3>
+                <p style="color: #A2C4E5; font-size: 0.875rem;">Senior Consultant Cardiologist • Fortis Healthcare Partner</p>
+                <div style="margin-top: 0.5rem; display: inline-flex; gap: 0.5rem;">
+                  <span class="nh-badge nh-badge-teal">Verified MD</span>
+                  <span class="nh-badge nh-badge-primary">Audio/Video Synchronized</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vitals Telemetry HUD (Heads Up Display) -->
+          <div class="telemed-vitals-overlay">
+            <div class="hud-vital-chip">
+              <span>❤️ Pulse:</span>
+              <span class="hud-val" id="hudHeartRate">74 BPM</span>
+            </div>
+            <div class="hud-vital-chip">
+              <span>🫁 SpO2:</span>
+              <span class="hud-val">99% Normal</span>
+            </div>
+            <div class="hud-vital-chip">
+              <span>🩸 BP:</span>
+              <span class="hud-val">120/80 mmHg</span>
+            </div>
+          </div>
+
+          <!-- Picture in Picture (Patient Feed) -->
+          <div class="telemed-pip">
+            <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">👤</div>
+            <strong style="color: white;">Rahul Verma (You)</strong>
+            <span>Audio/Video Active</span>
+          </div>
+
+          <!-- Bottom Control Bar -->
+          <div class="telemed-controls-bar">
+            <button class="call-control-btn" id="btnCallMute" title="Mute/Unmute Audio">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+              </svg>
+            </button>
+            <button class="call-control-btn" id="btnCallVideo" title="Start/Stop Video">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+            </button>
+            <button class="call-control-btn" id="btnCallShare" title="Share Screen / Lab Reports">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </button>
+            <button class="call-control-btn btn-end-call" id="btnCallEnd" title="End Consultation">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.684A1 1 0 008.279 3H5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Telemedicine Side Panel (Chat & Notes) -->
+        <div class="telemed-sidepanel">
+          <div class="sidepanel-tabs">
+            <button class="sidepanel-tab-btn active">💬 Consultation Chat</button>
+            <button class="sidepanel-tab-btn" onclick="alert('Digital E-Prescription #NPX-8920: Tab Amlodipine 5mg OD, Tab Atorvastatin 10mg HS. Verified by Dr. Priya Sharma.')">📋 Prescription</button>
+          </div>
+
+          <!-- Messages Body -->
+          <div class="sidepanel-messages" id="telemedChatMessages">
+            <div class="msg-bubble msg-incoming">
+              <div>Hello Rahul! I can see your ECG telemetry is stable today. How is the mild chest heaviness you mentioned?</div>
+              <div class="msg-time">10:14 AM • Dr. Priya Sharma</div>
+            </div>
+            <div class="msg-bubble msg-outgoing">
+              <div>Good morning Doctor! Much better since yesterday, no shortness of breath, but slight fatigue after lunch.</div>
+              <div class="msg-time">10:15 AM • You</div>
+            </div>
+            <div class="msg-bubble msg-incoming">
+              <div>Good to hear. I've sent a 10-day refill for your cardiorespiratory medication directly to your WhatsApp and registered pharmacy.</div>
+              <div class="msg-time">10:16 AM • Dr. Priya Sharma</div>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <form class="sidepanel-input-area" id="telemedChatForm">
+            <input type="text" id="telemedChatInput" class="chat-input" placeholder="Type message to doctor..." />
+            <button type="submit" class="nh-btn nh-btn-primary nh-btn-sm" style="border-radius: var(--radius-full); padding: 0.5rem 1rem;">
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

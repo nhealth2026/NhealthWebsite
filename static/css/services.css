@@ -1,0 +1,167 @@
+/* Services Grid */
+/* ==========================================================================
+   Service Cards Grid (Matching Logo Aesthetic)
+   ========================================================================== */
+.nh-section {
+  padding: 5rem 0;
+}
+
+.nh-section-alt {
+  background-color: var(--bg-surface-alt);
+}
+
+.nh-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.nh-section-badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--nh-blue-50);
+  color: var(--nh-blue-600);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .nh-section-badge {
+  background: rgba(0, 96, 209, 0.25);
+  color: var(--nh-cyan-400);
+}
+
+.nh-section-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+}
+
+.nh-section-subtitle {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+}
+
+.nh-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+.nh-service-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.nh-service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--nh-teal-400), var(--nh-blue-600));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.nh-service-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--nh-blue-500);
+  box-shadow: var(--shadow-lg);
+}
+
+.nh-service-card:hover::before {
+  opacity: 1;
+}
+
+.service-icon-wrapper {
+  width: 62px;
+  height: 62px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(2, 191, 180, 0.15) 0%, rgba(0, 96, 209, 0.15) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--nh-blue-600);
+  font-size: 1.75rem;
+  transition: transform var(--transition-fast);
+}
+
+[data-theme="dark"] .service-icon-wrapper {
+  color: var(--nh-teal-400);
+  background: rgba(2, 191, 180, 0.12);
+}
+
+.nh-service-card:hover .service-icon-wrapper {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.service-card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+}
+
+.service-card-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.service-card-features {
+  list-style: none;
+  margin-bottom: 1.75rem;
+}
+
+.service-card-features li {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.service-card-features li .check-icon {
+  color: var(--nh-teal-500);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.service-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.service-price-tag {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.service-price-tag strong {
+  font-size: 1.15rem;
+  color: var(--nh-navy-700);
+  font-family: var(--font-heading);
+}
+
+[data-theme="dark"] .service-price-tag strong {
+  color: var(--nh-cyan-400);
+}
+
