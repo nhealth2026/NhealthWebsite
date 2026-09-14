@@ -36,8 +36,12 @@
           </div>
         </div>
 
-        <!-- Right: 3D India Map with Golden-Bordered Andhra Pradesh & "Proudly from Andhra Pradesh" -->
+        <!-- Right: 3D India Map with Animated Continuous Border Patrol Particles -->
         <div class="nh-hero-map-wrap">
-          <img src="{{ url_for('static', filename='images/hero_india_map_3d.png') }}" alt="India 3D Map Proudly from Andhra Pradesh" class="nh-3d-india-map-img" />
+          <div class="nh-map-stage">
+            <img src="{{ url_for('static', filename='images/hero_india_map_3d.png') }}" alt="India 3D Map Proudly from Andhra Pradesh" class="nh-3d-india-map-img" />
+            {% include 'partials/_map_motion.html' %}
+          </div>
         </div>
       </div>
+
