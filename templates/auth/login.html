@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}Login — NHealth Technologies | Healthcare at Your Doorstep{% endblock %}
+
+{% block body %}
+<!-- Minimal Clean Header -->
+<header class="auth-header">
+  <div class="nh-container auth-header-inner">
+    <a href="{{ url_for('main.index') }}" class="auth-logo-link">
+      <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 42px;" />
+    </a>
+    <a href="{{ url_for('main.index') }}" class="auth-back-link">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      <span>Back to Home</span>
+    </a>
+  </div>
+</header>
+
+<main class="auth-page-wrapper">
+  <div class="auth-card-container">
+    <!-- Main Full-White Auth Card -->
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <div class="auth-badge-pill">
+          <span class="pulse-dot"></span>
+          <span>Secure Clinical Portal</span>
+        </div>
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Your health. Our priority.</p>
+      </div>
+
+      <!-- Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="auth-flashes">
+            {% for category, message in messages %}
+              <div class="auth-alert auth-alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Login Form -->
+      <form action="{{ url_for('main.login') }}" method="POST" class="auth-form" id="loginForm">
+        <!-- Mobile / Email Identifier -->
+        <div class="form-group-auth">
+          <label for="identifier" class="auth-label">Mobile Number or Email</label>
+          <div class="auth-input-wrap">
+            <div class="auth-prefix-badge">
+              <span>🇮🇳 +91</span>
+            </div>
+            <input 
+              type="text" 
+              id="identifier" 
+              name="identifier" 
+              class="auth-input with-prefix" 
+              placeholder="Enter mobile or email" 
+              value="patient@nhealth.tech"
+              required 
+            />
+          </div>
+        </div>
+
+        <!-- Password Field with Visibility Toggle -->
+        <div class="form-group-auth">
+          <label for="password" class="auth-label">Password</label>
+          <div class="auth-input-wrap">
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="auth-input with-icon" 
+              placeholder="Enter your password" 
+              value="Patient@123"
+              required 
+            />
+            <button type="button" class="auth-eye-btn" id="togglePasswordBtn" aria-label="Toggle Password Visibility">
+              <svg id="eyeIcon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="auth-actions-row">
+          <label class="auth-checkbox-label">
+            <input type="checkbox" name="remember" checked />
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="auth-forgot-link">Forgot Password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="auth-submit-btn">
+          <span>Login</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+
+        <!-- Social Divider -->
+        <div class="auth-divider">
+          <span>or</span>
+        </div>
+
+        <!-- Social Logins -->
+        <div class="social-login-grid">
+          <button type="button" class="social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+            <span>Continue with Google</span>
+          </button>
+          <button type="button" class="social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.62-.75 1.04-1.8 1.01-2.86-.96.04-2.12.65-2.8 1.45-.6.69-1.12 1.77-1.03 2.82 1.07.08 2.2-.66 2.82-1.41z"/></svg>
+            <span>Continue with Apple</span>
+          </button>
+        </div>
+
+        <!-- Quick 1-Click Role Switcher Demo Bar -->
+        <div class="demo-roles-box">
+          <span class="demo-roles-title">⚡ Quick 1-Click Role Switcher:</span>
+          <div class="demo-roles-chips">
+            <button type="button" class="demo-chip" onclick="fillCredentials('patient@nhealth.tech', 'Patient@123')">
+              🩺 Patient (Rahul)
+            </button>
+            <button type="button" class="demo-chip" onclick="fillCredentials('doctor@nhealth.tech', 'Doctor@123')">
+              👨‍⚕️ Doctor (Dr. Priya)
+            </button>
+            <button type="button" class="demo-chip" onclick="fillCredentials('admin@nhealth.tech', 'Admin@123')">
+              📊 Admin
+            </button>
+          </div>
+        </div>
+
+        <!-- Register Link -->
+        <div class="auth-footer-link">
+          <span>Don't have an account?</span>
+          <a href="{{ url_for('main.register') }}">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+function fillCredentials(id, pass) {
+  document.getElementById('identifier').value = id;
+  document.getElementById('password').value = pass;
+  document.getElementById('loginForm').submit();
+}
+
+document.getElementById('togglePasswordBtn')?.addEventListener('click', () => {
+  const pwdInput = document.getElementById('password');
+  const isPwd = pwdInput.type === 'password';
+  pwdInput.type = isPwd ? 'text' : 'password';
+});
+</script>
+{% endblock %}

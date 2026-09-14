@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}Register — NHealth Technologies | Create Your Account{% endblock %}
+
+{% block body %}
+<!-- Minimal Clean Header -->
+<header class="auth-header">
+  <div class="nh-container auth-header-inner">
+    <a href="{{ url_for('main.index') }}" class="auth-logo-link">
+      <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 42px;" />
+    </a>
+    <a href="{{ url_for('main.login') }}" class="auth-back-link">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      <span>Back to Login</span>
+    </a>
+  </div>
+</header>
+
+<main class="auth-page-wrapper">
+  <div class="auth-card-container">
+    <!-- Main Full-White Auth Card -->
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <div class="auth-badge-pill">
+          <span class="pulse-dot"></span>
+          <span>New Account Registration</span>
+        </div>
+        <h1 class="auth-title">Join NHealth</h1>
+        <p class="auth-subtitle">Healthcare at your doorstep. Safe, verified, instant.</p>
+      </div>
+
+      <!-- Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="auth-flashes">
+            {% for category, message in messages %}
+              <div class="auth-alert auth-alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Register Form -->
+      <form action="{{ url_for('main.register') }}" method="POST" class="auth-form">
+        <!-- Role Selection Tabs -->
+        <div class="role-selector-wrap">
+          <label class="role-radio-label">
+            <input type="radio" name="role" value="patient" checked onchange="toggleDoctorFields(false)" />
+            <div class="role-card-pill">
+              <span>🩺 Patient / Family</span>
+            </div>
+          </label>
+          <label class="role-radio-label">
+            <input type="radio" name="role" value="doctor" onchange="toggleDoctorFields(true)" />
+            <div class="role-card-pill">
+              <span>👨‍⚕️ Medical Doctor</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-group-auth">
+          <label for="name" class="auth-label">Full Name</label>
+          <div class="auth-input-wrap">
+            <input type="text" id="name" name="name" class="auth-input" placeholder="e.g. Dr. Ananya Sharma or Rahul Verma" required />
+          </div>
+        </div>
+
+        <!-- Mobile Number -->
+        <div class="form-group-auth">
+          <label for="phone" class="auth-label">Mobile Number (For WhatsApp E-Rx)</label>
+          <div class="auth-input-wrap">
+            <div class="auth-prefix-badge">
+              <span>🇮🇳 +91</span>
+            </div>
+            <input type="tel" id="phone" name="phone" class="auth-input with-prefix" placeholder="98765 43210" required />
+          </div>
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group-auth">
+          <label for="email" class="auth-label">Email Address</label>
+          <div class="auth-input-wrap">
+            <input type="email" id="email" name="email" class="auth-input" placeholder="you@domain.com" required />
+          </div>
+        </div>
+
+        <!-- Optional Doctor Specific Fields -->
+        <div id="doctorFields" style="display: none;">
+          <div class="form-group-auth">
+            <label for="specialty" class="auth-label">Medical Specialty</label>
+            <div class="auth-input-wrap">
+              <input type="text" id="specialty" name="specialty" class="auth-input" placeholder="e.g. Cardiology, Pediatrics, General Medicine" />
+            </div>
+          </div>
+          <div class="form-group-auth">
+            <label for="license_no" class="auth-label">MCI / State Medical Registration Number</label>
+            <div class="auth-input-wrap">
+              <input type="text" id="license_no" name="license_no" class="auth-input" placeholder="e.g. MCI-2018-9921" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group-auth">
+          <label for="password" class="auth-label">Create Password</label>
+          <div class="auth-input-wrap">
+            <input type="password" id="password" name="password" class="auth-input with-icon" placeholder="Minimum 6 characters" required />
+            <button type="button" class="auth-eye-btn" onclick="togglePasswordVisibility('password')">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terms & Privacy -->
+        <div class="auth-actions-row">
+          <label class="auth-checkbox-label">
+            <input type="checkbox" required checked />
+            <span style="font-size: 0.825rem; color: #64748B;">I agree to NHealth Terms of Clinical Service & Privacy Policy</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="auth-submit-btn">
+          <span>Create My Account</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+
+        <!-- Footer Link -->
+        <div class="auth-footer-link">
+          <span>Already have an account?</span>
+          <a href="{{ url_for('main.login') }}">Login Here</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+function toggleDoctorFields(show) {
+  document.getElementById('doctorFields').style.display = show ? 'block' : 'none';
+}
+function togglePasswordVisibility(fieldId) {
+  const input = document.getElementById(fieldId);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+</script>
+{% endblock %}

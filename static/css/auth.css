@@ -1,0 +1,447 @@
+/* ==========================================================================
+   NHEALTH AUTHENTICATION STYLES (Full-White Modern Healthcare Design)
+   Matches Image 3 Screen 2 on Mobile and Clean Centered Card on Desktop
+   ========================================================================== */
+
+.auth-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid #F1F5F9;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.auth-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748B;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.auth-back-link:hover {
+  color: #003169;
+  border-color: #003169;
+  background: #F8FAFC;
+}
+
+.auth-page-wrapper {
+  min-height: calc(100vh - 75px);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+}
+
+.auth-card-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.auth-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 16px 45px rgba(0, 49, 105, 0.06);
+  padding: 2.5rem 2.25rem;
+}
+
+.auth-card-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.auth-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  background: #E0FAF7;
+  color: #01A698;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.85rem;
+}
+
+.auth-badge-pill .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #02BFB4;
+  box-shadow: 0 0 8px #02BFB4;
+}
+
+.auth-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0A2540;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+  font-size: 0.925rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* Flash Alerts */
+.auth-flashes {
+  margin-bottom: 1.25rem;
+}
+
+.auth-alert {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.auth-alert-danger {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FEE2E2;
+}
+
+.auth-alert-success {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #D1FAE5;
+}
+
+.auth-alert-warning {
+  background: #FFFBEB;
+  color: #D97706;
+  border: 1px solid #FEF3C7;
+}
+
+.auth-alert-info {
+  background: #F0F9FF;
+  color: #0284C7;
+  border: 1px solid #E0F2FE;
+}
+
+/* Form Controls */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.auth-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.auth-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-prefix-badge {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #334155;
+  padding-right: 8px;
+  border-right: 1.5px solid #CBD5E1;
+  pointer-events: none;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #0F172A;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.auth-input.with-prefix {
+  padding-left: 5rem;
+}
+
+.auth-input.with-icon {
+  padding-right: 2.75rem;
+}
+
+.auth-input:focus {
+  border-color: #02BFB4;
+  box-shadow: 0 0 0 4px rgba(2, 191, 180, 0.12);
+}
+
+.auth-eye-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.auth-eye-btn:hover {
+  color: #003169;
+}
+
+.auth-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.auth-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #475569;
+  font-weight: 500;
+}
+
+.auth-checkbox-label input[type="checkbox"] {
+  accent-color: #02BFB4;
+  width: 16px;
+  height: 16px;
+}
+
+.auth-forgot-link {
+  color: #0060D1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-forgot-link:hover {
+  text-decoration: underline;
+  color: #02BFB4;
+}
+
+/* Submit Button */
+.auth-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 9999px;
+  background: #02BFB4;
+  color: #FFFFFF;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(2, 191, 180, 0.35);
+  margin-top: 0.25rem;
+}
+
+.auth-submit-btn:hover {
+  background: #01A698;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(2, 191, 180, 0.45);
+}
+
+/* Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.auth-divider span {
+  padding: 0 14px;
+  color: #94A3B8;
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+/* Social Buttons */
+.social-login-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
+}
+
+/* Role Selector on Register */
+.role-selector-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.role-radio-label {
+  cursor: pointer;
+}
+
+.role-radio-label input {
+  display: none;
+}
+
+.role-card-pill {
+  padding: 0.65rem 0.5rem;
+  border-radius: 12px;
+  border: 1.5px solid #E2E8F0;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #475569;
+  transition: all 0.2s ease;
+  background: #FFFFFF;
+}
+
+.role-radio-label input:checked + .role-card-pill {
+  border-color: #02BFB4;
+  background: #E0FAF7;
+  color: #008F83;
+}
+
+/* Quick Role Switcher Demo Box */
+.demo-roles-box {
+  background: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 14px;
+  padding: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.demo-roles-title {
+  display: block;
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #003169;
+  margin-bottom: 0.4rem;
+}
+
+.demo-roles-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.demo-chip {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #003169;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.demo-chip:hover {
+  background: #003169;
+  color: #FFFFFF;
+  border-color: #003169;
+}
+
+/* Footer Link */
+.auth-footer-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #64748B;
+  margin-top: 0.5rem;
+}
+
+.auth-footer-link a {
+  color: #02BFB4;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.auth-footer-link a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsiveness for Auth */
+@media (max-width: 640px) {
+  .auth-page-wrapper {
+    padding: 1rem 0.75rem;
+    align-items: flex-start;
+  }
+
+  .auth-card {
+    border-radius: 20px;
+    padding: 1.75rem 1.25rem;
+    box-shadow: none;
+    border: 1px solid #EEF2F6;
+  }
+
+  .auth-title {
+    font-size: 1.75rem;
+  }
+}

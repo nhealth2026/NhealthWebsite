@@ -26,8 +26,16 @@
             </svg>
           </button>
 
-          <!-- Login Button -->
-          <button class="nh-btn-login-outline">Login</button>
+          <!-- Login / Dashboard Button -->
+          {% if session.get('user_id') %}
+            <a href="{{ url_for('main.dashboard') }}" class="nh-btn-login-outline" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+              <span>Dashboard</span>
+            </a>
+          {% else %}
+            <a href="{{ url_for('main.login') }}" class="nh-btn-login-outline" style="text-decoration:none; display:inline-flex; align-items:center;">
+              <span>Login</span>
+            </a>
+          {% endif %}
 
           <!-- Book Now Button (Teal) -->
           <button class="nh-btn-book-teal open-booking-modal-btn" data-service="General Consultation">

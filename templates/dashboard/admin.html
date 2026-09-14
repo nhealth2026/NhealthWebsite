@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}Executive Administration — NHealth Technologies Platform Console{% endblock %}
+
+{% block body %}
+<!-- Admin Top Navigation -->
+<header class="nh-header nh-header-image2">
+  <div class="nh-container">
+    <div class="nh-nav-inner">
+      <a href="{{ url_for('main.index') }}" class="nh-brand-logo-link">
+        <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 44px;" />
+      </a>
+
+      <ul class="nh-nav-menu">
+        <li class="nh-nav-item"><a href="{{ url_for('main.index') }}" class="nh-nav-link-image2">Home</a></li>
+        <li class="nh-nav-item"><a href="#platform-metrics" class="nh-nav-link-image2 active">Platform Overview</a></li>
+        <li class="nh-nav-item"><a href="#users-section" class="nh-nav-link-image2">Credentialing & Users</a></li>
+      </ul>
+
+      <div class="nh-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+        <div class="dash-user-pill">
+          <img src="{{ user.avatar_url or 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80' }}" alt="{{ user.name }}" class="dash-user-avatar" />
+          <div class="dash-user-meta">
+            <span class="dash-user-name">Executive Admin</span>
+            <span class="dash-user-role-badge" style="background: #FEF3C7; color: #D97706;">🛡️ Platform Lead</span>
+          </div>
+        </div>
+
+        <a href="{{ url_for('main.logout') }}" class="dash-logout-btn" title="Sign Out">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="dash-page-wrapper">
+  <div class="nh-container">
+    
+    <!-- Executive Top Greeting -->
+    <div class="dash-greeting-card">
+      <div class="greeting-left">
+        <span class="greeting-time">Executive Administration Command</span>
+        <h1 class="greeting-name">Operations & Security Overview</h1>
+        <p class="greeting-sub">Pan-India Operations • State Operations Hub: Amaravati / Vijayawada Central Command</p>
+      </div>
+      <div class="exec-system-status">
+        <span class="pulse-dot"></span>
+        <span>99.98% System Uptime (Neon PostgreSQL Cloud Active)</span>
+      </div>
+    </div>
+
+    <!-- Platform Executive KPIs -->
+    <div class="doc-stats-grid" id="platform-metrics">
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-blue">👥</div>
+        <div class="stat-info">
+          <span class="stat-number">10,420+</span>
+          <span class="stat-label">Registered Patients</span>
+        </div>
+      </div>
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-mint">👨‍⚕️</div>
+        <div class="stat-info">
+          <span class="stat-number">1,500+</span>
+          <span class="stat-label">Verified Specialists</span>
+        </div>
+      </div>
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-teal">📅</div>
+        <div class="stat-info">
+          <span class="stat-number">24,890</span>
+          <span class="stat-label">Completed Consultations</span>
+        </div>
+      </div>
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-amber">📈</div>
+        <div class="stat-info">
+          <span class="stat-number">₹3.85 Cr</span>
+          <span class="stat-label">Monthly Platform GMV</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- User & Doctor Credentialing Management -->
+    <div class="dash-white-card" id="users-section">
+      <div class="dash-card-header">
+        <h2 class="dash-card-title">User & Clinical Credentialing Queue</h2>
+        <span class="queue-active-count">{{ all_users|length }} Registered Records</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="nh-doc-table">
+          <thead>
+            <tr>
+              <th>User / Doctor</th>
+              <th>Contact / Email</th>
+              <th>Assigned Role</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for u in all_users %}
+              <tr>
+                <td>
+                  <div class="pat-cell-info">
+                    <strong class="pat-cell-name">{{ u.name }}</strong>
+                    <span class="pat-cell-id">ID: #NH-{{ u.id + 1000 }}</span>
+                  </div>
+                </td>
+                <td>
+                  <strong>{{ u.email }}</strong><br>
+                  <span style="font-size:0.775rem; color:#64748B;">{{ u.phone or 'Not provided' }}</span>
+                </td>
+                <td>
+                  <span class="user-role-badge role-{{ u.role }}">{{ u.role.upper() }}</span>
+                </td>
+                <td>
+                  <span class="apt-status-pill status-completed">Active & Verified</span>
+                </td>
+                <td>
+                  <span style="font-size:0.8rem; color:#64748B;">{{ u.created_at.strftime('%d %b %Y') if u.created_at else 'Active' }}</span>
+                </td>
+                <td>
+                  <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="showToast('Credentials verified for {{ u.name }}')">
+                    Verify KYC
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock %}

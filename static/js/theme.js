@@ -35,9 +35,9 @@ function initTheme() {
     // Update Logo variant if available
     logoImgs.forEach(img => {
       if (theme === 'dark') {
-        img.src = 'assets/images/logo-white-text.png';
+        img.src = '/static/images/logo-white-text.png';
       } else {
-        img.src = 'assets/images/logo-transparent.png';
+        img.src = '/static/images/logo-transparent.png';
       }
     });
 

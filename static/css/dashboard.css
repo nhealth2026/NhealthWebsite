@@ -1,0 +1,934 @@
+/* ==========================================================================
+   NHEALTH DASHBOARDS STYLESHEET (Full-White Modern Healthcare Design)
+   Unified Design for Patient, Doctor, and Admin Dashboards
+   Matching Image 2 (12 Services + Quick Actions) & Image 3 (Mobile UI)
+   ========================================================================== */
+
+.dash-page-wrapper {
+  min-height: calc(100vh - 78px);
+  background-color: #F8FAFC;
+  background-image: radial-gradient(at 0% 0%, rgba(2, 191, 180, 0.03) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(0, 96, 209, 0.03) 0px, transparent 50%);
+  padding: 2rem 0 5rem 0;
+}
+
+/* User Pill in Header */
+.dash-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 9999px;
+  padding: 4px 14px 4px 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.dash-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #02BFB4;
+}
+
+.dash-user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.dash-user-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.dash-user-role-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.dash-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #64748B;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.dash-logout-btn:hover {
+  background: #FEF2F2;
+  color: #DC2626;
+  border-color: #FEE2E2;
+}
+
+/* ==========================================================================
+   GREETING & SEARCH CARD (Matching Image 3 Screen 3)
+   ========================================================================== */
+.dash-greeting-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 10px 35px rgba(0, 49, 105, 0.04);
+  padding: 2rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.greeting-time {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #02BFB4;
+  letter-spacing: 0.01em;
+}
+
+.greeting-name {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0A2540;
+  letter-spacing: -0.02em;
+  margin: 0.15rem 0 0.35rem 0;
+}
+
+.greeting-sub {
+  font-size: 0.925rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* Symptom Search Bar */
+.symptom-search-bar {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9999px;
+  padding: 6px 8px 6px 16px;
+  transition: all 0.2s ease;
+}
+
+.symptom-search-bar:focus-within {
+  background: #FFFFFF;
+  border-color: #02BFB4;
+  box-shadow: 0 0 0 4px rgba(2, 191, 180, 0.12);
+}
+
+.search-icon-wrap {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.symptom-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0F172A;
+}
+
+.symptom-input::placeholder {
+  color: #94A3B8;
+}
+
+.symptom-submit-btn {
+  background: #02BFB4;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.symptom-submit-btn:hover {
+  background: #01A698;
+  transform: scale(1.05);
+}
+
+/* Care Journey Tracker (Matching Image 3 Screen 3) */
+.care-journey-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #E2E8F0;
+  padding: 1.25rem 2rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 20px rgba(0, 49, 105, 0.02);
+}
+
+.journey-label {
+  display: block;
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748B;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+.journey-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journey-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.step-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  color: #94A3B8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.journey-step.completed .step-dot {
+  background: #02BFB4;
+  color: #FFFFFF;
+  border-color: #02BFB4;
+}
+
+.journey-step.active .step-dot {
+  background: #0060D1;
+  color: #FFFFFF;
+  border-color: #0060D1;
+  box-shadow: 0 0 12px rgba(0, 96, 209, 0.35);
+}
+
+.step-text {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.journey-step.active .step-text {
+  color: #0060D1;
+}
+
+.journey-line {
+  flex: 1;
+  height: 2.5px;
+  background: #E2E8F0;
+  margin: 0 10px;
+  position: relative;
+  top: -12px;
+}
+
+.journey-line.completed {
+  background: #02BFB4;
+}
+
+/* ==========================================================================
+   WHITE CARD CONTAINERS
+   ========================================================================== */
+.dash-white-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 10px 40px rgba(0, 49, 105, 0.04);
+  padding: 2rem 2.25rem;
+  margin-bottom: 2rem;
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.dash-card-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0A2540;
+  letter-spacing: -0.01em;
+}
+
+.dash-view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0060D1;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.dash-view-all-link:hover {
+  gap: 10px;
+  color: #02BFB4;
+}
+
+/* ==========================================================================
+   OUR SERVICES 12-GRID (Exact from Image 2)
+   ========================================================================== */
+.services-12-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.service-dash-item {
+  background: #FFFFFF;
+  border: 1px solid #EEF2F6;
+  border-radius: 18px;
+  padding: 1.15rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.service-dash-item:hover {
+  transform: translateY(-3px);
+  border-color: #CBD5E1;
+  box-shadow: 0 10px 25px rgba(0, 49, 105, 0.06);
+}
+
+.service-dash-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-dash-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-dash-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-dash-desc {
+  font-size: 0.75rem;
+  color: #64748B;
+  display: block;
+}
+
+.service-dash-arrow {
+  color: #CBD5E1;
+  font-size: 1.25rem;
+  font-weight: 400;
+  transition: transform 0.2s ease;
+}
+
+.service-dash-item:hover .service-dash-arrow {
+  transform: translateX(3px);
+  color: #02BFB4;
+}
+
+/* 12th Promo Card */
+.service-promo-card {
+  background: linear-gradient(135deg, #E0FAF7 0%, #E0F2FE 100%);
+  border: 1px solid #BAE6FD;
+  border-radius: 18px;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.promo-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #003169;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.promo-desc {
+  font-size: 0.725rem;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.promo-badge {
+  display: inline-block;
+  font-size: 0.675rem;
+  font-weight: 700;
+  background: #FFFFFF;
+  color: #059669;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.promo-doctor-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   QUICK ACTIONS BAR (Exact from Image 2)
+   ========================================================================== */
+.quick-actions-section {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #F1F5F9;
+}
+
+.quick-actions-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.lightning-icon {
+  font-size: 1rem;
+}
+
+.quick-actions-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0A2540;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.quick-action-pill {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1E293B;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-action-pill:hover {
+  border-color: #02BFB4;
+  background: #F8FAFC;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 49, 105, 0.05);
+}
+
+.qa-icon {
+  font-size: 1.15rem;
+}
+
+/* ==========================================================================
+   TWO COLUMN DASHBOARD GRID
+   ========================================================================== */
+.dash-two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+/* Appointments Cards List */
+.dash-appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dash-apt-card {
+  border: 1.5px solid #EEF2F6;
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.dash-apt-card:hover {
+  border-color: #02BFB4;
+  box-shadow: 0 6px 20px rgba(0, 49, 105, 0.04);
+}
+
+.apt-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.apt-badge-service {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #003169;
+  background: #F0F4F8;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.apt-status-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.status-scheduled {
+  background: #E0FAF7;
+  color: #008F83;
+}
+
+.status-completed {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.apt-card-body {
+  margin-bottom: 0.85rem;
+}
+
+.apt-info-item {
+  display: flex;
+  gap: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.apt-info-label {
+  color: #64748B;
+}
+
+.apt-info-val {
+  color: #0F172A;
+}
+
+.apt-complaint {
+  font-size: 0.825rem;
+  color: #475569;
+  font-style: italic;
+  margin-top: 6px;
+  background: #F8FAFC;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.apt-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #F1F5F9;
+  padding-top: 0.75rem;
+}
+
+.apt-fee {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0060D1;
+}
+
+/* Prescriptions & Records */
+.dash-rx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dash-rx-card {
+  border: 1.5px solid #EEF2F6;
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: #FFFFFF;
+}
+
+.rx-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.rx-diagnosis {
+  font-size: 0.95rem;
+  color: #0A2540;
+  display: block;
+}
+
+.rx-meta {
+  font-size: 0.775rem;
+  color: #64748B;
+}
+
+.rx-date-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #02BFB4;
+  background: #E0FAF7;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.rx-card-medicines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0.85rem;
+}
+
+.rx-med-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.825rem;
+  padding: 4px 8px;
+  background: #F8FAFC;
+  border-radius: 6px;
+}
+
+.rx-med-name {
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.rx-med-timing, .rx-med-duration {
+  color: #64748B;
+}
+
+.dash-record-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #EEF2F6;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  background: #FFFFFF;
+}
+
+.record-icon-badge {
+  font-size: 1.25rem;
+}
+
+.record-meta {
+  flex: 1;
+}
+
+.record-meta strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #0F172A;
+}
+
+.record-meta span {
+  font-size: 0.75rem;
+  color: #64748B;
+}
+
+.empty-state-box {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: #64748B;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   DOCTOR & ADMIN DASHBOARD SPECIFIC STYLES
+   ========================================================================== */
+.doc-header-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.doc-profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #02BFB4;
+}
+
+.doc-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.doc-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #E0FAF7;
+  color: #01A698;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 9999px;
+}
+
+.doc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.doc-stat-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 49, 105, 0.03);
+}
+
+.stat-icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0A2540;
+  display: block;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748B;
+}
+
+/* Tables */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.nh-doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.nh-doc-table th {
+  padding: 0.85rem 1rem;
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748B;
+  background: #F8FAFC;
+  border-bottom: 1.5px solid #E2E8F0;
+}
+
+.nh-doc-table td {
+  padding: 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #F1F5F9;
+  vertical-align: middle;
+}
+
+.nh-doc-table tbody tr:hover {
+  background: #F8FAFC;
+}
+
+.pat-cell-info strong {
+  display: block;
+  color: #0F172A;
+}
+
+.pat-cell-id {
+  font-size: 0.75rem;
+  color: #64748B;
+}
+
+.pat-action-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.queue-active-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0060D1;
+  background: #E6F0FD;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.erx-badge {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   STICKY BOTTOM MOBILE DOCK (Matching Image 3 on Mobile Viewports)
+   ========================================================================== */
+.nh-mobile-bottom-dock {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid #E2E8F0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px)) 12px;
+}
+
+.mobile-dock-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mobile-dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  color: #64748B;
+  padding: 4px 8px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.mobile-dock-item.active,
+.mobile-dock-item:hover {
+  color: #02BFB4;
+}
+
+.dock-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS (< 768px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .services-12-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .doc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-two-col-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nh-mobile-bottom-dock {
+    display: block;
+  }
+
+  .dash-page-wrapper {
+    padding-bottom: 6rem;
+  }
+
+  .dash-greeting-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .greeting-name {
+    font-size: 1.75rem;
+  }
+
+  .symptom-search-bar {
+    max-width: 100%;
+  }
+
+  .services-12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .doc-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .dash-white-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+  }
+}

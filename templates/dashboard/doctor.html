@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Console — Dr. {{ user.name }} | NHealth Technologies{% endblock %}
+
+{% block body %}
+<!-- Doctor Top Navigation -->
+<header class="nh-header nh-header-image2">
+  <div class="nh-container">
+    <div class="nh-nav-inner">
+      <a href="{{ url_for('main.index') }}" class="nh-brand-logo-link">
+        <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 44px;" />
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <ul class="nh-nav-menu">
+        <li class="nh-nav-item"><a href="{{ url_for('main.index') }}" class="nh-nav-link-image2">Home</a></li>
+        <li class="nh-nav-item"><a href="#queue-section" class="nh-nav-link-image2 active">Clinical Queue</a></li>
+        <li class="nh-nav-item"><a href="#prescription-section" class="nh-nav-link-image2">Write Prescription</a></li>
+      </ul>
+
+      <!-- Doctor Profile & Actions -->
+      <div class="nh-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+        <div class="dash-user-pill">
+          <img src="{{ user.avatar_url or 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&auto=format&fit=crop&q=80' }}" alt="{{ user.name }}" class="dash-user-avatar" />
+          <div class="dash-user-meta">
+            <span class="dash-user-name">{{ user.name }}</span>
+            <span class="dash-user-role-badge" style="background: #E0FAF7; color: #01A698;">👨‍⚕️ Medical Specialist</span>
+          </div>
+        </div>
+
+        <a href="{{ url_for('main.index') }}#telemedicine" class="nh-btn-book-teal">
+          Enter Video Room
+        </a>
+
+        <a href="{{ url_for('main.logout') }}" class="dash-logout-btn" title="Sign Out">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="dash-page-wrapper">
+  <div class="nh-container">
+    
+    <!-- Doctor Credentials & Status Header -->
+    <div class="dash-greeting-card doctor-header-card">
+      <div class="doc-header-profile">
+        <img src="{{ user.avatar_url or 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&auto=format&fit=crop&q=80' }}" alt="Doctor" class="doc-profile-avatar" />
+        <div class="doc-header-info">
+          <div class="doc-title-row">
+            <h1 class="greeting-name">{{ user.name }}</h1>
+            <span class="doc-status-badge">
+              <span class="pulse-dot"></span>
+              <span>Available for Consultations</span>
+            </span>
+          </div>
+          <p class="greeting-sub">
+            {{ user.doctor_profile.specialty if user.doctor_profile else 'Cardiologist' }} • 
+            License: <strong>{{ user.doctor_profile.mci_license if user.doctor_profile else 'MCI-2014-8892' }}</strong> • 
+            {{ user.doctor_profile.hospital if user.doctor_profile else 'Amaravati Command Center' }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Doctor Metric Stat Boxes -->
+    <div class="doc-stats-grid">
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-blue">📅</div>
+        <div class="stat-info">
+          <span class="stat-number">14</span>
+          <span class="stat-label">Appointments Today</span>
+        </div>
+      </div>
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-mint">⏳</div>
+        <div class="stat-info">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Waiting in Queue</span>
+        </div>
+      </div>
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-teal">✓</div>
+        <div class="stat-info">
+          <span class="stat-number">11</span>
+          <span class="stat-label">Completed Today</span>
+        </div>
+      </div>
+      <div class="doc-stat-card">
+        <div class="stat-icon-wrap bubble-amber">💰</div>
+        <div class="stat-info">
+          <span class="stat-number">₹1,84,500</span>
+          <span class="stat-label">Earnings This Month</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Two-Column Layout: Queue on Left, E-Rx on Right -->
+    <div class="dash-two-col-grid">
+      <!-- Left: Patient Queue Table -->
+      <div class="dash-white-card" id="queue-section">
+        <div class="dash-card-header">
+          <h2 class="dash-card-title">Patient Consultation Queue</h2>
+          <span class="queue-active-count">{{ appointments|length }} Active</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="nh-doc-table">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Service / Time</th>
+                <th>Chief Complaint</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for apt in appointments %}
+                <tr>
+                  <td>
+                    <div class="pat-cell-info">
+                      <strong class="pat-cell-name">{{ apt.patient.name }}</strong>
+                      <span class="pat-cell-id">ID: #NH-{{ apt.patient.id + 1000 }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <strong>{{ apt.service_type }}</strong><br>
+                    <span style="font-size:0.775rem; color:#64748B;">{{ apt.scheduled_date }} at {{ apt.time_slot }}</span>
+                  </td>
+                  <td>
+                    <span class="pat-complaint-cell">{{ apt.chief_complaint or 'Routine Follow-up' }}</span>
+                  </td>
+                  <td>
+                    <span class="apt-status-pill status-{{ apt.status }}">{{ apt.status.capitalize() }}</span>
+                  </td>
+                  <td>
+                    <div class="pat-action-buttons">
+                      <a href="{{ url_for('main.index') }}#telemedicine" class="nh-btn nh-btn-primary nh-btn-sm" title="Start Teleconsultation">
+                        ⚡ Video Call
+                      </a>
+                      <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="selectPatientForPrescription('{{ apt.patient.name }}', '{{ apt.id }}')" title="Prescribe">
+                        E-Rx
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 2rem; color: #64748B;">
+                    No pending patients in queue at this moment.
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right: Digital E-Prescription Form -->
+      <div class="dash-white-card" id="prescription-section">
+        <div class="dash-card-header">
+          <h2 class="dash-card-title">Write Digital E-Prescription</h2>
+          <span class="erx-badge">WhatsApp Instant Dispatch</span>
+        </div>
+
+        <form id="doctorRxForm" onsubmit="handlePrescriptionSubmit(event)">
+          <div class="form-group-auth">
+            <label class="auth-label">Patient Name</label>
+            <input type="text" id="rxPatientName" class="auth-input" placeholder="Select from queue or type name" value="Rahul Verma" required />
+          </div>
+
+          <div class="form-group-auth">
+            <label class="auth-label">Primary Diagnosis</label>
+            <input type="text" id="rxDiagnosis" class="auth-input" placeholder="e.g. Mild Essential Hypertension, Viral Fever" required />
+          </div>
+
+          <div class="form-group-auth">
+            <label class="auth-label">Medications & Dosage (1 per line)</label>
+            <textarea id="rxMedicines" rows="3" class="auth-input" style="font-family: inherit; resize: vertical;" placeholder="e.g. Amlodipine 5mg - 1 Tab Morning after food - 30 days&#10;Paracetamol 650mg - 1 Tab SOS when fever > 100°F" required></textarea>
+          </div>
+
+          <div class="form-group-auth">
+            <label class="auth-label">Clinical Advice & Lifestyle Instructions</label>
+            <textarea id="rxNotes" rows="2" class="auth-input" style="font-family: inherit; resize: vertical;" placeholder="e.g. Low salt diet, 30 mins brisk walking daily, follow up in 14 days."></textarea>
+          </div>
+
+          <div style="margin-top: 1rem;">
+            <button type="submit" class="auth-submit-btn">
+              <span>✍️ Sign & Dispatch E-Rx to Patient</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+function selectPatientForPrescription(name, aptId) {
+  document.getElementById('rxPatientName').value = name;
+  document.getElementById('prescription-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handlePrescriptionSubmit(e) {
+  e.preventDefault();
+  const patient = document.getElementById('rxPatientName').value;
+  showToast(`Digital E-Prescription signed & sent via WhatsApp to ${patient}!`);
+  document.getElementById('doctorRxForm').reset();
+}
+</script>
+{% endblock %}

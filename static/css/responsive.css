@@ -1,28 +1,22 @@
-/* Responsive Overrides */
-/* ==========================================================================
-   Responsive Breakpoints
-   ========================================================================== */
+/* Responsive Breakpoints & Mobile Optimization (Matching Image 3 on Mobile Viewports) */
+
 @media (max-width: 1024px) {
-  .nh-hero-grid {
+  .nh-hero-grid-image2 {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
   }
-  .nh-hero-tagline {
+  .nh-hero-content-image2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nh-hero-ctas-image2 {
     justify-content: center;
   }
-  .nh-hero-description {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .nh-hero-ctas {
-    justify-content: center;
-  }
-  .nh-hero-features {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .dashboard-grid {
-    grid-template-columns: 1fr;
+  .nh-hero-map-wrap {
+    max-width: 440px;
+    margin: 0 auto;
   }
   .telemed-container {
     grid-template-columns: 1fr;
@@ -37,20 +31,88 @@
 }
 
 @media (max-width: 768px) {
-  .nh-nav-menu {
-    display: none;
+  /* Show bottom mobile navigation dock on phones */
+  .nh-mobile-bottom-dock {
+    display: block !important;
   }
-  .nh-hero-title {
-    font-size: 2.4rem;
+  body {
+    padding-bottom: 65px;
+  }
+
+  /* Compact Navbar */
+  .nh-nav-menu {
+    display: none !important;
+  }
+  .nh-nav-inner {
+    height: 3.75rem !important;
+  }
+  .nh-brand-logo-img {
+    height: 38px !important;
+  }
+  .nh-btn-login-outline {
+    padding: 6px 14px !important;
+    font-size: 0.8rem !important;
+  }
+  .nh-btn-book-teal {
+    padding: 6px 14px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Mobile Hero (Matching Image 3 Screen 1) */
+  .nh-hero-image2 {
+    padding: 2rem 0 1.5rem 0 !important;
+  }
+  .nh-hero-title-image2 {
+    font-size: 2.15rem !important;
+    line-height: 1.2 !important;
+  }
+  .nh-hero-desc-image2 {
+    font-size: 0.925rem !important;
+  }
+  .nh-hero-map-wrap {
+    max-width: 320px !important;
+  }
+
+  /* Services Dock Touch Carousel */
+  .nh-services-dock-container {
+    margin-top: 1rem !important;
+  }
+  .nh-services-dock-card {
+    padding: 1rem 0.75rem !important;
+    gap: 0.5rem !important;
+    border-radius: 18px !important;
+  }
+  .nh-dock-icon-bubble {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.3rem !important;
+  }
+  .nh-dock-label {
+    font-size: 0.7rem !important;
+    max-width: 80px !important;
+  }
+
+  /* Trust Metrics on Mobile */
+  .nh-trust-grid-image2 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  .nh-trust-stat-col {
+    border-right: none !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Service Cards & Grid */
+  .nh-services-grid {
+    grid-template-columns: 1fr !important;
   }
   .charts-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   .footer-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   .form-grid-2 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
-

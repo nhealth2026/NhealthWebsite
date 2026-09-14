@@ -16,10 +16,19 @@
 .nh-nav-link-image2 {
   color: #334155 !important;
   font-weight: 600 !important;
-  font-size: 0.925rem !important;
-  transition: color 0.2s ease !important;
+  font-size: 0.95rem !important;
+  padding: 0.4rem 0.6rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: all 0.2s ease !important;
   position: relative !important;
   text-decoration: none !important;
+  border-radius: 6px !important;
+}
+
+.nh-nav-link-image2:hover {
+  color: #02BFB4 !important;
+  background: rgba(2, 191, 180, 0.06) !important;
 }
 
 .nh-nav-link-image2.active {

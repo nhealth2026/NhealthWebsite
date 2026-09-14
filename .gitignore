@@ -24,5 +24,8 @@ instance/
 Thumbs.db
 desktop.ini
 
-# Logs
+# Logs & Databases
 *.log
+*.db
+*.sqlite3
+
