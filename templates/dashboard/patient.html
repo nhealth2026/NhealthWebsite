@@ -1,458 +1,535 @@
 {% extends 'base.html' %}
 
-{% block title %}Patient Dashboard — NHealth Technologies | Healthcare at Your Doorstep{% endblock %}
+{% block title %}Patient Dashboard — NHealth Technologies | Healthcare at Home{% endblock %}
 
 {% block body %}
-<!-- Dashboard Top Navigation -->
-<header class="nh-header nh-header-image2">
-  <div class="nh-container">
-    <div class="nh-nav-inner">
-      <a href="{{ url_for('main.index') }}" class="nh-brand-logo-link">
-        <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth Technologies Logo" class="nh-brand-logo-img" style="height: 44px;" />
-      </a>
+<!-- Dedicated Stylesheet for Mockup Exact Styling -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/patient_redesign.css') }}">
 
-      <!-- Desktop Navigation Links -->
-      <ul class="nh-nav-menu">
-        <li class="nh-nav-item"><a href="{{ url_for('main.index') }}" class="nh-nav-link-image2">Home</a></li>
-        <li class="nh-nav-item"><a href="#services-view" class="nh-nav-link-image2 active">Our Services</a></li>
-        <li class="nh-nav-item"><a href="#appointments-view" class="nh-nav-link-image2">My Appointments</a></li>
-        <li class="nh-nav-item"><a href="#records-view" class="nh-nav-link-image2">Health Records</a></li>
-      </ul>
+<div class="p-dash-body">
 
-      <!-- User Profile & Action Controls -->
-      <div class="nh-nav-actions" style="display: flex; align-items: center; gap: 0.75rem;">
-        <div class="dash-user-pill">
-          <img src="{{ user.avatar_url or 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80' }}" alt="{{ user.name }}" class="dash-user-avatar" />
-          <div class="dash-user-meta">
-            <span class="dash-user-name">{{ user.name }}</span>
-            <span class="dash-user-role-badge">Patient ID: #NH-{{ user.id + 1042 }}</span>
-          </div>
-        </div>
-
-        <button class="nh-btn-book-teal open-booking-modal-btn" data-service="General Consultation">
-          + Book Now
-        </button>
-
-        <a href="{{ url_for('main.logout') }}" class="dash-logout-btn" title="Sign Out">
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-        </a>
-
-        <!-- Mobile Hamburger -->
-        <button class="nh-mobile-menu-btn" id="nhMobileMenuBtn" aria-label="Open menu" aria-expanded="false">
-          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Mobile Drawer Overlay -->
-<div class="nh-drawer-overlay" id="nhDrawerOverlay"></div>
-
-<!-- Mobile Navigation Drawer -->
-<nav class="nh-mobile-drawer" id="nhMobileDrawer" aria-label="Mobile navigation">
-  <div class="nh-drawer-header">
-    <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth" style="height: 36px;" />
-    <button class="nh-drawer-close-btn" id="nhDrawerCloseBtn" aria-label="Close">&#x2715;</button>
-  </div>
-  <div class="nh-drawer-nav">
-    <a href="{{ url_for('main.index') }}" class="nh-drawer-nav-link">🏠 Home</a>
-    <a href="#services-view" class="nh-drawer-nav-link active">🩺 Our Services</a>
-    <a href="#appointments-view" class="nh-drawer-nav-link">📅 My Appointments</a>
-    <a href="#records-view" class="nh-drawer-nav-link">📋 Health Records</a>
-  </div>
-  <div class="nh-drawer-footer">
-    <button class="nh-drawer-book-btn open-booking-modal-btn" data-service="General Consultation">📅 Book Appointment</button>
-    <a href="{{ url_for('main.logout') }}" class="nh-drawer-login-btn">Sign Out</a>
-  </div>
-</nav>
-
-<script>
-(function() {
-  var btn = document.getElementById('nhMobileMenuBtn');
-  var drawer = document.getElementById('nhMobileDrawer');
-  var overlay = document.getElementById('nhDrawerOverlay');
-  var closeBtn = document.getElementById('nhDrawerCloseBtn');
-  function open() { drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; }
-  function close() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
-  if(btn) btn.addEventListener('click', open);
-  if(closeBtn) closeBtn.addEventListener('click', close);
-  if(overlay) overlay.addEventListener('click', close);
-  if(drawer) drawer.querySelectorAll('.nh-drawer-nav-link').forEach(function(l){ l.addEventListener('click', close); });
-})();
-</script>
-
-
-<main class="dash-page-wrapper">
-  <div class="nh-container">
-    
-    <!-- Top Greeting & Search Header (Matching Image 3 Screen 3) -->
-    <div class="dash-greeting-card">
-      <div class="greeting-left">
-        <span class="greeting-time">👋 Good Morning,</span>
-        <h1 class="greeting-name">{{ user.name.split(' ')[0] }}</h1>
-        <p class="greeting-sub">How can we help you stay healthy today?</p>
-      </div>
-
-      <!-- Symptom Search Bar -->
-      <div class="symptom-search-bar">
-        <div class="search-icon-wrap">
-          <svg width="20" height="20" fill="none" stroke="#02BFB4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </div>
-        <input 
-          type="text" 
-          id="symptomSearchInput" 
-          placeholder="Tell us what's troubling you... (e.g. fever, cough, stomach pain)" 
-          class="symptom-input" 
+  <!-- ========================================================================
+       HERO BANNER WITH ATTRACTIVE SCENIC BACKGROUND (media_1789403472335.png)
+       ======================================================================== -->
+  <div class="p-hero-banner-outer">
+    <div class="p-hero-banner-container">
+      <div class="p-hero-banner-stage">
+        <!-- High-res attractive scenic background artwork matching mockup -->
+        <img 
+          src="{{ url_for('static', filename='images/hero_attractive_bg.png') }}" 
+          alt="Powering the Future of Healthcare at Home - NHealth Technologies" 
+          class="p-hero-art-img" 
         />
-        <button class="symptom-submit-btn open-booking-modal-btn" data-service="Online Doctor Consultation">
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-        </button>
-      </div>
-    </div>
 
-    <!-- Care Journey Tracker (Matching Image 3 Screen 3) -->
-    <div class="care-journey-card">
-      <span class="journey-label">Active Care Journey</span>
-      <div class="journey-steps">
-        <div class="journey-step completed">
-          <div class="step-dot">✓</div>
-          <span class="step-text">Safe Connect</span>
+        <!-- Interactive Clickable Hotspots & Overlays -->
+        <!-- 1. Top Logo Link -->
+        <a href="{{ url_for('main.index') }}" class="p-hotspot-logo" title="NHealth Home" aria-label="NHealth Home"></a>
+
+        <!-- 2. Notification Bell Button -->
+        <button type="button" class="p-hotspot-notif" onclick="showToast('You have 2 upcoming appointment reminders.')" title="Notifications" aria-label="Notifications"></button>
+
+        <!-- 3. Avatar Profile Link -->
+        <a href="#patient-records-section" class="p-hotspot-avatar" title="{{ user.name }}" aria-label="Profile and Records"></a>
+
+        <!-- 4. Interactive Symptom Search Input -->
+        <div class="p-hotspot-symptom-wrap">
+          <input 
+            type="text" 
+            id="pSymptomInput" 
+            class="p-hotspot-symptom-input" 
+            placeholder="Tell us what's troubling you..." 
+            aria-label="Tell us what's troubling you..."
+          />
+          <button 
+            type="button" 
+            id="pSymptomSubmitBtn" 
+            class="p-hotspot-symptom-btn open-booking-modal-btn" 
+            data-service="Online Doctor Consultation" 
+            title="Book Consultation"
+            aria-label="Book Consultation"
+          ></button>
         </div>
-        <div class="journey-line completed"></div>
-        <div class="journey-step active">
-          <div class="step-dot">2</div>
-          <span class="step-text">Diagnostic Tests</span>
-        </div>
-        <div class="journey-line"></div>
-        <div class="journey-step">
-          <div class="step-dot">3</div>
-          <span class="step-text">Doctor Review</span>
-        </div>
-        <div class="journey-line"></div>
-        <div class="journey-step">
-          <div class="step-dot">4</div>
-          <span class="step-text">Medicines</span>
-        </div>
-        <div class="journey-line"></div>
-        <div class="journey-step">
-          <div class="step-dot">5</div>
-          <span class="step-text">Full Recovery</span>
+
+        <!-- 5. Continuous Animated Border Patrol Particles Overlay -->
+        <div class="p-hero-motion-layer nh-map-stage" aria-hidden="true">
+          {% include 'partials/_map_motion.html' %}
         </div>
       </div>
     </div>
+  </div>
+
+  <main class="p-dash-container">
 
     <!-- ========================================================================
-         OUR SERVICES 12-GRID CARD CONTAINER (Exact from Image 2)
+         3. OUR SERVICES 12-GRID CARD CONTAINER (Exact from Mockup Image)
          ======================================================================== -->
-    <div class="dash-white-card" id="services-view">
-      <div class="dash-card-header">
-        <h2 class="dash-card-title">Our Services</h2>
-        <a href="#services-view" class="dash-view-all-link">
+    <section class="p-services-card" id="services-grid">
+      <div class="p-services-header">
+        <h2 class="p-services-title">Our Services</h2>
+        <a href="#services-grid" class="p-view-all-link">
           <span>View All</span>
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
         </a>
       </div>
 
-      <div class="services-12-grid">
+      <div class="p-services-grid">
         <!-- 1. Online Doctor Consultation -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Online Doctor Consultation">
-          <div class="service-dash-icon-wrap bubble-blue">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Online Doctor Consultation">
+          <div class="p-service-icon-box p-icon-doctor">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0060D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="7" r="3.8"></circle>
+              <path d="M3 20v-2a5 5 0 0 1 10 0v2"></path>
+              <path d="M17 9a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-1l-2 2v-2h-.5"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Online Doctor Consultation</h3>
-            <span class="service-dash-desc">Video • Audio • Chat</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Online Doctor<br>Consultation</h3>
+            <span class="p-service-desc">Video • Audio • Chat</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 2. Doctor Home Visits -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Doctor Home Visits">
-          <div class="service-dash-icon-wrap bubble-mint">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Doctor Home Visits">
+          <div class="p-service-icon-box p-icon-homevisit">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00BFA5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10.5z"></path>
+              <path d="M12 9v6m-3-3h6"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Doctor Home Visits</h3>
-            <span class="service-dash-desc">At your doorstep</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Doctor<br>Home Visits</h3>
+            <span class="p-service-desc">At your doorstep</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 3. Lab Tests at Home -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Lab Tests at Home">
-          <div class="service-dash-icon-wrap bubble-flask">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Lab Tests at Home">
+          <div class="p-service-icon-box p-icon-lab">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2v5.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 7.5V2h-4z"></path>
+              <path d="M8.5 2h7"></path>
+              <path d="M7 15h10" stroke-dasharray="2 2"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Lab Tests at Home</h3>
-            <span class="service-dash-desc">Safe • Accurate</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Lab Tests<br>at Home</h3>
+            <span class="p-service-desc">Safe • Accurate</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 4. X-Ray at Home -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="X-Ray at Home">
-          <div class="service-dash-icon-wrap bubble-purple">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="X-Ray at Home">
+          <div class="p-service-icon-box p-icon-xray">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="4" fill="#4C1D95" stroke="#7C3AED"></rect>
+              <line x1="12" y1="6" x2="12" y2="18" stroke="#FFFFFF" stroke-width="2"></line>
+              <path d="M8 9c1.5 1 2.5 1 4 0m0 0c1.5 1 2.5 1 4 0" stroke="#FFFFFF" stroke-width="1.8"></path>
+              <path d="M8 12c1.5 1 2.5 1 4 0m0 0c1.5 1 2.5 1 4 0" stroke="#FFFFFF" stroke-width="1.8"></path>
+              <path d="M8 15c1.5 1 2.5 1 4 0m0 0c1.5 1 2.5 1 4 0" stroke="#FFFFFF" stroke-width="1.8"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">X-Ray at Home</h3>
-            <span class="service-dash-desc">Digital • Reliable</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">X-Ray<br>at Home</h3>
+            <span class="p-service-desc">Digital • Reliable</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 5. Pharmacy to Home -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Pharmacy to Home">
-          <div class="service-dash-icon-wrap bubble-green">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Pharmacy to Home">
+          <div class="p-service-icon-box p-icon-pharmacy">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#02BFB4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="11" width="12" height="6" rx="3" transform="rotate(-45 2 11)"></rect>
+              <path d="M6 7l4.2 4.2"></path>
+              <circle cx="17.5" cy="15.5" r="4.5"></circle>
+              <path d="M14.5 15.5h6"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Pharmacy to Home</h3>
-            <span class="service-dash-desc">Genuine • Fast</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Pharmacy<br>to Home</h3>
+            <span class="p-service-desc">Genuine • Fast</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 6. Premium OPD Memberships -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Premium OPD Memberships">
-          <div class="service-dash-icon-wrap bubble-amber">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Premium OPD Memberships">
+          <div class="p-service-icon-box p-icon-opd">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19h16l1-12-5 5-4-7-4 7-5-5 1 12z"></path>
+              <circle cx="4" cy="7" r="1" fill="#F59E0B"></circle>
+              <circle cx="12" cy="5" r="1" fill="#F59E0B"></circle>
+              <circle cx="20" cy="7" r="1" fill="#F59E0B"></circle>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Premium OPD Memberships</h3>
-            <span class="service-dash-desc">More care - Less worry</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Premium OPD<br>Memberships</h3>
+            <span class="p-service-desc">More care • Less worry</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 7. Eldercare -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Eldercare">
-          <div class="service-dash-icon-wrap bubble-pink">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Eldercare">
+          <div class="p-service-icon-box p-icon-eldercare">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="7" r="3.5"></circle>
+              <path d="M12 3.5a2.5 2.5 0 0 0-2.5 2.5c0 .3.05.6.15.85"></path>
+              <path d="M6 21v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Eldercare</h3>
-            <span class="service-dash-desc">Compassionate care</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Eldercare</h3>
+            <span class="p-service-desc">Compassionate care</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 8. Bedside Assistant -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Bedside Assistant">
-          <div class="service-dash-icon-wrap bubble-teal">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Bedside Assistant">
+          <div class="p-service-icon-box p-icon-bedside">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7v13M21 11v9M3 15h18M3 11h9a3 3 0 0 1 3 3v1"></path>
+              <circle cx="7" cy="11" r="2"></circle>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Bedside Assistant</h3>
-            <span class="service-dash-desc">Support at home</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Bedside<br>Assistant</h3>
+            <span class="p-service-desc">Support at home</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 9. Physiotherapy -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Physiotherapy">
-          <div class="service-dash-icon-wrap bubble-violet">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Physiotherapy">
+          <div class="p-service-icon-box p-icon-physio">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="4.5" r="2.5"></circle>
+              <path d="M7 9.5l5 2 5-2"></path>
+              <path d="M12 11.5v6.5l-3 4"></path>
+              <path d="M12 18l3 4"></path>
+              <path d="M7 9.5V14"></path>
+              <path d="M17 9.5V14"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Physiotherapy</h3>
-            <span class="service-dash-desc">Move Better • Live Better</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Physiotherapy</h3>
+            <span class="p-service-desc">Move Better • Live Better</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 10. Nursing Services -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Nursing Services">
-          <div class="service-dash-icon-wrap bubble-blue">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Nursing Services">
+          <div class="p-service-icon-box p-icon-nursing">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 7h10l-1.5-4h-7L7 7z"></path>
+              <path d="M12 4v2m-1-1h2"></path>
+              <circle cx="12" cy="11.5" r="3.5"></circle>
+              <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">Nursing Services</h3>
-            <span class="service-dash-desc">Skilled • Trusted</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">Nursing Services</h3>
+            <span class="p-service-desc">Skilled • Trusted</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
         <!-- 11. and More... -->
-        <div class="service-dash-item open-booking-modal-btn" data-service="Full Body Screening">
-          <div class="service-dash-icon-wrap bubble-cyan">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+        <div class="p-service-tile open-booking-modal-btn" data-service="Full Body Screening">
+          <div class="p-service-icon-box p-icon-more">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
           </div>
-          <div class="service-dash-info">
-            <h3 class="service-dash-name">and More...</h3>
-            <span class="service-dash-desc">Complete healthcare</span>
+          <div class="p-service-text-wrap">
+            <h3 class="p-service-name">and More...</h3>
+            <span class="p-service-desc">Complete healthcare</span>
           </div>
-          <span class="service-dash-arrow">›</span>
+          <span class="p-service-chevron">›</span>
         </div>
 
-        <!-- 12. Feature Promo Banner Card (Exact Image 2) -->
-        <div class="service-promo-card">
-          <div class="promo-text-wrap">
-            <h3 class="promo-title">Your Health<br>Our Priority</h3>
-            <p class="promo-desc">Personalized care. Seamless experience. Always.</p>
-            <div class="promo-badge">
-              <span>💚 100% Verified</span>
+        <!-- 12. Feature Doctor Promo Banner (Exact from Mockup) -->
+        <div class="p-promo-banner-tile open-booking-modal-btn" data-service="General Consultation">
+          <div class="p-promo-content">
+            <h3 class="p-promo-heading">Your Health<br>Our Priority</h3>
+            <p class="p-promo-sub">Personalized care.<br>Seamless experience.<br>Always.</p>
+            <div class="p-promo-heart-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#00A89D"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             </div>
           </div>
-          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&auto=format&fit=crop&q=80" alt="Doctor" class="promo-doctor-img" />
+          <!-- Doctor cutout image -->
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=240&auto=format&fit=crop&q=80" alt="Doctor" class="p-promo-doctor-img" />
         </div>
       </div>
 
       <!-- ========================================================================
-           QUICK ACTIONS ROW (Exact from Image 2)
+           4. QUICK ACTIONS ROW (Exact from Mockup)
            ======================================================================== -->
-      <div class="quick-actions-section">
-        <div class="quick-actions-title-wrap">
-          <span class="lightning-icon">⚡</span>
-          <h3 class="quick-actions-title">Quick Actions</h3>
+      <div class="p-quick-actions-wrap">
+        <div class="p-quick-actions-title-wrap">
+          <span class="p-quick-actions-icon">⚡</span>
+          <h3 class="p-quick-actions-title">Quick Actions</h3>
         </div>
-        <div class="quick-actions-grid">
-          <button class="quick-action-pill open-booking-modal-btn" data-service="Doctor Consultation">
-            <span class="qa-icon" style="color: #0060D1;">📅</span>
+        <div class="p-quick-actions-grid">
+          <button class="p-qa-pill p-qa-book open-booking-modal-btn" data-service="Doctor Consultation" type="button">
+            <span class="p-qa-icon">📅</span>
             <span>Book Appointment</span>
           </button>
-          <a href="#records-view" class="quick-action-pill">
-            <span class="qa-icon" style="color: #02BFB4;">📋</span>
+          <a href="#patient-records-section" class="p-qa-pill p-qa-records">
+            <span class="p-qa-icon">📋</span>
             <span>My Health Records</span>
           </a>
-          <a href="#appointments-view" class="quick-action-pill">
-            <span class="qa-icon" style="color: #7C3AED;">📍</span>
+          <a href="#patient-appointments-section" class="p-qa-pill p-qa-track">
+            <span class="p-qa-icon">📍</span>
             <span>Track Bookings</span>
           </a>
-          <a href="https://wa.me/918001234567" target="_blank" class="quick-action-pill">
-            <span class="qa-icon" style="color: #D97706;">🎧</span>
+          <a href="https://wa.me/918001234567" target="_blank" class="p-qa-pill p-qa-support">
+            <span class="p-qa-icon">🎧</span>
             <span>24/7 Support</span>
           </a>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- ========================================================================
-         APPOINTMENTS & PRESCRIPTIONS ROW
+         5. PRESERVED PATIENT RECORDS & APPOINTMENTS SECTION
          ======================================================================== -->
-    <div class="dash-two-col-grid" id="appointments-view">
-      <!-- Left: Active & Upcoming Appointments -->
-      <div class="dash-white-card">
-        <div class="dash-card-header">
-          <h2 class="dash-card-title">My Appointments</h2>
-          <button class="nh-btn nh-btn-primary nh-btn-sm open-booking-modal-btn">
-            + New Appointment
-          </button>
-        </div>
-
-        {% if appointments %}
-          <div class="dash-appointments-list">
-            {% for apt in appointments %}
-              <div class="dash-apt-card">
-                <div class="apt-card-top">
-                  <span class="apt-badge-service">{{ apt.service_type }}</span>
-                  <span class="apt-status-pill status-{{ apt.status }}">{{ apt.status.capitalize() }}</span>
-                </div>
-                <div class="apt-card-body">
-                  <div class="apt-info-item">
-                    <span class="apt-info-label">Scheduled:</span>
-                    <strong class="apt-info-val">📅 {{ apt.scheduled_date }} at {{ apt.time_slot }}</strong>
-                  </div>
-                  <div class="apt-info-item">
-                    <span class="apt-info-label">Doctor:</span>
-                    <strong class="apt-info-val">👨‍⚕️ {{ apt.doctor.name if apt.doctor else 'Assigned Specialist' }}</strong>
-                  </div>
-                  {% if apt.chief_complaint %}
-                    <p class="apt-complaint">“{{ apt.chief_complaint }}”</p>
-                  {% endif %}
-                </div>
-                <div class="apt-card-actions">
-                  <a href="{{ url_for('main.index') }}#telemedicine" class="nh-btn nh-btn-secondary nh-btn-sm">
-                    Enter Tele-Clinic
-                  </a>
-                  <span class="apt-fee">Fee: ₹{{ '%.0f'|format(apt.fee) }}</span>
-                </div>
-              </div>
-            {% endfor %}
+    <section class="p-patient-records-section" id="patient-records-section">
+      <div class="p-records-two-col">
+        <!-- Left: Upcoming Appointments -->
+        <div class="p-sub-card" id="patient-appointments-section">
+          <div class="p-sub-card-header">
+            <h2 class="p-sub-card-title">My Appointments</h2>
+            <button class="nh-btn nh-btn-primary nh-btn-sm open-booking-modal-btn" data-service="General Consultation">
+              + New Appointment
+            </button>
           </div>
-        {% else %}
-          <div class="empty-state-box">
-            <span class="empty-icon">📅</span>
-            <p>No appointments booked yet.</p>
-            <button class="nh-btn-book-teal open-booking-modal-btn">Book Your First Consultation</button>
-          </div>
-        {% endif %}
-      </div>
 
-      <!-- Right: Active Prescriptions & Lab Records -->
-      <div class="dash-white-card" id="records-view">
-        <div class="dash-card-header">
-          <h2 class="dash-card-title">Prescriptions & Records</h2>
-        </div>
-
-        {% if prescriptions %}
-          <div class="dash-rx-list">
-            {% for rx in prescriptions %}
-              <div class="dash-rx-card">
-                <div class="rx-card-top">
-                  <div>
-                    <strong class="rx-diagnosis">{{ rx.diagnosis }}</strong>
-                    <span class="rx-meta">Issued by {{ rx.doctor.name }}</span>
+          {% if appointments %}
+            <div class="dash-appointments-list">
+              {% for apt in appointments %}
+                <div class="dash-apt-card">
+                  <div class="apt-card-top">
+                    <span class="apt-badge-service">{{ apt.service_type }}</span>
+                    <span class="apt-status-pill status-{{ apt.status }}">{{ apt.status.capitalize() }}</span>
                   </div>
-                  <span class="rx-date-pill">{{ rx.created_at.strftime('%d %b %Y') if rx.created_at else 'Recent' }}</span>
-                </div>
-                <div class="rx-card-medicines">
-                  {% for med in rx.medicines %}
-                    <div class="rx-med-row">
-                      <span class="rx-med-name">💊 {{ med.name }}</span>
-                      <span class="rx-med-timing">{{ med.timing }}</span>
-                      <span class="rx-med-duration">{{ med.duration }}</span>
+                  <div class="apt-card-body">
+                    <div class="apt-info-item">
+                      <span class="apt-info-label">Scheduled:</span>
+                      <strong class="apt-info-val">📅 {{ apt.scheduled_date }} at {{ apt.time_slot }}</strong>
                     </div>
-                  {% endfor %}
+                    <div class="apt-info-item">
+                      <span class="apt-info-label">Doctor:</span>
+                      <strong class="apt-info-val">👨‍⚕️ {{ apt.doctor.name if apt.doctor else 'Assigned Specialist' }}</strong>
+                    </div>
+                    {% if apt.chief_complaint %}
+                      <p class="apt-complaint">“{{ apt.chief_complaint }}”</p>
+                    {% endif %}
+                  </div>
+                  <div class="apt-card-actions">
+                    <a href="{{ url_for('main.index') }}#telemedicine" class="nh-btn nh-btn-secondary nh-btn-sm">
+                      Enter Tele-Clinic
+                    </a>
+                    <span class="apt-fee">Fee: ₹{{ '%.0f'|format(apt.fee) }}</span>
+                  </div>
                 </div>
-                <div class="rx-card-actions">
-                  <button class="nh-btn-secondary nh-btn-sm" onclick="showToast('Reorder sent to express pharmacy!')">
-                    🚀 2-Hour Doorstep Refill
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="empty-state-box">
+              <span class="empty-icon">📅</span>
+              <p>No appointments booked yet.</p>
+              <button class="nh-btn-book-teal open-booking-modal-btn">Book Your First Consultation</button>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Right: Prescriptions & Verified Lab Reports -->
+        <div class="p-sub-card">
+          <div class="p-sub-card-header">
+            <h2 class="p-sub-card-title">Prescriptions & Records</h2>
+          </div>
+
+          {% if prescriptions %}
+            <div class="dash-rx-list">
+              {% for rx in prescriptions %}
+                <div class="dash-rx-card">
+                  <div class="rx-card-top">
+                    <div>
+                      <strong class="rx-diagnosis">{{ rx.diagnosis }}</strong>
+                      <span class="rx-meta">Issued by {{ rx.doctor.name }}</span>
+                    </div>
+                    <span class="rx-date-pill">{{ rx.created_at.strftime('%d %b %Y') if rx.created_at else 'Recent' }}</span>
+                  </div>
+                  <div class="rx-card-medicines">
+                    {% for med in rx.medicines %}
+                      <div class="rx-med-row">
+                        <span class="rx-med-name">💊 {{ med.name }}</span>
+                        <span class="rx-med-timing">{{ med.timing }}</span>
+                        <span class="rx-med-duration">{{ med.duration }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="rx-card-actions">
+                    <button class="nh-btn-secondary nh-btn-sm" onclick="showToast('Reorder sent to express pharmacy!')">
+                      🚀 2-Hour Doorstep Refill
+                    </button>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if records %}
+            <div class="dash-records-list" style="margin-top: 1.5rem;">
+              <h3 style="font-size: 1rem; color: #1E293B; margin-bottom: 0.75rem;">Verified Lab Reports (NABL Accredited)</h3>
+              {% for rec in records %}
+                <div class="dash-record-row">
+                  <div class="record-icon-badge">📄</div>
+                  <div class="record-meta">
+                    <strong>{{ rec.title }}</strong>
+                    <span>{{ rec.details }}</span>
+                  </div>
+                  <button class="nh-btn-ghost-sm" onclick="showToast('Downloading verified PDF report...')">
+                    Download PDF
                   </button>
                 </div>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        {% if records %}
-          <div class="dash-records-list" style="margin-top: 1.5rem;">
-            <h3 style="font-size: 1rem; color: #1E293B; margin-bottom: 0.75rem;">Verified Lab Reports (NABL Accredited)</h3>
-            {% for rec in records %}
-              <div class="dash-record-row">
-                <div class="record-icon-badge">📄</div>
-                <div class="record-meta">
-                  <strong>{{ rec.title }}</strong>
-                  <span>{{ rec.details }}</span>
-                </div>
-                <button class="nh-btn-ghost-sm" onclick="showToast('Downloading verified PDF report...')">
-                  Download PDF
-                </button>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
       </div>
-    </div>
+    </section>
 
+  </main>
+
+  <!-- ========================================================================
+       6. RESPONSIVE BOTTOM NAVIGATION DOCK (Exact from Mockup)
+       ======================================================================== -->
+  <div class="p-bottom-dock-wrapper">
+    <nav class="p-bottom-dock" aria-label="Bottom Navigation">
+      <!-- 1. Home -->
+      <a href="{{ url_for('main.index') }}" class="p-dock-tab active">
+        <div class="p-dock-icon">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        </div>
+        <span>Home</span>
+      </a>
+
+      <!-- 2. Services (Stethoscope SVG Icon) -->
+      <a href="#services-grid" class="p-dock-tab">
+        <div class="p-dock-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3M9 12.5A7.5 7.5 0 0 0 16.5 20h1a2.5 2.5 0 0 0 2.5-2.5v-1a2.5 2.5 0 0 0-2.5-2.5h-1M4 3h1m8 0h1"></path>
+          </svg>
+        </div>
+        <span>Services</span>
+      </a>
+
+      <!-- 3. Floating Central Action: Book -->
+      <div class="p-dock-fab-wrap">
+        <button class="p-dock-fab open-booking-modal-btn" data-service="Doctor Consultation" title="Book Appointment" aria-label="Book Appointment">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </button>
+        <span class="p-dock-fab-label">Book</span>
+      </div>
+
+      <!-- 4. My Records -->
+      <a href="#patient-records-section" class="p-dock-tab">
+        <div class="p-dock-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+          </svg>
+        </div>
+        <span>My Records</span>
+      </a>
+
+      <!-- 5. More -->
+      <button class="p-dock-tab" id="pMoreDrawerBtn" type="button" aria-label="More options">
+        <div class="p-dock-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </div>
+        <span>More</span>
+      </button>
+    </nav>
   </div>
-</main>
 
-<!-- Floating WhatsApp Support Button -->
-<div class="nh-whatsapp-float">
-  <a href="https://wa.me/918001234567" target="_blank" class="nh-whatsapp-btn-circle" aria-label="Chat on WhatsApp" title="Chat with NHealth on WhatsApp">
-    <svg width="28" height="28" fill="#FFFFFF" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
+  <!-- Mobile Drawer Overlay & Menu for "More" -->
+  <div class="nh-drawer-overlay" id="nhDrawerOverlay"></div>
+  <nav class="nh-mobile-drawer" id="nhMobileDrawer" aria-label="Mobile navigation">
+    <div class="nh-drawer-header">
+      <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth" style="height: 36px;" />
+      <button class="nh-drawer-close-btn" id="nhDrawerCloseBtn" aria-label="Close">&#x2715;</button>
+    </div>
+    <div class="nh-drawer-nav">
+      <a href="{{ url_for('main.index') }}" class="nh-drawer-nav-link">🏠 Home</a>
+      <a href="#services-grid" class="nh-drawer-nav-link active">🩺 Our Services</a>
+      <a href="#patient-appointments-section" class="nh-drawer-nav-link">📅 My Appointments</a>
+      <a href="#patient-records-section" class="nh-drawer-nav-link">📋 Health Records</a>
+      <a href="https://wa.me/918001234567" target="_blank" class="nh-drawer-nav-link">🎧 24/7 Support</a>
+    </div>
+    <div class="nh-drawer-footer">
+      <button class="nh-drawer-book-btn open-booking-modal-btn" data-service="General Consultation">📅 Book Appointment</button>
+      <a href="{{ url_for('main.logout') }}" class="nh-drawer-login-btn">Sign Out</a>
+    </div>
+  </nav>
+
 </div>
-
-<!-- Sticky Mobile Navigation Dock (Matching Image 3) -->
-{% include 'partials/_mobile_nav.html' %}
-
 
 <!-- Booking Modal -->
 {% include 'partials/_booking_modal.html' %}
+
+<script>
+(function() {
+  // Mobile drawer bindings
+  var moreBtn = document.getElementById('pMoreDrawerBtn');
+  var drawer = document.getElementById('nhMobileDrawer');
+  var overlay = document.getElementById('nhDrawerOverlay');
+  var closeBtn = document.getElementById('nhDrawerCloseBtn');
+
+  function openDrawer() { 
+    if(drawer) drawer.classList.add('open'); 
+    if(overlay) overlay.classList.add('open'); 
+    document.body.style.overflow='hidden'; 
+  }
+  function closeDrawer() { 
+    if(drawer) drawer.classList.remove('open'); 
+    if(overlay) overlay.classList.remove('open'); 
+    document.body.style.overflow=''; 
+  }
+
+  if (moreBtn) moreBtn.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+  if (drawer) {
+    drawer.querySelectorAll('.nh-drawer-nav-link').forEach(function(l) {
+      l.addEventListener('click', closeDrawer);
+    });
+  }
+
+  // Symptom input keyboard enter handling
+  var symInput = document.getElementById('pSymptomInput');
+  var symBtn = document.getElementById('pSymptomSubmitBtn');
+  if (symInput && symBtn) {
+    symInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        symBtn.click();
+      }
+    });
+  }
+})();
+</script>
 {% endblock %}
