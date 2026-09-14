@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 from app import create_app
 from models import db, User, DoctorProfile, Appointment, Prescription, HealthRecord
 
-def seed_database():
-    app = create_app()
+def seed_database(existing_app=None):
+    app = existing_app or create_app()
     with app.app_context():
         print("Creating all database tables...")
         db.create_all()

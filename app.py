@@ -31,12 +31,20 @@ def create_app(config_class=None):
     def inject_user():
         return {'current_user': get_current_user()}
 
-    # Ensure tables exist
+    # Ensure tables exist and seed demo data on fresh deployment
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+            if not User.query.first():
+                from seed_db import seed_database
+                seed_database(existing_app=app)
+        except Exception as e:
+            app.logger.warning(f"Database auto-setup notification: {e}")
 
     return app
 
+# Module-level application instance for Gunicorn WSGI on Render
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
     app.run(debug=True, port=5000)
