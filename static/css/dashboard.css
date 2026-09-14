@@ -840,9 +840,10 @@
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid #E2E8F0;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
-  z-index: 9999;
+  z-index: 1040;
   padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px)) 12px;
 }
+
 
 .mobile-dock-inner {
   display: flex;
@@ -875,7 +876,7 @@
 }
 
 /* ==========================================================================
-   MOBILE RESPONSIVENESS (< 768px)
+   MOBILE RESPONSIVENESS — Supplementary (main rules in responsive.css)
    ========================================================================== */
 @media (max-width: 1024px) {
   .services-12-grid {
@@ -893,42 +894,35 @@
   .nh-mobile-bottom-dock {
     display: block;
   }
-
   .dash-page-wrapper {
     padding-bottom: 6rem;
   }
-
   .dash-greeting-card {
     flex-direction: column;
     align-items: stretch;
     padding: 1.5rem 1.25rem;
   }
-
   .greeting-name {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
-
   .symptom-search-bar {
     max-width: 100%;
   }
-
   .services-12-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
-
   .quick-actions-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
-
   .doc-stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
-
   .dash-white-card {
     padding: 1.5rem 1.25rem;
     border-radius: 20px;
   }
 }
+

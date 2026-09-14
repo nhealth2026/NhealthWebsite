@@ -1,5 +1,61 @@
-/* Responsive Breakpoints & Mobile Optimization (Matching Image 3 on Mobile Viewports) */
+/* ==========================================================================
+   NHEALTH TECHNOLOGIES — COMPLETE RESPONSIVE SYSTEM
+   Breakpoints: 1536 | 1280 | 1100 | 1024 | 768 | 640 | 480 | 375 | 320
+   ========================================================================== */
 
+/* ==========================================================================
+   1. LARGE DESKTOP (1536px+)
+   ========================================================================== */
+@media (min-width: 1536px) {
+  .nh-container {
+    max-width: 1400px;
+  }
+  .dash-page-wrapper {
+    padding-top: 2.5rem;
+  }
+}
+
+/* ==========================================================================
+   2. DESKTOP STANDARD (<=1280px)
+   ========================================================================== */
+@media (max-width: 1280px) {
+  .nh-container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   3. TABLET LANDSCAPE / SMALL DESKTOP (<=1100px)
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .nh-trust-grid-image2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem !important;
+  }
+  .nh-trust-stat-col:nth-child(2) {
+    border-right: none !important;
+  }
+  .nh-trust-stat-col:nth-child(3) {
+    border-top: 1px solid #E2E8F0;
+    padding-top: 1.25rem;
+    padding-left: 0;
+  }
+  .nh-trust-stat-col:nth-child(4) {
+    border-top: 1px solid #E2E8F0;
+    border-right: none !important;
+    padding-top: 1.25rem;
+    padding-left: 0;
+  }
+}
+
+/* ==========================================================================
+   4. TABLET LANDSCAPE (<=1024px)
+   ========================================================================== */
 @media (max-width: 1024px) {
   .nh-hero-grid-image2 {
     grid-template-columns: 1fr;
@@ -18,6 +74,10 @@
     max-width: 440px;
     margin: 0 auto;
   }
+  .nh-hero-desc-image2 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
   .telemed-container {
     grid-template-columns: 1fr;
     height: auto;
@@ -25,74 +85,110 @@
   .telemed-video-area {
     height: 420px;
   }
+  .services-12-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .doc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-two-col-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .quick-actions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 }
 
+/* ==========================================================================
+   5. TABLET PORTRAIT (<=768px)
+   ========================================================================== */
 @media (max-width: 768px) {
-  /* Show bottom mobile navigation dock on phones */
+  body {
+    padding-bottom: 80px;
+  }
+  .nh-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
   .nh-mobile-bottom-dock {
     display: block !important;
   }
-  body {
-    padding-bottom: 65px;
+  /* Floating WhatsApp button placed clearly above mobile bottom dock */
+  .nh-whatsapp-float {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 18px !important;
+    z-index: 1050 !important;
   }
-
-  /* Compact Navbar */
+  .nh-whatsapp-btn-circle {
+    width: 52px !important;
+    height: 52px !important;
+  }
+  .nh-whatsapp-btn-circle svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
   .nh-nav-menu {
     display: none !important;
   }
+
   .nh-nav-inner {
-    height: 3.75rem !important;
+    height: 3.75rem;
   }
   .nh-brand-logo-img {
-    height: 38px !important;
+    height: 38px;
+  }
+  .nh-mobile-menu-btn {
+    display: flex !important;
+  }
+  .nh-topbar {
+    display: none !important;
   }
   .nh-btn-login-outline {
     padding: 6px 14px !important;
     font-size: 0.8rem !important;
   }
   .nh-btn-book-teal {
-    padding: 6px 14px !important;
-    font-size: 0.8rem !important;
+    padding: 7px 16px !important;
+    font-size: 0.825rem !important;
   }
-
-  /* Mobile Hero (Matching Image 3 Screen 1) */
   .nh-hero-image2 {
-    padding: 2rem 0 1.5rem 0 !important;
+    padding: 2.25rem 0 1.75rem 0 !important;
   }
   .nh-hero-title-image2 {
-    font-size: 2.15rem !important;
+    font-size: clamp(1.85rem, 6vw, 2.5rem) !important;
     line-height: 1.2 !important;
   }
   .nh-hero-desc-image2 {
-    font-size: 0.925rem !important;
+    font-size: 0.95rem !important;
   }
   .nh-hero-map-wrap {
-    max-width: 320px !important;
-  }
-
-  /* Services Dock Touch Carousel */
-  .nh-services-dock-container {
-    margin-top: 1rem !important;
+    max-width: 360px !important;
   }
   .nh-services-dock-card {
-    padding: 1rem 0.75rem !important;
+    padding: 1.25rem 1rem !important;
     gap: 0.5rem !important;
-    border-radius: 18px !important;
+    justify-content: flex-start !important;
+    border-radius: 20px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nh-dock-item {
+    min-width: 80px !important;
+    flex: 0 0 auto !important;
   }
   .nh-dock-icon-bubble {
-    width: 46px !important;
-    height: 46px !important;
-    font-size: 1.3rem !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.35rem !important;
   }
   .nh-dock-label {
-    font-size: 0.7rem !important;
-    max-width: 80px !important;
+    font-size: 0.72rem !important;
+    max-width: 82px !important;
   }
-
-  /* Trust Metrics on Mobile */
   .nh-trust-grid-image2 {
     grid-template-columns: 1fr 1fr !important;
     gap: 1rem !important;
@@ -101,18 +197,658 @@
     border-right: none !important;
     padding: 0 0.5rem !important;
   }
-
-  /* Service Cards & Grid */
   .nh-services-grid {
     grid-template-columns: 1fr !important;
+  }
+  .dash-greeting-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.5rem 1.25rem;
+    gap: 1.25rem;
+  }
+  .greeting-name {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+  .symptom-search-bar {
+    max-width: 100%;
+  }
+  .services-12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .doc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  .dash-white-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+  }
+  .dash-card-title {
+    font-size: 1.2rem;
+  }
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .charts-grid {
     grid-template-columns: 1fr !important;
   }
   .footer-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+  .nh-footer {
+    padding: 3rem 0 1.5rem 0;
+  }
+  .nh-modal-backdrop {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+  .nh-modal-box {
+    max-width: 100% !important;
+    border-radius: 24px 24px 0 0 !important;
+    max-height: 90vh;
+    transform: translateY(40px) !important;
+  }
+  .nh-modal-backdrop.open .nh-modal-box {
+    transform: translateY(0) !important;
   }
   .form-grid-2 {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ==========================================================================
+   6. LARGE MOBILE (<=640px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .dash-user-pill .dash-user-meta {
+    display: none;
+  }
+  .dash-greeting-card {
+    padding: 1.25rem 1rem;
+  }
+  .services-12-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .service-dash-name {
+    font-size: 0.8rem;
+  }
+  .service-dash-desc {
+    font-size: 0.7rem;
+  }
+  .doc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .stat-number {
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+  }
+  .doc-stat-card {
+    padding: 1.1rem;
+    border-radius: 16px;
+  }
+  .doc-header-profile {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .doc-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .apt-card-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .apt-card-actions .nh-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .rx-med-row {
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 10px;
+  }
+  .rx-med-name {
+    font-size: 0.875rem;
+  }
+  .rx-med-timing,
+  .rx-med-duration {
+    font-size: 0.775rem;
+  }
+  .step-text {
+    font-size: 0.7rem;
+    text-align: center;
+    max-width: 58px;
+    word-break: break-word;
+  }
+  /* Table card-view */
+  .nh-doc-table.card-view-sm thead {
+    display: none;
+  }
+  .nh-doc-table.card-view-sm tbody tr {
+    display: block;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    margin-bottom: 0.85rem;
+    padding: 0.85rem;
+    background: #fff;
+  }
+  .nh-doc-table.card-view-sm td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 0.85rem;
+  }
+  .nh-doc-table.card-view-sm td:last-child {
+    border-bottom: none;
+    padding-top: 0.65rem;
+    justify-content: flex-end;
+  }
+  .nh-doc-table.card-view-sm td::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+  }
+  .modal-body {
+    padding: 1.25rem 1rem;
+  }
+  .modal-header {
+    padding: 1.25rem 1rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .footer-badges-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .compliance-badges {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .auth-page-wrapper {
+    padding: 1.25rem 0.875rem;
+    align-items: flex-start;
+  }
+  .auth-card {
+    border-radius: 20px;
+    padding: 1.75rem 1.25rem;
+    box-shadow: none;
+    border: 1px solid #EEF2F6;
+  }
+  .auth-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   7. MEDIUM MOBILE (<=480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .nh-container {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+  .nh-hero-image2 {
+    padding: 1.75rem 0 1.25rem 0 !important;
+  }
+  .nh-hero-title-image2 {
+    font-size: clamp(1.65rem, 7vw, 2rem) !important;
+  }
+  .nh-badge-allinone {
+    font-size: 0.775rem !important;
+    padding: 4px 12px !important;
+  }
+  .nh-dock-icon-bubble {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 1.15rem !important;
+  }
+  .nh-dock-item {
+    min-width: 70px !important;
+  }
+  .nh-dock-label {
+    font-size: 0.68rem !important;
+    max-width: 72px !important;
+  }
+  .nh-trust-grid-image2 {
+    grid-template-columns: 1fr !important;
+    gap: 0;
+  }
+  .nh-trust-stat-col {
+    border-right: none !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    padding: 0.85rem 0 !important;
+  }
+  .nh-trust-stat-col:last-child {
+    border-bottom: none !important;
+  }
+  .dash-greeting-card {
+    padding: 1rem 0.875rem;
+    border-radius: 18px;
+  }
+  .greeting-name {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+  .greeting-time {
+    font-size: 0.875rem;
+  }
+  .greeting-sub {
+    font-size: 0.85rem;
+  }
+  .services-12-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .service-dash-item {
+    border-radius: 14px;
+    padding: 0.9rem 0.85rem;
+  }
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .quick-action-pill {
+    padding: 0.7rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 12px;
+  }
+  .step-dot {
+    width: 26px;
+    height: 26px;
+    font-size: 0.725rem;
+  }
+  .care-journey-card {
+    padding: 1rem;
+  }
+  .doc-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .dash-white-card {
+    padding: 1.1rem 0.875rem;
+    border-radius: 18px;
+  }
+  .dash-card-title {
+    font-size: 1.1rem;
+  }
+  .dash-apt-card {
+    padding: 1rem;
+  }
+  .apt-badge-service {
+    font-size: 0.72rem;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dash-rx-card {
+    padding: 1rem;
+  }
+  .dash-record-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .auth-actions-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .nh-whatsapp-float {
+    bottom: calc(74px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 14px !important;
+  }
+  .nh-whatsapp-btn-circle {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .nh-whatsapp-btn-circle svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+
+/* ==========================================================================
+   8. STANDARD MOBILE (<=375px)
+   ========================================================================== */
+@media (max-width: 375px) {
+  .nh-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .nh-whatsapp-float {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 12px !important;
+  }
+  .nh-whatsapp-btn-circle {
+    width: 46px !important;
+    height: 46px !important;
+  }
+  .nh-whatsapp-btn-circle svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .nh-brand-logo-img {
+    height: 34px;
+  }
+  .nh-nav-inner {
+    height: 3.5rem;
+  }
+  .nh-hero-title-image2 {
+    font-size: 1.65rem !important;
+  }
+  .nh-hero-ctas-image2 {
+    flex-direction: column;
+    gap: 0.75rem !important;
+    align-items: stretch;
+  }
+  .btn-cta-teal,
+  .btn-cta-watch-video {
+    justify-content: center;
+    width: 100%;
+  }
+  .services-12-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .quick-action-pill {
+    font-size: 0.775rem;
+    padding: 0.65rem 0.6rem;
+    gap: 6px;
+  }
+  .journey-steps {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .journey-steps::-webkit-scrollbar {
+    display: none;
+  }
+  .journey-step {
+    flex-shrink: 0;
+  }
+  .journey-line {
+    min-width: 20px;
+    flex: 0 0 20px;
+  }
+  .dash-white-card {
+    padding: 1rem 0.75rem;
+    border-radius: 16px;
+    margin-bottom: 1.25rem;
+  }
+  .dash-greeting-card {
+    padding: 1rem 0.75rem;
+    border-radius: 16px;
+  }
+  .greeting-name {
+    font-size: 1.4rem;
+  }
+  .doc-profile-avatar {
+    width: 56px;
+    height: 56px;
+  }
+  .stat-number {
+    font-size: 1.25rem !important;
+  }
+  .auth-card {
+    padding: 1.5rem 1rem;
+  }
+  .auth-title {
+    font-size: 1.55rem;
+  }
+  .auth-actions-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+  .demo-chip {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+  .dock-label {
+    font-size: 0.65rem;
+  }
+  .footer-grid {
+    gap: 1.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   9. SMALLEST MOBILE (<=320px)
+   ========================================================================== */
+@media (max-width: 320px) {
+  .nh-container {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+  .nh-brand-logo-img {
+    height: 30px;
+  }
+  .nh-btn-login-outline {
+    padding: 5px 10px !important;
+    font-size: 0.75rem !important;
+  }
+  .nh-btn-book-teal {
+    display: none !important;
+  }
+  .auth-card {
+    padding: 1.25rem 0.875rem;
+    border-radius: 16px;
+  }
+  .role-selector-wrap {
+    grid-template-columns: 1fr;
+  }
+  .dash-white-card {
+    border-radius: 14px;
+  }
+  .services-12-grid {
+    gap: 0.5rem;
+  }
+  .quick-action-pill {
+    font-size: 0.725rem;
+  }
+  .stat-number {
+    font-size: 1.15rem !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE DRAWER STYLES
+   ========================================================================== */
+.nh-mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.nh-mobile-menu-btn:hover {
+  background: #E2E8F0;
+  color: #003169;
+}
+
+.nh-mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  max-width: 85vw;
+  height: 100%;
+  background: #FFFFFF;
+  z-index: 9000;
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.nh-mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.nh-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 18, 40, 0.5);
+  z-index: 8999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.nh-drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nh-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #E2E8F0;
+  flex-shrink: 0;
+}
+
+.nh-drawer-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #64748B;
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+.nh-drawer-close-btn:hover {
+  background: #FEF2F2;
+  color: #DC2626;
+  border-color: #FEE2E2;
+}
+
+.nh-drawer-nav {
+  flex: 1;
+  padding: 0.75rem 0;
+}
+
+.nh-drawer-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  color: #1E293B;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  border-left: 3px solid transparent;
+  min-height: 48px;
+}
+.nh-drawer-nav-link:hover,
+.nh-drawer-nav-link.active {
+  color: #02BFB4;
+  background: rgba(2, 191, 180, 0.06);
+  border-left-color: #02BFB4;
+}
+
+.nh-drawer-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.nh-drawer-book-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 9999px;
+  background: #02BFB4;
+  color: #FFFFFF;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 48px;
+}
+.nh-drawer-book-btn:hover {
+  background: #01A698;
+  color: #FFFFFF;
+}
+
+.nh-drawer-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  color: #003169;
+  border: 1.5px solid #003169;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 48px;
+}
+.nh-drawer-login-btn:hover {
+  background: #F1F5F9;
+  color: #0060D1;
+  border-color: #0060D1;
+}
+
+/* Touch targets — all interactive elements min 44px */
+.nh-btn,
+.auth-submit-btn,
+.nh-btn-book-teal,
+.nh-btn-login-outline {
+  min-height: 44px;
+}
+.mobile-dock-item {
+  min-height: 52px;
+  min-width: 52px;
+}
+

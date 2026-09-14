@@ -126,13 +126,13 @@
 }
 
 .nh-hero-title-image2 {
-  font-size: 3.25rem !important;
+  font-size: clamp(1.85rem, 5vw, 3.25rem) !important;
   font-weight: 800 !important;
   line-height: 1.15 !important;
   letter-spacing: -0.02em !important;
   margin-bottom: 1.25rem !important;
   color: #0A2540 !important;
-  font-family: 'Outfit', -apple-system, sans-serif !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
 }
 
 .nh-title-teal-highlight {
@@ -372,7 +372,7 @@
   font-weight: 500 !important;
 }
 
-/* Responsive */
+/* Responsive — hero only (detailed breakpoints in responsive.css) */
 @media (max-width: 1024px) {
   .nh-hero-grid-image2 {
     grid-template-columns: 1fr !important;
@@ -394,9 +394,6 @@
 }
 
 @media (max-width: 768px) {
-  .nh-hero-title-image2 {
-    font-size: 2.35rem !important;
-  }
   .nh-trust-grid-image2 {
     grid-template-columns: 1fr !important;
   }
@@ -406,3 +403,4 @@
     padding-bottom: 1rem !important;
   }
 }
+
