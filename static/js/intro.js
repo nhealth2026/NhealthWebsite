@@ -10,6 +10,22 @@ function initLandingIntro() {
 
   if (!overlay || !video) return;
 
+  // Device-specific intro animation:
+  // Laptop/Desktop (> 768px): desktop_animation.mp4
+  // Mobile (<= 768px): nhealth_animation.mp4
+  const isMobile = window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches;
+  const desktopSrc = overlay.getAttribute('data-desktop-src') || '/static/videos/desktop_animation.mp4';
+  const mobileSrc = overlay.getAttribute('data-mobile-src') || '/static/videos/nhealth_animation.mp4';
+  const targetSrc = isMobile ? mobileSrc : desktopSrc;
+
+  if (!video.src || !video.src.includes(targetSrc)) {
+    video.src = targetSrc;
+    const sourceTag = document.getElementById('nhLandingVideoSource');
+    if (sourceTag) sourceTag.src = targetSrc;
+    video.load();
+    video.play().catch(() => {});
+  }
+
   let isDismissed = false;
 
   function dismissIntro() {

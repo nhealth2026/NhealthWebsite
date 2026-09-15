@@ -1,11 +1,14 @@
   <!-- ========================================================================
-       LANDING INTRO ANIMATION OVERLAY (nhealth_animation.mp4)
-       After this animation finishes, the homepage smoothly reveals.
+       LANDING INTRO ANIMATION OVERLAY
+       Desktop/Laptop: desktop_animation.mp4
+       Mobile: nhealth_animation.mp4
        ======================================================================== -->
-  <div id="nhLandingIntro" class="nh-landing-intro-overlay" title="Click anywhere to skip intro">
+  <div id="nhLandingIntro" class="nh-landing-intro-overlay" title="Click anywhere to skip intro"
+       data-desktop-src="{{ url_for('static', filename='videos/desktop_animation.mp4') }}"
+       data-mobile-src="{{ url_for('static', filename='videos/nhealth_animation.mp4') }}">
     <div class="nh-landing-video-container">
       <video id="nhLandingVideo" class="nh-landing-video" autoplay muted playsinline preload="auto">
-        <source src="{{ url_for('static', filename='videos/nhealth_animation.mp4') }}" type="video/mp4" />
+        <source id="nhLandingVideoSource" src="{{ url_for('static', filename='videos/desktop_animation.mp4') }}" type="video/mp4" />
       </video>
     </div>
 
