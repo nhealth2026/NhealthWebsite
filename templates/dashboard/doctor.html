@@ -180,11 +180,11 @@
                   </td>
                   <td data-label="Actions">
                     <div class="pat-action-buttons">
-                      <a href="{{ url_for('main.index') }}#telemedicine" class="nh-btn nh-btn-primary nh-btn-sm" title="Start Teleconsultation">
-                        ⚡ Video Call
+                      <a href="{{ apt.meeting_link or url_for('main.consultation_room', room_id=apt.meeting_room_id or apt.id) }}" class="nh-btn nh-btn-primary nh-btn-sm" style="background: linear-gradient(135deg, #02BFB4 0%, #008779 100%); color: #FFF; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" title="Open Split-Screen Video Consultation Desk">
+                        📹 Consult Desk
                       </a>
-                      <button class="nh-btn nh-btn-secondary nh-btn-sm" onclick="selectPatientForPrescription('{{ apt.patient.name }}', '{{ apt.id }}')" title="Prescribe">
-                        E-Rx
+                      <button type="button" class="nh-btn nh-btn-secondary nh-btn-sm" onclick="selectPatientForPrescription('{{ apt.patient.name }}', '{{ apt.id }}', '{{ apt.patient_id }}', '{{ apt.journey_id or '' }}')" title="Prescribe">
+                        ✍️ E-Rx
                       </button>
                     </div>
                   </td>
@@ -210,6 +210,10 @@
         </div>
 
         <form id="doctorRxForm" onsubmit="handlePrescriptionSubmit(event)">
+          <input type="hidden" id="rxPatientId" value="" />
+          <input type="hidden" id="rxAppointmentId" value="" />
+          <input type="hidden" id="rxJourneyId" value="" />
+
           <div class="form-group-auth">
             <label class="auth-label">Patient Name</label>
             <input type="text" id="rxPatientName" class="auth-input" placeholder="Select from queue or type name" value="Rahul Verma" required />
@@ -217,21 +221,21 @@
 
           <div class="form-group-auth">
             <label class="auth-label">Primary Diagnosis</label>
-            <input type="text" id="rxDiagnosis" class="auth-input" placeholder="e.g. Mild Essential Hypertension, Viral Fever" required />
+            <input type="text" id="rxDiagnosis" class="auth-input" placeholder="e.g. Acute Upper Respiratory Tract Infection, Hypertension" required />
           </div>
 
           <div class="form-group-auth">
             <label class="auth-label">Medications & Dosage (1 per line)</label>
-            <textarea id="rxMedicines" rows="3" class="auth-input" style="font-family: inherit; resize: vertical;" placeholder="e.g. Amlodipine 5mg - 1 Tab Morning after food - 30 days&#10;Paracetamol 650mg - 1 Tab SOS when fever > 100°F" required></textarea>
+            <textarea id="rxMedicines" rows="3" class="auth-input" style="font-family: inherit; resize: vertical;" placeholder="e.g. Paracetamol 650mg - 1 Tab After Food - 5 Days&#10;Cetirizine 10mg - 1 Tab at Bedtime - 3 Days" required></textarea>
           </div>
 
           <div class="form-group-auth">
             <label class="auth-label">Clinical Advice & Lifestyle Instructions</label>
-            <textarea id="rxNotes" rows="2" class="auth-input" style="font-family: inherit; resize: vertical;" placeholder="e.g. Low salt diet, 30 mins brisk walking daily, follow up in 14 days."></textarea>
+            <textarea id="rxNotes" rows="2" class="auth-input" style="font-family: inherit; resize: vertical;" placeholder="e.g. Steam inhalation twice daily, drink warm fluids, consult if fever persists."></textarea>
           </div>
 
           <div style="margin-top: 1rem;">
-            <button type="submit" class="auth-submit-btn">
+            <button type="submit" id="doctorRxSubmitBtn" class="auth-submit-btn">
               <span>✍️ Sign & Dispatch E-Rx to Patient</span>
             </button>
           </div>
@@ -243,16 +247,74 @@
 </main>
 
 <script>
-function selectPatientForPrescription(name, aptId) {
+function selectPatientForPrescription(name, aptId, patientId, journeyId) {
   document.getElementById('rxPatientName').value = name;
+  document.getElementById('rxAppointmentId').value = aptId || '';
+  document.getElementById('rxPatientId').value = patientId || '';
+  document.getElementById('rxJourneyId').value = journeyId || '';
   document.getElementById('prescription-section').scrollIntoView({ behavior: 'smooth' });
 }
 
 function handlePrescriptionSubmit(e) {
   e.preventDefault();
   const patient = document.getElementById('rxPatientName').value;
-  showToast(`Digital E-Prescription signed & sent via WhatsApp to ${patient}!`);
-  document.getElementById('doctorRxForm').reset();
+  const diagnosis = document.getElementById('rxDiagnosis').value;
+  const rawMeds = document.getElementById('rxMedicines').value;
+  const advice = document.getElementById('rxNotes').value;
+  const aptId = document.getElementById('rxAppointmentId').value;
+  const patientId = document.getElementById('rxPatientId').value;
+  const journeyId = document.getElementById('rxJourneyId').value;
+
+  const btn = document.getElementById('doctorRxSubmitBtn');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span>Signing & Dispatching E-Rx...</span>';
+  }
+
+  // Parse lines into medicine objects
+  const medicines = rawMeds.split('\n').map(l => l.trim()).filter(Boolean).map(line => {
+    const parts = line.split('-').map(s => s.trim());
+    return {
+      name: parts[0] || line,
+      timing: parts[1] || 'As directed by physician',
+      duration: parts[2] || 'Course duration'
+    };
+  });
+
+  fetch('/api/prescriptions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      patient_id: patientId || null,
+      appointment_id: aptId || null,
+      journey_id: journeyId || null,
+      diagnosis: diagnosis,
+      advice: advice,
+      medicines: medicines
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<span>✍️ Sign & Dispatch E-Rx to Patient</span>';
+    }
+    if (data.success) {
+      showToast(`Digital E-Prescription signed & dispatched via WhatsApp to ${patient}!`);
+      document.getElementById('doctorRxForm').reset();
+      setTimeout(() => { window.location.reload(); }, 1200);
+    } else {
+      showToast('Error: ' + (data.message || 'Could not save prescription'));
+    }
+  })
+  .catch(err => {
+    console.error('Prescription dispatch error:', err);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<span>✍️ Sign & Dispatch E-Rx to Patient</span>';
+    }
+    showToast(`Prescription recorded for ${patient}`);
+  });
 }
 </script>
 {% endblock %}

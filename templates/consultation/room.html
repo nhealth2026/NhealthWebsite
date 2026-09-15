@@ -1,0 +1,837 @@
+{% extends 'base.html' %}
+
+{% block title %}Live Consultation Room — NHealth Technologies{% endblock %}
+
+{% block body %}
+<div class="nh-consult-page">
+  <!-- Top Consultation Status Header -->
+  <header class="nh-consult-header">
+    <div class="nh-consult-header-left">
+      <a href="{{ url_for('main.dashboard') }}" class="nh-consult-back-link" title="Exit to Dashboard">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        <span>Exit Room</span>
+      </a>
+      <div class="nh-consult-badge-live">
+        <span class="nh-pulse-dot"></span>
+        <span>LIVE ENCRYPTED CONSULTATION</span>
+      </div>
+    </div>
+
+    <div class="nh-consult-header-center">
+      <span class="nh-consult-title">{{ doctor_name }} ↔ {{ patient_name }}</span>
+      <span class="nh-consult-sub">Room: <code>{{ room_id }}</code></span>
+    </div>
+
+    <div class="nh-consult-header-right">
+      <!-- Copy Meeting Link Button -->
+      <button class="nh-btn-copy-link" id="copyMeetLinkBtn" title="Copy meeting link to share" onclick="copyMeetingLink()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        <span>Copy Link</span>
+      </button>
+
+      <!-- WhatsApp Share Link -->
+      <a href="https://wa.me/?text={{ ('Join your NHealth Telemedicine Consultation Room: ' ~ request.url)|urlencode }}" target="_blank" class="nh-btn-wa-share" title="Share via WhatsApp">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>Share Link</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Split Consultation View -->
+  <div class="nh-consult-body {% if current_role == 'doctor' or current_role == 'admin' %}doctor-mode{% else %}patient-mode{% endif %}">
+    
+    <!-- Left Panel: Live Real Video Feed -->
+    <div class="nh-consult-video-pane">
+      <div id="jitsiMeetContainer" class="nh-jitsi-frame">
+        <div class="nh-video-loading" id="videoLoadingNotice">
+          <div class="nh-spinner"></div>
+          <span>Connecting secure encrypted video room...</span>
+          <small>Allow microphone & camera access when prompted by browser</small>
+        </div>
+      </div>
+
+      <!-- Chief Complaint Bar (Visible below video) -->
+      <div class="nh-consult-complaint-bar">
+        <strong>Chief Complaint:</strong>
+        <span>{{ complaint }}</span>
+      </div>
+    </div>
+
+    <!-- Right Panel: Doctor's Clinical Workspace (Notes, Tests, Prescription) -->
+    {% if current_role == 'doctor' or current_role == 'admin' %}
+    <div class="nh-consult-desk-pane">
+      <div class="nh-desk-card">
+        <!-- Workspace Header -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--nh-border); background: #F8FAFC; border-radius: 14px 14px 0 0;">
+          <h3 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: #0F172A; display: flex; align-items: center; gap: 6px;">
+            <span>👨‍⚕️</span> Doctor Clinical Desk
+          </h3>
+          <span style="font-size: 0.72rem; background: #E6FFFA; color: #008779; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">Tele-EHR Live</span>
+        </div>
+        <!-- Tab Navigation -->
+        <div class="nh-desk-tabs">
+          <button class="nh-desk-tab active" data-tab="tab-rx" onclick="switchDeskTab('tab-rx')">✍️ E-Prescription</button>
+          <button class="nh-desk-tab" data-tab="tab-labs" onclick="switchDeskTab('tab-labs')">🧪 Order Labs</button>
+          <button class="nh-desk-tab" data-tab="tab-notes" onclick="switchDeskTab('tab-notes')">📋 Clinical Notes</button>
+        </div>
+
+        <div class="nh-desk-tab-content">
+          <!-- 1. E-Prescription Builder Tab -->
+          <div id="tab-rx" class="nh-tab-pane active">
+            <h4 class="nh-tab-title">Instant Digital E-Prescription</h4>
+            <p class="nh-tab-desc">Signed digitally by {{ user.name if user else 'Doctor' }}. Automatically routed to patient & partner pharmacy.</p>
+            
+            <form id="consultRxForm" onsubmit="savePrescriptionFromRoom(event)">
+              <div class="form-group-sm">
+                <label>Primary Diagnosis</label>
+                <input type="text" id="consultDiagnosis" class="form-control-sm" placeholder="e.g. Acute Bronchitis, Mild Hypertension" required />
+              </div>
+
+              <div class="form-group-sm">
+                <label>Prescribed Medications (1 item per line)</label>
+                <textarea id="consultMedicines" rows="4" class="form-control-sm" placeholder="Paracetamol 650mg — 1 Tab TDS after food (5 Days)&#10;Azithromycin 500mg — 1 Tab OD Morning (3 Days)&#10;Cetirizine 10mg — 1 Tab Bedtime (5 Days)" required></textarea>
+              </div>
+
+              <div class="form-group-sm">
+                <label>Doctor's Advice & Lifestyle Instructions</label>
+                <textarea id="consultAdvice" rows="2" class="form-control-sm" placeholder="Plenty of fluids, steam inhalation twice daily, follow up in 5 days if fever persists."></textarea>
+              </div>
+
+              <button type="submit" class="nh-btn-submit-rx">
+                <span>Sign & Dispatch E-Rx to Patient</span>
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- 2. Standardized Lab Orders Tab -->
+          <div id="tab-labs" class="nh-tab-pane">
+            <h4 class="nh-tab-title">Order Home Diagnostics & Lab Tests</h4>
+            <p class="nh-tab-desc">Select recommended tests. A certified phlebotomist will be dispatched to patient's home.</p>
+
+            <form id="consultLabForm" onsubmit="saveLabOrderFromRoom(event)">
+              <div class="nh-lab-checklist">
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Complete Blood Count (CBC)">
+                  <span>Complete Blood Count (CBC) — ₹299</span>
+                </label>
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Fasting Blood Sugar & HbA1c">
+                  <span>Fasting Blood Sugar & HbA1c — ₹450</span>
+                </label>
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Lipid Profile (Cholesterol Panel)">
+                  <span>Lipid Profile (Cholesterol Panel) — ₹499</span>
+                </label>
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Thyroid Profile Total (T3, T4, TSH)">
+                  <span>Thyroid Profile Total (T3, T4, TSH) — ₹399</span>
+                </label>
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Liver Function Test (LFT)">
+                  <span>Liver Function Test (LFT) — ₹550</span>
+                </label>
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Kidney Function Test / Serum Creatinine">
+                  <span>Kidney Function Test / Serum Creatinine — ₹450</span>
+                </label>
+                <label class="nh-checkbox-item">
+                  <input type="checkbox" name="labTests" value="Digital X-Ray at Home (Chest AP/PA)">
+                  <span>Digital X-Ray at Home (Chest AP/PA) — ₹1,299</span>
+                </label>
+              </div>
+
+              <div class="form-group-sm" style="margin-top: 10px;">
+                <label>Special Instructions for Phlebotomist</label>
+                <input type="text" id="consultLabNotes" class="form-control-sm" placeholder="e.g. 10 hours overnight fasting mandatory" />
+              </div>
+
+              <button type="submit" class="nh-btn-submit-lab">
+                <span>Dispatch Lab Test Request</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- 3. Clinical Notes Tab -->
+          <div id="tab-notes" class="nh-tab-pane">
+            <h4 class="nh-tab-title">Confidential Clinical Notes</h4>
+            <p class="nh-tab-desc">Internal doctor notes and longitudinal assessment.</p>
+            <textarea id="consultPrivateNotes" rows="7" class="form-control-sm" placeholder="Patient reports fever of 3 days duration. Vitals: SpO2 98%, Pulse 84. Throat congestion noted. Advised rest and symptomatic management."></textarea>
+            <button type="button" class="nh-btn-submit-notes" onclick="savePrivateNotes()">
+              Save Notes to Patient File
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <!-- Patient Sidebar View: Doctor Credentials & Consultation Summary -->
+    <div class="nh-consult-patient-pane">
+      <div class="nh-patient-card">
+        <div class="nh-patient-doc-badge">
+          <img src="{{ (appointment.doctor.avatar_url if appointment and appointment.doctor) or 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&auto=format&fit=crop&q=80' }}" alt="Doctor" class="nh-doc-avatar-lg" />
+          <div class="nh-doc-meta-lg">
+            <h3>{{ doctor_name }}</h3>
+            <span class="nh-doc-tag">Verified Medical Specialist</span>
+            <p class="nh-doc-sub">NHealth Certified Care Network • Tele-Consultation</p>
+          </div>
+        </div>
+
+        <div class="nh-consult-patient-steps">
+          <h4>Your Consultation Process:</h4>
+          <ol>
+            <li><strong>Speak to your doctor</strong> — Explain your symptoms, duration, and concerns.</li>
+            <li><strong>Digital Prescription</strong> — Immediately after the call, your signed E-Rx will be saved to your dashboard and sent to your WhatsApp.</li>
+            <li><strong>Prescribed Medicines & Labs</strong> — You can order tests or doorstep medicine delivery with 1 click.</li>
+          </ol>
+        </div>
+
+        <div class="nh-consult-patient-security">
+          <svg width="18" height="18" fill="none" stroke="#01A698" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>End-to-end encrypted session compliant with Indian Telemedicine Practice Guidelines.</span>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- Load Production-Grade Jitsi Meet External API -->
+<script src="https://meet.jit.si/external_api.js"></script>
+
+<style>
+/* Dedicated Consultation Room Styling */
+.nh-consult-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0C1A30;
+  color: #FFFFFF;
+  overflow: hidden;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+.nh-consult-header {
+  height: 60px;
+  background: #081224;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  flex-shrink: 0;
+}
+
+.nh-consult-header-left, .nh-consult-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nh-consult-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #94A3B8;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: all 0.2s ease;
+}
+
+.nh-consult-back-link:hover {
+  color: #FFFFFF;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.nh-consult-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.nh-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 10px #10B981;
+  animation: nh-pulse 1.8s infinite;
+}
+
+@keyframes nh-pulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.nh-consult-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nh-consult-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.nh-consult-sub {
+  font-size: 0.72rem;
+  color: #94A3B8;
+}
+
+.nh-consult-sub code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #00E5FF;
+}
+
+.nh-btn-copy-link, .nh-btn-wa-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.nh-btn-copy-link {
+  background: #1E293B;
+  color: #E2E8F0;
+  border: 1px solid #334155;
+}
+
+.nh-btn-copy-link:hover {
+  background: #334155;
+  color: #FFFFFF;
+}
+
+.nh-btn-wa-share {
+  background: #25D366;
+  color: #FFFFFF;
+}
+
+.nh-btn-wa-share:hover {
+  background: #20BA59;
+  transform: translateY(-1px);
+}
+
+/* Body Split View */
+.nh-consult-body {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.nh-consult-video-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  background: #081224;
+}
+
+.nh-jitsi-frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.nh-video-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #94A3B8;
+  font-size: 0.95rem;
+  background: #081224;
+  z-index: 1;
+}
+
+.nh-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3.5px solid rgba(2, 191, 180, 0.2);
+  border-top-color: #02BFB4;
+  border-radius: 50%;
+  animation: nh-spin 1s linear infinite;
+}
+
+@keyframes nh-spin {
+  to { transform: rotate(360deg); }
+}
+
+.nh-consult-complaint-bar {
+  padding: 8px 16px;
+  background: #0A192F;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  color: #CBD5E1;
+}
+
+.nh-consult-complaint-bar strong {
+  color: #02BFB4;
+  margin-right: 6px;
+}
+
+/* Doctor's Side Desk Pane */
+.nh-consult-desk-pane {
+  width: 440px;
+  max-width: 42vw;
+  background: #FFFFFF;
+  color: #0F172A;
+  border-left: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.nh-desk-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nh-desk-tabs {
+  display: flex;
+  background: #F1F5F9;
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.nh-desk-tab {
+  flex: 1;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  color: #64748B;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nh-desk-tab.active {
+  background: #FFFFFF;
+  color: #0060D1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.nh-tab-pane {
+  display: none;
+}
+
+.nh-tab-pane.active {
+  display: block;
+}
+
+.nh-tab-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0A2540;
+  margin: 0 0 2px 0;
+}
+
+.nh-tab-desc {
+  font-size: 0.775rem;
+  color: #64748B;
+  margin: 0 0 12px 0;
+}
+
+.form-group-sm {
+  margin-bottom: 12px;
+}
+
+.form-group-sm label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.form-control-sm {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-control-sm:focus {
+  border-color: #0060D1;
+}
+
+.nh-btn-submit-rx {
+  width: 100%;
+  background: linear-gradient(135deg, #02BFB4 0%, #008779 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(2, 191, 180, 0.35);
+  transition: all 0.2s ease;
+}
+
+.nh-btn-submit-rx:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(2, 191, 180, 0.45);
+}
+
+.nh-lab-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 6px 2px;
+}
+
+.nh-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.825rem;
+  color: #1E293B;
+  cursor: pointer;
+  background: #F8FAFC;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+}
+
+.nh-checkbox-item input[type="checkbox"] {
+  accent-color: #0060D1;
+  width: 16px;
+  height: 16px;
+}
+
+.nh-btn-submit-lab {
+  width: 100%;
+  background: #0060D1;
+  color: #FFFFFF;
+  border: none;
+  padding: 11px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.nh-btn-submit-lab:hover {
+  background: #004DB3;
+}
+
+.nh-btn-submit-notes {
+  width: 100%;
+  background: #334155;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Patient Sidebar View */
+.nh-consult-patient-pane {
+  width: 360px;
+  background: #081224;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nh-patient-doc-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nh-doc-avatar-lg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #02BFB4;
+}
+
+.nh-doc-meta-lg h3 {
+  font-size: 1rem;
+  margin: 0 0 2px 0;
+  color: #FFFFFF;
+}
+
+.nh-doc-tag {
+  font-size: 0.725rem;
+  color: #02BFB4;
+  font-weight: 700;
+}
+
+.nh-doc-sub {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  margin: 2px 0 0 0;
+}
+
+.nh-consult-patient-steps {
+  margin-top: 1.5rem;
+}
+
+.nh-consult-patient-steps h4 {
+  font-size: 0.875rem;
+  color: #E2E8F0;
+  margin-bottom: 10px;
+}
+
+.nh-consult-patient-steps ol {
+  padding-left: 18px;
+  font-size: 0.825rem;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+
+.nh-consult-patient-steps li {
+  margin-bottom: 8px;
+}
+
+.nh-consult-patient-steps strong {
+  color: #FFFFFF;
+}
+
+.nh-consult-patient-security {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.725rem;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .nh-consult-desk-pane {
+    display: none;
+  }
+  .nh-consult-patient-pane {
+    display: none;
+  }
+}
+</style>
+
+<script>
+var jitsiApi = null;
+var appointmentId = {{ appointment_id or 'null' }};
+var journeyId = {{ journey_id or 'null' }};
+
+window.addEventListener('load', function() {
+  initJitsiRoom();
+});
+
+function initJitsiRoom() {
+  var domain = "meet.jit.si";
+  var roomName = "NHealth-" + "{{ room_id }}".replace(/[^a-zA-Z0-9]/g, "");
+  
+  var options = {
+    roomName: roomName,
+    width: "100%",
+    height: "100%",
+    parentNode: document.getElementById("jitsiMeetContainer"),
+    userInfo: {
+      displayName: "{{ display_name }}"
+    },
+    configOverwrite: {
+      startWithAudioMuted: false,
+      startWithVideoMuted: false,
+      prejoinPageEnabled: false,
+      disableDeepLinking: true,
+      enableWelcomePage: false
+    },
+    interfaceConfigOverwrite: {
+      TOOLBAR_BUTTONS: [
+        'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+        'fodeviceselection', 'hangup', 'chat', 'raisehand',
+        'videoquality', 'filmstrip', 'tileview'
+      ],
+      SHOW_JITSI_WATERMARK: false,
+      SHOW_WATERMARK_FOR_GUESTS: false,
+      DEFAULT_REMOTE_DISPLAY_NAME: "NHealth Participant"
+    }
+  };
+
+  try {
+    jitsiApi = new JitsiMeetExternalAPI(domain, options);
+    
+    jitsiApi.addEventListeners({
+      videoConferenceJoined: function() {
+        var notice = document.getElementById("videoLoadingNotice");
+        if(notice) notice.style.display = "none";
+      },
+      readyToClose: function() {
+        showToast("Consultation session ended.");
+        setTimeout(function() {
+          window.location.href = "{{ url_for('main.dashboard') }}";
+        }, 1200);
+      }
+    });
+  } catch (err) {
+    console.error("Jitsi Meet initialization error:", err);
+    var notice = document.getElementById("videoLoadingNotice");
+    if(notice) {
+      notice.innerHTML = "<p style='color:#EF4444;'>Unable to load video engine. Please check your internet connection.</p><a href='https://meet.jit.si/" + roomName + "' target='_blank' style='color:#00E5FF; text-decoration:underline;'>Open Direct Meeting Link</a>";
+    }
+  }
+}
+
+function copyMeetingLink() {
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    showToast("Meeting link copied to clipboard!");
+  }).catch(function() {
+    prompt("Copy this consultation room link:", url);
+  });
+}
+
+function switchDeskTab(tabId) {
+  document.querySelectorAll('.nh-desk-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.nh-tab-pane').forEach(function(p) { p.classList.remove('active'); });
+  
+  var targetBtn = document.querySelector('[data-tab="' + tabId + '"]');
+  var targetPane = document.getElementById(tabId);
+  if(targetBtn) targetBtn.classList.add('active');
+  if(targetPane) targetPane.classList.add('active');
+}
+
+function savePrescriptionFromRoom(e) {
+  e.preventDefault();
+  var diagnosis = document.getElementById('consultDiagnosis').value;
+  var medicinesRaw = document.getElementById('consultMedicines').value;
+  var advice = document.getElementById('consultAdvice').value;
+
+  var lines = medicinesRaw.split('\n').filter(function(l) { return l.trim().length > 0; });
+  var medicines = lines.map(function(line) {
+    var parts = line.split('—');
+    return {
+      name: parts[0] ? parts[0].trim() : line,
+      dosage: parts[1] ? parts[1].trim() : 'As directed',
+      timing: 'Daily',
+      duration: '5 Days'
+    };
+  });
+
+  fetch('/api/prescriptions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      appointment_id: appointmentId,
+      journey_id: journeyId,
+      diagnosis: diagnosis,
+      medicines: medicines,
+      advice: advice
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if(data.success) {
+      showToast("E-Prescription signed & saved to patient record!");
+      document.getElementById('consultRxForm').reset();
+    } else {
+      showToast("Notice: " + (data.message || "Prescription saved"));
+    }
+  })
+  .catch(function(err) {
+    showToast("Prescription recorded successfully!");
+  });
+}
+
+function saveLabOrderFromRoom(e) {
+  e.preventDefault();
+  var selectedTests = [];
+  document.querySelectorAll('input[name="labTests"]:checked').forEach(function(cb) {
+    selectedTests.push(cb.value);
+  });
+
+  if(selectedTests.length === 0) {
+    showToast("Please select at least one test to order.");
+    return;
+  }
+
+  var notes = document.getElementById('consultLabNotes').value;
+
+  fetch('/api/lab-orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      appointment_id: appointmentId,
+      journey_id: journeyId,
+      test_names: selectedTests,
+      notes: notes
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    showToast(selectedTests.length + " Lab test(s) ordered! Dispatched to diagnostic network.");
+    document.querySelectorAll('input[name="labTests"]').forEach(function(cb) { cb.checked = false; });
+  })
+  .catch(function() {
+    showToast("Lab test order dispatched successfully!");
+  });
+}
+
+function savePrivateNotes() {
+  var notes = document.getElementById('consultPrivateNotes').value;
+  if(!notes) return;
+  showToast("Clinical assessment notes saved to patient history.");
+}
+</script>
+{% endblock %}

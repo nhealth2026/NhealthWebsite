@@ -466,47 +466,94 @@ html, body {
 
 .p-hotspot-symptom-wrap {
   position: absolute;
-  left: 5.6%;
+  left: 4.8%;
   top: 79.5%;
-  width: 56.5%;
+  width: 58.5%;
   height: 14%;
+  max-height: 48px;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px 0 32px; /* Leave room for sparkle icon */
+  background: #FFFFFF;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(2, 191, 180, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 49, 105, 0.12), 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 3px 5px 3px 10px;
+  box-sizing: border-box;
+}
+
+.p-hotspot-sparkle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 96, 209, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.p-hotspot-input-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .p-hotspot-symptom-input {
-  flex: 1;
-  height: 100%;
+  width: 100%;
   border: none;
   background: transparent;
   outline: none;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: clamp(0.68rem, 2.3vw, 0.8rem);
+  font-weight: 700;
   color: #0F172A;
   padding: 0;
   margin: 0;
+  line-height: 1.2;
 }
 
 .p-hotspot-symptom-input::placeholder {
-  color: transparent; /* Background image already displays the placeholder text sharply! */
+  color: #1E293B;
+  opacity: 0.95;
+  font-weight: 650;
 }
 
-.p-hotspot-symptom-input:focus::placeholder {
-  color: #94A3B8;
+.p-hotspot-subtext {
+  font-size: clamp(0.52rem, 1.8vw, 0.62rem);
+  font-weight: 500;
+  color: #64748B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+  margin-top: 1px;
 }
 
 .p-hotspot-symptom-btn {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background: transparent;
+  background: linear-gradient(135deg, #02BFB4 0%, #008779 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
   outline: none;
+  box-shadow: 0 2px 8px rgba(2, 191, 180, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  margin-left: 4px;
+}
+
+.p-hotspot-symptom-btn:hover, .p-hotspot-symptom-btn:active {
+  transform: scale(1.06);
+  box-shadow: 0 3px 10px rgba(2, 191, 180, 0.55);
 }
 
 /* Continuous Animated Border Patrol Motion Overlay Positioned on India Map */

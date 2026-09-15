@@ -144,15 +144,23 @@
           <!-- 3. Avatar Profile Link -->
           <a href="#patient-records-section" class="p-hotspot-avatar" title="{{ user.name }}" aria-label="Profile and Records"></a>
 
-          <!-- 4. Interactive Symptom Search Input -->
+          <!-- 4. Interactive Symptom Search Input (Crisp Vector Retina UI) -->
           <div class="p-hotspot-symptom-wrap">
-            <input 
-              type="text" 
-              id="pSymptomInput" 
-              class="p-hotspot-symptom-input" 
-              placeholder="Tell us what's troubling you..." 
-              aria-label="Tell us what's troubling you..."
-            />
+            <div class="p-hotspot-sparkle">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0060D1">
+                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+              </svg>
+            </div>
+            <div class="p-hotspot-input-col">
+              <input 
+                type="text" 
+                id="pSymptomInput" 
+                class="p-hotspot-symptom-input" 
+                placeholder="Tell us what's troubling you..." 
+                aria-label="Tell us what's troubling you..."
+              />
+              <span class="p-hotspot-subtext">e.g. fever, cough, stomach pain</span>
+            </div>
             <button 
               type="button" 
               id="pSymptomSubmitBtn" 
@@ -160,7 +168,11 @@
               data-service="Online Doctor Consultation" 
               title="Book Consultation"
               aria-label="Book Consultation"
-            ></button>
+            >
+              <svg width="16" height="16" fill="none" stroke="#FFFFFF" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </button>
           </div>
 
           <!-- 5. Continuous Animated Border Patrol Particles Overlay -->
@@ -412,6 +424,57 @@
     </section>
 
     <!-- ========================================================================
+         4B. ACTIVE CARE JOURNEYS CONTINUUM TRACKER
+         ======================================================================== -->
+    {% if journeys %}
+    <section class="p-care-journeys-section" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+      <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid #E2E8F0; padding: 1.25rem 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <h2 style="font-size: 1.15rem; font-weight: 700; color: #0F172A; margin: 0; display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #02BFB4;"></span>
+              Active Care Continuum Journeys
+            </h2>
+            <p style="font-size: 0.85rem; color: #64748B; margin: 4px 0 0 0;">Single Journey Code tracking: Consultation ➔ Doorstep Lab ➔ Pharmacy Refill</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          {% for j in journeys %}
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <span style="background: #E6FFFA; color: #008779; font-family: monospace; font-size: 0.85rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; border: 1px solid #B2F5EA;">
+                {{ j.journey_code }}
+              </span>
+              <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 3px 8px; border-radius: 9999px; 
+                {% if j.status == 'in_consultation' %}background:#FEF3C7; color:#92400E;
+                {% elif j.status == 'tests_ordered' %}background:#E0E7FF; color:#3730A3;
+                {% elif j.status == 'prescription_ready' %}background:#D1FAE5; color:#065F46;
+                {% else %}background:#F1F5F9; color:#475569;{% endif %}">
+                {{ j.status.replace('_', ' ').title() }}
+              </span>
+            </div>
+            <div style="font-size: 0.9rem; font-weight: 600; color: #1E293B; margin-bottom: 6px;">
+              “{{ j.chief_complaint or 'Consultation' }}”
+            </div>
+            <!-- Progress steps bar -->
+            <div style="display: flex; gap: 4px; margin-top: 10px; margin-bottom: 8px;">
+              <div style="height: 4px; flex: 1; border-radius: 2px; background: #02BFB4;" title="Booking & Triage"></div>
+              <div style="height: 4px; flex: 1; border-radius: 2px; background: {% if j.status in ['in_consultation', 'tests_ordered', 'prescription_ready', 'completed'] %}#02BFB4{% else %}#E2E8F0{% endif %};" title="Doctor Video Meet"></div>
+              <div style="height: 4px; flex: 1; border-radius: 2px; background: {% if j.status in ['tests_ordered', 'prescription_ready', 'completed'] %}#02BFB4{% else %}#E2E8F0{% endif %};" title="Labs & Diagnostics"></div>
+              <div style="height: 4px; flex: 1; border-radius: 2px; background: {% if j.status in ['prescription_ready', 'completed'] %}#02BFB4{% else %}#E2E8F0{% endif %};" title="Doorstep Pharmacy"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748B;">
+              <span>Triage: <strong style="color: #0F766E;">{{ (j.triage_urgency or 'Routine')|capitalize }}</strong></span>
+              <span>Started: {{ j.created_at.strftime('%d %b %H:%M') if j.created_at else 'Recent' }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ========================================================================
          5. PRESERVED PATIENT RECORDS & APPOINTMENTS SECTION
          ======================================================================== -->
     <section class="p-patient-records-section" id="patient-records-section">
@@ -446,11 +509,17 @@
                       <p class="apt-complaint">“{{ apt.chief_complaint }}”</p>
                     {% endif %}
                   </div>
-                  <div class="apt-card-actions">
-                    <a href="{{ url_for('main.index') }}#telemedicine" class="nh-btn nh-btn-secondary nh-btn-sm">
-                      Enter Tele-Clinic
+                  <div class="apt-card-actions" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+                    <a href="{{ apt.meeting_link or url_for('main.consultation_room', room_id=apt.meeting_room_id or apt.id) }}" class="nh-btn nh-btn-primary nh-btn-sm" style="background: linear-gradient(135deg, #02BFB4 0%, #008779 100%); color: #FFF; font-weight: 700; border: none; box-shadow: 0 4px 12px rgba(2, 191, 180, 0.35); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                      📹 Join Video Room
                     </a>
-                    <span class="apt-fee">Fee: ₹{{ '%.0f'|format(apt.fee) }}</span>
+                    <button type="button" class="nh-btn nh-btn-secondary nh-btn-sm" onclick="navigator.clipboard.writeText('{{ apt.meeting_link or url_for('main.consultation_room', room_id=apt.meeting_room_id or apt.id, _external=True) }}'); showToast('Meeting link copied to clipboard!');" title="Copy video link">
+                      📋 Copy Link
+                    </button>
+                    <a href="https://wa.me/?text={{ ('Join my NHealth Doctor Video Consultation: ' ~ (apt.meeting_link or url_for('main.consultation_room', room_id=apt.meeting_room_id or apt.id, _external=True))) | urlencode }}" target="_blank" class="nh-btn nh-btn-sm" style="background: #25D366; color: #FFF; font-weight: 600; text-decoration: none; border: none; display: inline-flex; align-items: center; gap: 4px;" title="Share link on WhatsApp">
+                      💬 WhatsApp
+                    </a>
+                    <span class="apt-fee" style="margin-left: auto; font-weight: 700; color: #0F766E;">Fee: ₹{{ '%.0f'|format(apt.fee) }}</span>
                   </div>
                 </div>
               {% endfor %}

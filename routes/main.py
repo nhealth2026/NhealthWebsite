@@ -1,7 +1,7 @@
 """Main routes for NHealth Technologies with Role-Based Access Control."""
 
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from models import db, User, DoctorProfile, Appointment, Prescription, HealthRecord
+from models import db, User, DoctorProfile, Appointment, Prescription, HealthRecord, CareJourney, LabOrder, MedicineOrder
 from auth import login_user, logout_user, get_current_user, login_required, role_required
 
 main_bp = Blueprint('main', __name__)
@@ -122,19 +122,32 @@ def dashboard():
 @login_required
 @role_required('patient', 'admin')
 def patient_dashboard():
-    """Patient Dashboard matching Image 2 (12-services grid) & Image 3 (Mobile UI)."""
+    """Patient Dashboard with live appointments, meeting links, and care journeys."""
     user = get_current_user()
     appointments = Appointment.query.filter_by(patient_id=user.id).order_by(Appointment.created_at.desc()).all()
+    
+    # Ensure all appointments have an active meeting room link
+    for apt in appointments:
+        if not apt.meeting_room_id:
+            apt.ensure_meeting_room()
+    db.session.commit()
+
+    journeys = CareJourney.query.filter_by(patient_id=user.id).order_by(CareJourney.created_at.desc()).all()
     prescriptions = Prescription.query.filter_by(patient_id=user.id).order_by(Prescription.created_at.desc()).all()
     records = HealthRecord.query.filter_by(patient_id=user.id).order_by(HealthRecord.created_at.desc()).all()
+    lab_orders = LabOrder.query.filter_by(patient_id=user.id).order_by(LabOrder.created_at.desc()).all()
+    medicine_orders = MedicineOrder.query.filter_by(patient_id=user.id).order_by(MedicineOrder.created_at.desc()).all()
     doctors = User.query.filter_by(role='doctor').all()
 
     return render_template(
         'dashboard/patient.html',
         user=user,
         appointments=appointments,
+        journeys=journeys,
         prescriptions=prescriptions,
         records=records,
+        lab_orders=lab_orders,
+        medicine_orders=medicine_orders,
         doctors=doctors
     )
 
@@ -143,13 +156,18 @@ def patient_dashboard():
 @login_required
 @role_required('doctor', 'admin')
 def doctor_dashboard():
-    """Doctor Clinical Console with queue, vitals telemetry, and digital e-Rx."""
+    """Doctor Clinical Console with queue, live video consult links, and digital e-Rx."""
     user = get_current_user()
     # Fetch doctor's assigned appointments
     appointments = Appointment.query.filter(
         (Appointment.doctor_id == user.id) | (Appointment.status == 'scheduled')
     ).order_by(Appointment.created_at.desc()).all()
     
+    for apt in appointments:
+        if not apt.meeting_room_id:
+            apt.ensure_meeting_room()
+    db.session.commit()
+
     # Recent prescriptions issued
     prescriptions = Prescription.query.filter_by(doctor_id=user.id).order_by(Prescription.created_at.desc()).all()
 
@@ -184,3 +202,55 @@ def admin_dashboard():
         all_users=all_users,
         recent_appointments=recent_appointments
     )
+
+
+# ==============================================================================
+# REAL PRODUCTION-READY VIDEO CONSULTATION ROOM ROUTE
+# ==============================================================================
+
+@main_bp.route('/consultation/<room_id>')
+def consultation_room(room_id):
+    """Real live encrypted video consultation room for doctor and patient."""
+    user = get_current_user()
+    appointment = Appointment.query.filter_by(meeting_room_id=room_id).first()
+
+    # Fallback lookup by numeric ID if room_id passed was an appointment ID
+    if not appointment and room_id.isdigit():
+        appointment = Appointment.query.get(int(room_id))
+        if appointment and not appointment.meeting_room_id:
+            appointment.meeting_room_id = f"nh-consult-{appointment.id}"
+            appointment.meeting_link = f"/consultation/{appointment.meeting_room_id}"
+            db.session.commit()
+
+    doctor_name = "NHealth Specialist"
+    patient_name = "Patient"
+    complaint = "Telemedicine Consultation"
+    appointment_id = None
+    journey_id = None
+
+    if appointment:
+        appointment_id = appointment.id
+        journey_id = appointment.journey_id
+        if appointment.doctor:
+            doctor_name = f"Dr. {appointment.doctor.name}"
+        if appointment.patient:
+            patient_name = appointment.patient.name
+        complaint = appointment.chief_complaint or complaint
+
+    current_role = user.role if user else 'guest'
+    display_name = user.name if user else ("Doctor" if current_role == 'doctor' else "Patient")
+
+    return render_template(
+        'consultation/room.html',
+        room_id=room_id,
+        user=user,
+        current_role=current_role,
+        display_name=display_name,
+        appointment=appointment,
+        appointment_id=appointment_id,
+        journey_id=journey_id,
+        doctor_name=doctor_name,
+        patient_name=patient_name,
+        complaint=complaint
+    )
+
