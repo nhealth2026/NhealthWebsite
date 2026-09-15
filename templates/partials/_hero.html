@@ -20,20 +20,17 @@
           <li><a href="#contact" class="p-nav-link">Contact</a></li>
         </ul>
 
-        <!-- Right Side Actions: Notification, User Pill, CTA -->
+        <!-- Right Side Actions: User Profile Icon (No photo), CTA -->
         <div class="p-desktop-header-actions">
-          <!-- Notification Bell -->
-          <button class="p-notif-btn" title="Notifications" aria-label="Notifications" type="button" onclick="alert('You have no new notifications.')">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-            </svg>
-            <span class="p-notif-badge"></span>
-          </button>
-
           <!-- Login or Dashboard Pill -->
           {% if session.get('user_id') %}
-          <a href="{{ url_for('main.dashboard') }}" class="p-desktop-user-pill" style="text-decoration:none;">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" alt="Avatar" class="p-desktop-avatar" />
+          <a href="{{ url_for('main.dashboard') }}" class="p-desktop-user-pill" style="text-decoration:none;" title="My Dashboard">
+            <div class="p-user-icon-circle">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008779" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
             <div class="p-desktop-user-meta">
               <span class="p-desktop-user-name">Dashboard</span>
             </div>
@@ -99,11 +96,10 @@
           </div>
         </div>
 
-        <!-- Right: Prominent 3D India Map with Continuous Animated Border Patrol -->
+        <!-- Right: Prominent Clean 3D India Map -->
         <div class="p-desktop-hero-map-col">
           <div class="nh-map-stage">
             <img src="{{ url_for('static', filename='images/hero_india_map_3d.png') }}" alt="India 3D Map Proudly from Andhra Pradesh" class="nh-3d-india-map-img" />
-            {% include 'partials/_map_motion.html' %}
           </div>
         </div>
       </div>
@@ -112,66 +108,68 @@
 </div>
 
 <!-- ========================================================================
-     2. MOBILE VIEWPORT (<= 768px): Exact Mockup Hero Banner Stage
-     Starts at 0px top, artwork contains header + map + title + symptom box
+     2. MOBILE VIEWPORT (<= 768px): Clean Native Layout with Laptop 3D Map & Profile Icon
      ======================================================================== -->
 <div class="p-mobile-view-wrap">
-  <div class="p-hero-banner-outer">
-    <div class="p-hero-banner-container">
-      <div class="p-hero-banner-stage">
-        <!-- High-res attractive scenic background artwork matching mockup -->
-        <img 
-          src="{{ url_for('static', filename='images/hero_attractive_bg.png') }}" 
-          alt="Powering the Future of Healthcare at Home - NHealth Technologies" 
-          class="p-hero-art-img" 
-        />
+  <!-- Mobile Header: Logo + Profile Symbol (No photo) -->
+  <header class="p-mobile-header">
+    <a href="{{ url_for('main.index') }}" class="p-brand-logo-link" title="NHealth Home">
+      <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="NHealth" class="p-mobile-logo-img" />
+    </a>
+    <a href="{% if session.get('user_id') %}{{ url_for('main.dashboard') }}{% else %}{{ url_for('main.login') }}{% endif %}" class="p-mobile-profile-btn" aria-label="Profile" title="My Account">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#008779" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+    </a>
+  </header>
 
-        <!-- Interactive Clickable Hotspots & Overlays on Mobile -->
-        <!-- 1. Top Logo Link -->
-        <a href="{{ url_for('main.index') }}" class="p-hotspot-logo" title="NHealth Home" aria-label="NHealth Home"></a>
-
-        <!-- 2. Notification Bell Button -->
-        <button type="button" class="p-hotspot-notif" title="Notifications" aria-label="Notifications" onclick="alert('You have no new notifications.')"></button>
-
-        <!-- 3. Avatar Profile Link -->
-        <a href="{% if session.get('user_id') %}{{ url_for('main.dashboard') }}{% else %}{{ url_for('main.login') }}{% endif %}" class="p-hotspot-avatar" aria-label="Profile"></a>
-
-        <!-- 4. Interactive Symptom Search Input (Crisp Vector Retina UI) -->
-        <div class="p-hotspot-symptom-wrap">
-          <div class="p-hotspot-sparkle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0060D1">
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
-            </svg>
-          </div>
-          <div class="p-hotspot-input-col">
-            <input 
-              type="text" 
-              id="pSymptomInput" 
-              class="p-hotspot-symptom-input" 
-              placeholder="Tell us what's troubling you..." 
-              aria-label="Tell us what's troubling you..."
-            />
-            <span class="p-hotspot-subtext">e.g. fever, cough, stomach pain</span>
-          </div>
-          <button 
-            type="button" 
-            id="pSymptomSubmitBtn" 
-            class="p-hotspot-symptom-btn open-booking-modal-btn" 
-            data-service="Online Doctor Consultation" 
-            title="Book Consultation"
-            aria-label="Book Consultation"
-          >
-            <svg width="16" height="16" fill="none" stroke="#FFFFFF" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </button>
+  <!-- Mobile Hero Body: Content + Laptop's Clean 3D Map -->
+  <div class="p-mobile-hero-body">
+    <div class="p-mobile-hero-top-row">
+      <div class="p-mobile-hero-text">
+        <div class="p-hero-subtitle">
+          <span>YOUR HEALTH</span>
+          <span class="p-dot">•</span>
+          <span>OUR PRIORITY</span>
         </div>
-
-        <!-- 5. Continuous Animated Border Patrol Particles Overlay -->
-        <div class="p-hero-motion-layer nh-map-stage" aria-hidden="true">
-          {% include 'partials/_map_motion.html' %}
-        </div>
+        <h1 class="p-mobile-hero-title">
+          Powering the Future of<br />
+          <span class="p-hero-title-teal">Healthcare at Home</span>
+        </h1>
+        <p class="p-mobile-hero-desc">
+          Expert doctors, trusted labs, quality medicines and complete home healthcare — all in one platform.
+        </p>
       </div>
+
+      <!-- Clean 3D India Map (Same as Laptop View!) -->
+      <div class="p-mobile-hero-map-wrap">
+        <img src="{{ url_for('static', filename='images/hero_india_map_3d.png') }}" alt="India 3D Map Proudly from Andhra Pradesh" class="p-mobile-3d-map-img" />
+      </div>
+    </div>
+
+    <!-- Mobile Symptom Search Capsule -->
+    <div class="p-desktop-symptom-capsule p-mobile-symptom-capsule">
+      <div class="p-sparkle-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0060D1">
+          <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+        </svg>
+      </div>
+      <div class="p-symptom-text-wrap">
+        <input 
+          type="text" 
+          id="pSymptomInput" 
+          class="p-symptom-input-top" 
+          placeholder="Tell us what's troubling you..." 
+          aria-label="Symptom search"
+        />
+        <span class="p-desktop-symptom-hint">e.g. fever, cough, stomach pain</span>
+      </div>
+      <button class="p-symptom-submit-btn open-booking-modal-btn" data-service="Online Doctor Consultation" id="pSymptomSubmitBtn" title="Find Doctor / Book Consultation" type="button">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </div>

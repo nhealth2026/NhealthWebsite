@@ -1,5 +1,16 @@
 """Main application factory for the NHealth Flask backend with PostgreSQL / SQLAlchemy & RBAC."""
 
+import importlib.util
+import pkgutil
+if not hasattr(pkgutil, 'get_loader'):
+    def _safe_get_loader(name):
+        try:
+            spec = importlib.util.find_spec(name)
+            return spec.loader if spec else None
+        except Exception:
+            return None
+    pkgutil.get_loader = _safe_get_loader
+
 import os
 from flask import Flask
 from models import db, User

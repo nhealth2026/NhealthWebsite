@@ -1081,11 +1081,25 @@ html, body {
 
 /* 2. Mobile & Tablet Mode (max-width: 768px) */
 @media (max-width: 768px) {
+  body {
+    padding-bottom: 95px !important;
+  }
   .p-desktop-view-wrap {
     display: none !important;
   }
   .p-mobile-view-wrap {
     display: block !important;
+  }
+  .p-mobile-view-wrap .p-hero-motion-layer,
+  .p-hero-motion-layer {
+    display: none !important;
+  }
+  .p-hotspot-notif,
+  .p-hotspot-avatar {
+    display: none !important;
+  }
+  .nh-hero-redesign-canvas {
+    padding-bottom: 90px !important;
   }
   .p-bottom-dock-wrapper {
     display: flex !important;
@@ -1101,9 +1115,9 @@ html, body {
 
   /* OUR SERVICES 4-COLUMN EXACT MATCH ON MOBILE */
   .p-services-card {
-    padding: 12px 6px 14px 6px !important;
+    padding: 12px 6px 16px 6px !important;
     border-radius: 20px !important;
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 2rem !important;
   }
 
   .p-services-header {
@@ -1195,11 +1209,12 @@ html, body {
     z-index: 3 !important;
   }
 
-  /* QUICK ACTIONS ROW IN MOBILE VIEW (4 Columns in single row) */
+  /* QUICK ACTIONS ROW IN MOBILE VIEW (4 Columns in single row, 100% visible) */
   .p-quick-actions-wrap {
-    margin-top: 0.85rem !important;
-    padding-top: 0.75rem !important;
-    margin-bottom: 0.25rem !important;
+    margin-top: 1rem !important;
+    padding-top: 0.85rem !important;
+    margin-bottom: 0.5rem !important;
+    overflow: visible !important;
   }
 
   .p-quick-actions-title {
@@ -1207,20 +1222,37 @@ html, body {
   }
 
   .p-quick-actions-grid {
+    display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 3px !important;
+    gap: 4px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
   }
 
   .p-qa-pill {
-    padding: 0.5rem 0.15rem !important;
-    font-size: 0.58rem !important;
-    border-radius: 9px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 7px 2px !important;
+    font-size: clamp(0.55rem, 2vw, 0.68rem) !important;
+    border-radius: 10px !important;
     gap: 2px !important;
     font-weight: 700 !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+
+  .p-qa-pill span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .p-qa-pill .p-qa-icon {
-    font-size: 0.72rem !important;
+    font-size: 0.78rem !important;
+    flex-shrink: 0 !important;
   }
 
   .p-records-two-col {
@@ -1232,4 +1264,120 @@ html, body {
     padding: 1.15rem 0.85rem !important;
     border-radius: 20px !important;
   }
+
+  /* Clean Mobile Hero Stage with Laptop 3D Map & Profile Icon */
+  .p-mobile-view-wrap {
+    width: 100%;
+    background: linear-gradient(180deg, #E0F2FE 0%, #BAE6FD 30%, #E0F7FA 65%, #F8FAFC 100%) !important;
+    padding: 10px 12px 18px 12px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+  }
+
+  .p-mobile-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+    padding: 2px 2px 8px 2px !important;
+  }
+
+  .p-mobile-logo-img {
+    height: 38px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  .p-mobile-profile-btn {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: #FFFFFF !important;
+    border: 1.5px solid #E2E8F0 !important;
+    box-shadow: 0 4px 14px rgba(0, 49, 105, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    color: #008779 !important;
+    cursor: pointer !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    flex-shrink: 0 !important;
+  }
+
+  .p-mobile-profile-btn:active {
+    transform: scale(0.94) !important;
+  }
+
+  .p-mobile-hero-body {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .p-mobile-hero-top-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .p-mobile-hero-text {
+    flex: 1.18 !important;
+    min-width: 0 !important;
+  }
+
+  .p-mobile-hero-title {
+    font-size: clamp(1.1rem, 4.8vw, 1.4rem) !important;
+    font-weight: 850 !important;
+    line-height: 1.18 !important;
+    color: #0A2540 !important;
+    margin: 4px 0 6px 0 !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  .p-mobile-hero-desc {
+    font-size: clamp(0.66rem, 2.3vw, 0.74rem) !important;
+    line-height: 1.36 !important;
+    color: #475569 !important;
+    margin: 0 !important;
+  }
+
+  .p-mobile-hero-map-wrap {
+    flex: 0.92 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+  }
+
+  .p-mobile-3d-map-img {
+    width: 100% !important;
+    max-width: 175px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 10px 24px rgba(0, 49, 105, 0.12)) !important;
+    pointer-events: none !important;
+  }
+
+  .p-mobile-symptom-capsule {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 4px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+.p-user-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #E6FAF5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
