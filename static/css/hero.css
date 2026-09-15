@@ -431,3 +431,1032 @@
   }
 }
 
+
+/* ==========================================================================
+   REDESIGNED HERO SECTION (Matching Mockup - Sky Blue Gradient)
+   ========================================================================== */
+
+/* Hero Background - Sky Blue Gradient (same as patient dashboard) */
+.nh-hero-redesign,
+.nh-hero-redesign-canvas {
+  position: relative;
+  background: linear-gradient(180deg, #5ec9f8 0%, #9de3fb 140px, #d7f1fa 280px, #EDF7FD 380px, #F8FAFC 100%) !important;
+  padding: 0 0 2rem 0;
+  overflow: hidden;
+  min-height: auto;
+  width: 100%;
+}
+
+/* Hero Grid - 2 Column Layout */
+.nh-hero-grid-redesign {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero Content (Left Column) */
+.nh-hero-content-redesign {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Tagline Pill */
+.nh-hero-tagline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #003169;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 49, 105, 0.12);
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.nh-tagline-dot {
+  color: #02BFB4;
+  font-size: 1rem;
+}
+
+/* Hero Title */
+.nh-hero-title-redesign {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem 0;
+  color: #0A2540;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
+
+.nh-title-teal-gradient {
+  color: #008779;
+  background: linear-gradient(135deg, #02BFB4 0%, #00796B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+}
+
+/* Hero Description */
+.nh-hero-desc-redesign {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #334155;
+  max-width: 540px;
+  margin: 0 0 2rem 0;
+}
+
+/* Symptom Search Capsule */
+.nh-symptom-capsule {
+  width: 100%;
+  max-width: 520px;
+  background: #FFFFFF;
+  border-radius: 9999px;
+  border: 1.5px solid #C8DDF2;
+  box-shadow: 0 12px 36px rgba(0, 49, 105, 0.09);
+  padding: 8px 8px 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.25s ease;
+}
+
+.nh-symptom-capsule:focus-within {
+  border-color: #0060D1;
+  box-shadow: 0 14px 42px rgba(0, 96, 209, 0.16);
+  transform: translateY(-2px);
+}
+
+.nh-sparkle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nh-symptom-text-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.nh-symptom-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  color: #0F172A;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.nh-symptom-input::placeholder {
+  color: #94A3B8;
+  font-size: 0.92rem;
+}
+
+.nh-symptom-hint {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  margin-top: 2px;
+}
+
+.nh-symptom-submit-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #02BFB4 0%, #009988 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(2, 191, 180, 0.35);
+  transition: all 0.2s ease;
+}
+
+.nh-symptom-submit-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(2, 191, 180, 0.5);
+}
+
+/* Map Column in Redesigned Hero */
+.nh-hero-map-col-redesign {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nh-hero-map-col-redesign .nh-map-stage {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 512 / 416;
+  margin: 0 auto;
+}
+
+.nh-hero-map-col-redesign .nh-3d-india-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(0, 49, 105, 0.15));
+}
+
+.nh-hero-map-col-redesign .nh-map-motion-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+
+/* ==========================================================================
+   HOME SERVICES CARD (White Rounded Card with 4-Column Grid)
+   ========================================================================== */
+
+.nh-home-services-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(0, 49, 105, 0.07);
+  border: 1px solid #EEF2F6;
+  padding: 1.75rem 1.5rem 1.5rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.nh-home-services-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.nh-home-services-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0A2540;
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
+
+.nh-home-services-viewall {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #003169;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.nh-home-services-viewall:hover {
+  color: #02BFB4;
+}
+
+.nh-home-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.nh-home-service-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border-radius: 16px;
+  border: 1px solid #F1F5F9;
+  background: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.nh-home-service-tile:hover {
+  border-color: #D9EAF8;
+  box-shadow: 0 4px 16px rgba(0, 49, 105, 0.06);
+  transform: translateY(-2px);
+}
+
+.nh-home-svc-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Reuse bubble colors for service icons */
+.nh-home-svc-icon.bubble-blue   { background: #E0F2FE; color: #0284C7; }
+.nh-home-svc-icon.bubble-blue svg { stroke: #0284C7; }
+.nh-home-svc-icon.bubble-mint   { background: #E6FBF7; color: #02BFB4; }
+.nh-home-svc-icon.bubble-mint svg { stroke: #02BFB4; }
+.nh-home-svc-icon.bubble-flask  { background: #E0F2FE; color: #0060D1; }
+.nh-home-svc-icon.bubble-flask svg { stroke: #0060D1; }
+.nh-home-svc-icon.bubble-purple { background: #F3E8FF; color: #7C3AED; }
+.nh-home-svc-icon.bubble-purple svg { stroke: #7C3AED; }
+.nh-home-svc-icon.bubble-green  { background: #ECFDF5; color: #059669; }
+.nh-home-svc-icon.bubble-green svg { stroke: #059669; }
+.nh-home-svc-icon.bubble-amber  { background: #FEF3C7; color: #D97706; }
+.nh-home-svc-icon.bubble-amber svg { stroke: #D97706; }
+.nh-home-svc-icon.bubble-pink   { background: #FCE7F3; color: #DB2777; }
+.nh-home-svc-icon.bubble-pink svg { stroke: #DB2777; }
+.nh-home-svc-icon.bubble-teal   { background: #CCFBF1; color: #0D9488; }
+.nh-home-svc-icon.bubble-teal svg { stroke: #0D9488; }
+.nh-home-svc-icon.bubble-violet { background: #EDE9FE; color: #6D28D9; }
+.nh-home-svc-icon.bubble-violet svg { stroke: #6D28D9; }
+.nh-home-svc-icon.bubble-cyan   { background: #CFFAFE; color: #0891B2; }
+.nh-home-svc-icon.bubble-cyan svg { stroke: #0891B2; }
+
+.nh-home-svc-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nh-home-svc-name {
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #0A2540;
+  line-height: 1.25;
+}
+
+.nh-home-svc-sub {
+  font-size: 0.7rem;
+  color: #94A3B8;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.nh-home-svc-arrow {
+  font-size: 1.35rem;
+  color: #CBD5E1;
+  flex-shrink: 0;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Promo Tile (Your Health Our Priority) */
+.nh-promo-tile {
+  background: linear-gradient(135deg, #E6FBF7 0%, #F0F9FF 50%, #E0F2FE 100%);
+  border-color: rgba(2, 191, 180, 0.15);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.nh-promo-tile:hover {
+  border-color: rgba(2, 191, 180, 0.3);
+}
+
+.nh-promo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nh-promo-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #02BFB4;
+  line-height: 1.2;
+}
+
+.nh-promo-sub {
+  font-size: 0.72rem;
+  color: #64748B;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   QUICK ACTIONS
+   ========================================================================== */
+
+.nh-home-quick-actions {
+  margin-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.nh-home-qa-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0A2540;
+  margin: 0 0 0.85rem 0;
+}
+
+.nh-home-qa-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.nh-home-qa-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nh-home-qa-pill:hover {
+  border-color: #02BFB4;
+  color: #02BFB4;
+  background: #F0FDFB;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 191, 180, 0.1);
+}
+
+.nh-home-qa-pill svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+
+/* ==========================================================================
+   MOBILE HEADER CONTROLS (Notification Bell + Avatar)
+   ========================================================================== */
+
+.nh-mobile-header-actions {
+  display: none; /* Hidden on desktop, shown on mobile */
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nh-mobile-notif-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 49, 105, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #003169;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.nh-mobile-notif-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.nh-mobile-notif-badge {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+  border: 1.5px solid #FFFFFF;
+}
+
+.nh-mobile-avatar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nh-mobile-avatar-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Logo Subtitle (Mobile only) */
+.nh-brand-subtitle-mobile {
+  display: none; /* Hidden on desktop, shown on mobile */
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #64748B;
+  letter-spacing: 0.06em;
+  margin-left: 0;
+  white-space: nowrap;
+}
+
+.nh-brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  gap: 0;
+}
+
+
+/* ==========================================================================
+   HERO REDESIGN RESPONSIVE
+   ========================================================================== */
+
+/* Tablet Landscape (<=1024px) */
+@media (max-width: 1024px) {
+  .nh-hero-grid-redesign {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+  .nh-hero-content-redesign {
+    align-items: center;
+  }
+  .nh-hero-desc-redesign {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nh-symptom-capsule {
+    margin: 0 auto;
+  }
+  .nh-hero-map-col-redesign {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .nh-home-services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet Portrait / Mobile (<=768px) */
+@media (max-width: 768px) {
+  /* Show mobile header, hide desktop nav actions */
+  .nh-desktop-nav-actions {
+    display: none !important;
+  }
+  .nh-mobile-header-actions {
+    display: flex !important;
+  }
+  .nh-brand-subtitle-mobile {
+    display: block !important;
+  }
+  .nh-mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* Header transparent on hero */
+  .nh-header-image2 {
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  .nh-hero-redesign {
+    padding: 1.5rem 0 2.5rem 0;
+  }
+
+  .nh-hero-grid-redesign {
+    grid-template-columns: 1fr 0.85fr;
+    text-align: left;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .nh-hero-content-redesign {
+    align-items: flex-start;
+  }
+
+  .nh-hero-title-redesign {
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .nh-hero-desc-redesign {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+
+  .nh-hero-tagline-pill {
+    font-size: 0.68rem;
+    padding: 4px 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .nh-symptom-capsule {
+    max-width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .nh-hero-map-col-redesign {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .nh-hero-map-col-redesign .nh-map-stage {
+    max-width: 280px;
+  }
+
+  .nh-home-services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .nh-home-service-tile {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.65rem 0.35rem;
+    gap: 0.35rem;
+    border-radius: 14px;
+  }
+
+  .nh-home-svc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .nh-home-svc-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nh-home-svc-name {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  .nh-home-svc-sub {
+    font-size: 0.62rem;
+  }
+
+  .nh-home-svc-arrow {
+    display: none;
+  }
+
+  .nh-home-services-card {
+    padding: 1.25rem 1rem;
+    border-radius: 20px;
+  }
+
+  .nh-home-qa-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .nh-home-qa-pill {
+    font-size: 0.72rem;
+    padding: 0.7rem 0.5rem;
+    border-radius: 12px;
+    gap: 4px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nh-promo-tile {
+    padding: 0.65rem;
+  }
+
+  .nh-promo-title {
+    font-size: 0.82rem;
+  }
+
+  .nh-promo-sub {
+    font-size: 0.62rem;
+  }
+}
+
+/* Medium Mobile (<=480px) */
+@media (max-width: 480px) {
+  .nh-hero-redesign {
+    padding: 1rem 0 2rem 0;
+  }
+
+  .nh-hero-grid-redesign {
+    grid-template-columns: 1fr 0.7fr;
+    gap: 0.75rem;
+  }
+
+  .nh-hero-title-redesign {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+
+  .nh-hero-desc-redesign {
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+  }
+
+  .nh-symptom-capsule {
+    padding: 6px 6px 6px 14px;
+    gap: 8px;
+  }
+
+  .nh-symptom-input {
+    font-size: 0.85rem;
+  }
+
+  .nh-symptom-hint {
+    font-size: 0.65rem;
+  }
+
+  .nh-symptom-submit-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nh-home-services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+  }
+
+  .nh-home-service-tile {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .nh-home-svc-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .nh-home-svc-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nh-home-svc-name {
+    font-size: 0.65rem;
+  }
+
+  .nh-home-svc-sub {
+    font-size: 0.58rem;
+  }
+
+  .nh-home-qa-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+  }
+
+  .nh-home-qa-pill {
+    font-size: 0.65rem;
+    padding: 0.6rem 0.35rem;
+    gap: 3px;
+  }
+
+  .nh-home-qa-pill svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nh-home-services-card {
+    padding: 1rem 0.75rem;
+    border-radius: 18px;
+  }
+}
+
+/* Small Mobile (<=375px) */
+@media (max-width: 375px) {
+  .nh-hero-title-redesign {
+    font-size: 1.35rem;
+  }
+
+  .nh-hero-desc-redesign {
+    font-size: 0.78rem;
+  }
+
+  .nh-home-services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .nh-home-qa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   FULL-WIDTH DESKTOP HERO & SERVICES (Laptop) & COMPACT MOBILE STAGE
+   ========================================================================== */
+
+/* Full-Width Canvas Container */
+.nh-hero-redesign-canvas {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #5ec9f8 0%, #9de3fb 140px, #d7f1fa 280px, #EDF7FD 380px, #F8FAFC 100%) !important;
+  padding: 0 0 2rem 0;
+}
+
+/* Ensure desktop header blends seamlessly into the sky-blue gradient */
+.p-desktop-header {
+  width: 100%;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 50;
+}
+
+/* Full-Width Desktop Hero Layout - Compact & Balanced */
+.p-desktop-hero-section {
+  width: 100%;
+  padding: 1rem 0 1.25rem 0 !important;
+  position: relative;
+}
+
+.p-desktop-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.p-desktop-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.p-hero-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 49, 105, 0.1);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #003169;
+  margin-bottom: 0.65rem;
+  backdrop-filter: blur(8px);
+}
+
+.p-hero-subtitle .p-dot {
+  color: #02BFB4;
+  font-size: 0.9rem;
+}
+
+.p-desktop-hero-title {
+  font-size: clamp(1.85rem, 2.7vw, 2.55rem) !important;
+  font-weight: 850 !important;
+  line-height: 1.15 !important;
+  color: #0A2540 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 0.65rem 0 !important;
+}
+
+.p-hero-title-teal {
+  color: #008779;
+  background: linear-gradient(135deg, #02BFB4 0%, #00796B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.p-desktop-hero-desc {
+  font-size: 0.92rem !important;
+  line-height: 1.5 !important;
+  color: #334155 !important;
+  max-width: 520px !important;
+  margin: 0 0 1.15rem 0 !important;
+}
+
+/* Desktop Symptom Search Capsule with Hint Subtext */
+.p-desktop-symptom-capsule {
+  width: 100%;
+  max-width: 500px;
+  background: #FFFFFF;
+  border-radius: 9999px;
+  border: 1.5px solid #C8DDF2;
+  box-shadow: 0 8px 24px rgba(0, 49, 105, 0.08);
+  padding: 6px 6px 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+.p-desktop-symptom-capsule:focus-within {
+  border-color: #0060D1;
+  box-shadow: 0 10px 32px rgba(0, 96, 209, 0.15);
+  transform: translateY(-1px);
+}
+
+.p-desktop-symptom-capsule .p-symptom-text-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-symptom-input-top {
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.p-symptom-input-top::placeholder {
+  color: #1E293B !important;
+  opacity: 0.85;
+}
+
+.p-desktop-symptom-hint {
+  font-size: 0.68rem;
+  color: #64748B;
+  display: block;
+  line-height: 1.1;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.p-desktop-hero-map-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-desktop-hero-map-col .nh-map-stage {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 512 / 416;
+  margin: 0 auto;
+}
+
+.p-desktop-hero-map-col .nh-3d-india-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 14px 28px rgba(0, 49, 105, 0.12));
+}
+
+/* Full-Width Services Card */
+.p-services-card {
+  background: #FFFFFF !important;
+  border-radius: 22px !important;
+  border: 1px solid #E8EFF5 !important;
+  box-shadow: 0 14px 36px rgba(0, 49, 105, 0.05) !important;
+  padding: 1.35rem 1.25rem 1.5rem 1.25rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 2rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+/* 4-Column Grid on Desktop */
+@media (min-width: 769px) {
+  .p-desktop-view-wrap {
+    display: block !important;
+  }
+  .p-mobile-view-wrap {
+    display: none !important;
+  }
+  .p-dash-container {
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+  }
+  .p-services-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 12px !important;
+  }
+  .p-service-tile {
+    min-height: 110px !important;
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+  }
+  .p-promo-banner-tile {
+    min-height: 110px !important;
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+  }
+  .p-quick-actions-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+  }
+  .p-bottom-dock-wrapper {
+    display: none !important;
+  }
+}
+
+/* Mobile: Compact Artwork Stage + Floating Dock */
+@media (max-width: 768px) {
+  .p-desktop-view-wrap {
+    display: none !important;
+  }
+  .p-mobile-view-wrap {
+    display: block !important;
+  }
+  .p-dash-container {
+    padding: 0 0.5rem !important;
+  }
+  .p-services-card {
+    padding: 12px 6px 14px 6px !important;
+    border-radius: 20px !important;
+    margin-top: -8px !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .p-services-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4px !important;
+  }
+  .p-service-tile {
+    padding: 8px 4px 6px 5px !important;
+    border-radius: 12px !important;
+    min-height: 102px !important;
+  }
+  .p-promo-banner-tile {
+    padding: 7px 4px 6px 5px !important;
+    border-radius: 12px !important;
+    min-height: 102px !important;
+  }
+  .p-quick-actions-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 3px !important;
+  }
+  .p-bottom-dock-wrapper {
+    display: flex !important;
+  }
+}
+
+
+

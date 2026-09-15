@@ -1,47 +1,177 @@
-      <div class="nh-hero-grid-image2">
+<!-- ========================================================================
+     1. DESKTOP VIEWPORT (> 768px): Full-Width Glass Header + 2-Col Hero Grid
+     ======================================================================== -->
+<div class="p-desktop-view-wrap">
+  <!-- Desktop Header -->
+  <header class="p-desktop-header">
+    <div class="p-dash-container">
+      <div class="p-desktop-header-inner">
+        <!-- Logo -->
+        <a href="{{ url_for('main.index') }}" class="p-brand-logo-link" title="NHealth Home">
+          <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="Nhealth — Healthcare at Home —" class="p-brand-logo-img" />
+        </a>
+
+        <!-- Desktop Navigation Menu Links -->
+        <ul class="p-desktop-nav-menu">
+          <li><a href="{{ url_for('main.index') }}" class="p-nav-link active">Home</a></li>
+          <li><a href="#services-grid" class="p-nav-link">Our Services</a></li>
+          <li><a href="#telemedicine" class="p-nav-link">How It Works</a></li>
+          <li><a href="#analytics" class="p-nav-link">About Us</a></li>
+          <li><a href="#contact" class="p-nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right Side Actions: Notification, User Pill, CTA -->
+        <div class="p-desktop-header-actions">
+          <!-- Notification Bell -->
+          <button class="p-notif-btn" title="Notifications" aria-label="Notifications" type="button" onclick="alert('You have no new notifications.')">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+            </svg>
+            <span class="p-notif-badge"></span>
+          </button>
+
+          <!-- Login or Dashboard Pill -->
+          {% if session.get('user_id') %}
+          <a href="{{ url_for('main.dashboard') }}" class="p-desktop-user-pill" style="text-decoration:none;">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" alt="Avatar" class="p-desktop-avatar" />
+            <div class="p-desktop-user-meta">
+              <span class="p-desktop-user-name">Dashboard</span>
+            </div>
+          </a>
+          {% else %}
+          <a href="{{ url_for('main.login') }}" class="nh-btn-login-outline" style="text-decoration:none;">
+            Login
+          </a>
+          {% endif %}
+
+          <!-- Quick Book CTA Button -->
+          <button class="nh-btn-book-teal open-booking-modal-btn" data-service="General Consultation">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Full-Width Desktop Hero Section -->
+  <section class="p-desktop-hero-section">
+    <div class="p-dash-container">
+      <div class="p-desktop-hero-grid">
         <!-- Left Hero Content -->
-        <div class="nh-hero-content-image2">
-          <!-- Badge Pill -->
-          <div class="nh-badge-allinone">
-            <span>Complete Healthcare</span>
-            <span style="opacity: 0.5;">•</span>
-            <span>All in One Place</span>
+        <div class="p-desktop-hero-content">
+          <div class="p-hero-subtitle">
+            <span>YOUR HEALTH</span>
+            <span class="p-dot">•</span>
+            <span>OUR PRIORITY</span>
           </div>
 
-          <!-- Large Brand Title -->
-          <h1 class="nh-hero-title-image2">
+          <h1 class="p-desktop-hero-title">
             Powering the Future of<br />
-            <span class="nh-title-teal-highlight">Healthcare at Home</span>
+            <span class="p-hero-title-teal">Healthcare at Home</span>
           </h1>
 
-          <!-- Description -->
-          <p class="nh-hero-desc-image2">
+          <p class="p-desktop-hero-desc">
             Expert doctors, trusted labs, quality medicines and complete home healthcare — all in one platform. Because your health should never be out of reach.
           </p>
 
-          <!-- Hero CTAs -->
-          <div class="nh-hero-ctas-image2">
-            <button class="btn-cta-teal open-booking-modal-btn" data-service="Home Healthcare">
-              <span>Get Started</span>
+          <!-- Desktop Symptom Search Capsule -->
+          <div class="p-desktop-symptom-capsule">
+            <div class="p-sparkle-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#0060D1">
+                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+              </svg>
+            </div>
+            <div class="p-symptom-text-wrap">
+              <input 
+                type="text" 
+                id="pDesktopSymptomInput" 
+                class="p-symptom-input-top" 
+                placeholder="Tell us what's troubling you..." 
+                aria-label="Symptom search"
+              />
+              <span class="p-desktop-symptom-hint">e.g. fever, cough, stomach pain</span>
+            </div>
+            <button class="p-symptom-submit-btn open-booking-modal-btn" data-service="Online Doctor Consultation" id="pDesktopSymptomSubmitBtn" title="Find Doctor / Book Consultation" type="button">
               <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
             </button>
-            <button class="btn-cta-watch-video" id="openVideoModalBtn" type="button">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              <span>Watch Video</span>
-            </button>
           </div>
         </div>
 
-        <!-- Right: 3D India Map with Animated Continuous Border Patrol Particles -->
-        <div class="nh-hero-map-wrap">
+        <!-- Right: Prominent 3D India Map with Continuous Animated Border Patrol -->
+        <div class="p-desktop-hero-map-col">
           <div class="nh-map-stage">
             <img src="{{ url_for('static', filename='images/hero_india_map_3d.png') }}" alt="India 3D Map Proudly from Andhra Pradesh" class="nh-3d-india-map-img" />
             {% include 'partials/_map_motion.html' %}
           </div>
         </div>
       </div>
+    </div>
+  </section>
+</div>
 
+<!-- ========================================================================
+     2. MOBILE VIEWPORT (<= 768px): Exact Mockup Hero Banner Stage
+     Starts at 0px top, artwork contains header + map + title + symptom box
+     ======================================================================== -->
+<div class="p-mobile-view-wrap">
+  <div class="p-hero-banner-outer">
+    <div class="p-hero-banner-container">
+      <div class="p-hero-banner-stage">
+        <!-- High-res attractive scenic background artwork matching mockup -->
+        <img 
+          src="{{ url_for('static', filename='images/hero_attractive_bg.png') }}" 
+          alt="Powering the Future of Healthcare at Home - NHealth Technologies" 
+          class="p-hero-art-img" 
+        />
+
+        <!-- Interactive Clickable Hotspots & Overlays on Mobile -->
+        <!-- 1. Top Logo Link -->
+        <a href="{{ url_for('main.index') }}" class="p-hotspot-logo" title="NHealth Home" aria-label="NHealth Home"></a>
+
+        <!-- 2. Notification Bell Button -->
+        <button type="button" class="p-hotspot-notif" title="Notifications" aria-label="Notifications" onclick="alert('You have no new notifications.')"></button>
+
+        <!-- 3. Avatar Profile Link -->
+        <a href="{% if session.get('user_id') %}{{ url_for('main.dashboard') }}{% else %}{{ url_for('main.login') }}{% endif %}" class="p-hotspot-avatar" aria-label="Profile"></a>
+
+        <!-- 4. Interactive Symptom Search Input (Crisp Vector Retina UI) -->
+        <div class="p-hotspot-symptom-wrap">
+          <div class="p-hotspot-sparkle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0060D1">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+            </svg>
+          </div>
+          <div class="p-hotspot-input-col">
+            <input 
+              type="text" 
+              id="pSymptomInput" 
+              class="p-hotspot-symptom-input" 
+              placeholder="Tell us what's troubling you..." 
+              aria-label="Tell us what's troubling you..."
+            />
+            <span class="p-hotspot-subtext">e.g. fever, cough, stomach pain</span>
+          </div>
+          <button 
+            type="button" 
+            id="pSymptomSubmitBtn" 
+            class="p-hotspot-symptom-btn open-booking-modal-btn" 
+            data-service="Online Doctor Consultation" 
+            title="Book Consultation"
+            aria-label="Book Consultation"
+          >
+            <svg width="16" height="16" fill="none" stroke="#FFFFFF" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 5. Continuous Animated Border Patrol Particles Overlay -->
+        <div class="p-hero-motion-layer nh-map-stage" aria-hidden="true">
+          {% include 'partials/_map_motion.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
