@@ -155,19 +155,11 @@
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid #25D366;
-  opacity: 0;
-  animation: wa-pulse 2.2s infinite;
-}
-
-@keyframes wa-pulse {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.25); opacity: 0; }
-  100% { transform: scale(0.95); opacity: 0; }
+  border: 2px solid rgba(37, 211, 102, 0.4);
+  opacity: 0.6;
 }
 
 .nh-whatsapp-btn-circle:hover {
-  transform: scale(1.08);
   background: #20BA59;
   box-shadow: 0 8px 26px rgba(37, 211, 102, 0.65);
 }

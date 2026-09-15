@@ -150,6 +150,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
 }
 
 body {
@@ -160,6 +161,7 @@ body {
   min-height: 100vh;
   transition: background-color var(--transition-normal), color var(--transition-normal);
   overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 h1, h2, h3, h4, h5, h6 {

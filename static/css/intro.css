@@ -1,6 +1,6 @@
 /* Intro Animation */
 /* ==========================================================================
-   LANDING INTRO ANIMATION OVERLAY (landingvideo.mp4)
+   LANDING INTRO ANIMATION OVERLAY (nhealth_animation.mp4)
    ========================================================================== */
 
 body.intro-locked {
@@ -30,7 +30,7 @@ body.intro-locked {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transform: scale(1.04) !important;
+  transform: none !important;
 }
 
 .nh-landing-video-container {
@@ -145,7 +145,7 @@ body.intro-locked {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transform: scale(1.05) !important;
+  transform: none !important;
 }
 
 .nh-landing-video-container {

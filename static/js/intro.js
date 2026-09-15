@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LANDING INTRO ANIMATION (landingvideo.mp4)
+   LANDING INTRO ANIMATION (nhealth_animation.mp4)
    Plays full-screen intro video upon arrival, then seamlessly reveals homepage.
    ========================================================================== */
 function initLandingIntro() {
@@ -74,10 +74,10 @@ function initLandingIntro() {
     dismissIntro();
   });
 
-  // Safe fallback timer (8.5 seconds) in case of any codec/event interruption
+  // Safe fallback timer (11.5 seconds) in case of any codec/event interruption
   setTimeout(() => {
     dismissIntro();
-  }, 8500);
+  }, 11500);
 
   // Attempt autoplay
   const playPromise = video.play();
