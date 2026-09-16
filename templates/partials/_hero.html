@@ -1,4 +1,137 @@
 <div class="nh-hero-banner-art-wrap">
+
+<!-- Animated background ring overlay (behind all foreground content) -->
+<div class="nh-bg-rings-overlay" aria-hidden="true">
+  <svg class="nh-bg-rings-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <!-- Soft glow filter for rings -->
+      <filter id="nh-ring-glow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="2.5" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <!-- Bright dot glow filter -->
+      <filter id="nh-dot-glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <!-- Motion paths for orbiting dots (concentric circles centred at 300,300) -->
+      <path id="nh-orbit-1" d="M 390,300 A 90,90 0 1,1 389.999,299.9" />
+      <path id="nh-orbit-2" d="M 440,300 A 140,140 0 1,1 439.999,299.9" />
+      <path id="nh-orbit-3" d="M 490,300 A 190,190 0 1,1 489.999,299.9" />
+      <path id="nh-orbit-4" d="M 540,300 A 240,240 0 1,1 539.999,299.9" />
+      <path id="nh-orbit-5" d="M 565,300 A 265,265 0 1,1 564.999,299.9" />
+    </defs>
+
+    <!-- Concentric static rings (very faint base) -->
+    <circle cx="300" cy="300" r="90"  fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="0.8" />
+    <circle cx="300" cy="300" r="140" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="0.8" />
+    <circle cx="300" cy="300" r="190" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" />
+    <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.8" />
+    <circle cx="300" cy="300" r="265" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.8" />
+
+    <!-- RING 1: innermost — slow CW rotation -->
+    <g filter="url(#nh-ring-glow)">
+      <circle cx="300" cy="300" r="90" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-dasharray="12 8" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="360 300 300" dur="22s" repeatCount="indefinite" />
+      </circle>
+    </g>
+
+    <!-- RING 2: CCW -->
+    <g filter="url(#nh-ring-glow)">
+      <circle cx="300" cy="300" r="140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.0" stroke-dasharray="18 12" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="-360 300 300" dur="32s" repeatCount="indefinite" />
+      </circle>
+    </g>
+
+    <!-- RING 3: CW medium -->
+    <g filter="url(#nh-ring-glow)">
+      <circle cx="300" cy="300" r="190" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9" stroke-dasharray="22 16" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="360 300 300" dur="44s" repeatCount="indefinite" />
+      </circle>
+    </g>
+
+    <!-- RING 4: CCW slow -->
+    <g filter="url(#nh-ring-glow)">
+      <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="0.8" stroke-dasharray="28 20" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="-360 300 300" dur="60s" repeatCount="indefinite" />
+      </circle>
+    </g>
+
+    <!-- RING 5: outermost, very slow CW -->
+    <g filter="url(#nh-ring-glow)">
+      <circle cx="300" cy="300" r="265" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="0.7" stroke-dasharray="34 24" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="360 300 300" dur="80s" repeatCount="indefinite" />
+      </circle>
+    </g>
+
+    <!-- Glowing dots orbiting on ring paths -->
+    <!-- Dot on ring 1 -->
+    <g filter="url(#nh-dot-glow)">
+      <circle r="3.5" fill="rgba(255,255,255,0.9)">
+        <animateMotion dur="22s" repeatCount="indefinite" calcMode="linear">
+          <mpath href="#nh-orbit-1" />
+        </animateMotion>
+      </circle>
+    </g>
+    <g filter="url(#nh-dot-glow)">
+      <circle r="2.2" fill="rgba(255,255,255,0.55)">
+        <animateMotion dur="22s" repeatCount="indefinite" calcMode="linear" begin="-6s">
+          <mpath href="#nh-orbit-1" />
+        </animateMotion>
+      </circle>
+    </g>
+
+    <!-- Dot on ring 2 -->
+    <g filter="url(#nh-dot-glow)">
+      <circle r="3.0" fill="rgba(255,255,255,0.85)">
+        <animateMotion dur="32s" repeatCount="indefinite" calcMode="linear">
+          <mpath href="#nh-orbit-2" />
+        </animateMotion>
+      </circle>
+    </g>
+    <g filter="url(#nh-dot-glow)">
+      <circle r="2.0" fill="rgba(255,255,255,0.50)">
+        <animateMotion dur="32s" repeatCount="indefinite" calcMode="linear" begin="-10s">
+          <mpath href="#nh-orbit-2" />
+        </animateMotion>
+      </circle>
+    </g>
+
+    <!-- Dot on ring 3 -->
+    <g filter="url(#nh-dot-glow)">
+      <circle r="2.8" fill="rgba(255,255,255,0.80)">
+        <animateMotion dur="44s" repeatCount="indefinite" calcMode="linear">
+          <mpath href="#nh-orbit-3" />
+        </animateMotion>
+      </circle>
+    </g>
+
+    <!-- Dot on ring 4 -->
+    <g filter="url(#nh-dot-glow)">
+      <circle r="2.4" fill="rgba(255,255,255,0.70)">
+        <animateMotion dur="60s" repeatCount="indefinite" calcMode="linear">
+          <mpath href="#nh-orbit-4" />
+        </animateMotion>
+      </circle>
+    </g>
+
+    <!-- Dot on ring 5 -->
+    <g filter="url(#nh-dot-glow)">
+      <circle r="2.0" fill="rgba(255,255,255,0.55)">
+        <animateMotion dur="80s" repeatCount="indefinite" calcMode="linear">
+          <mpath href="#nh-orbit-5" />
+        </animateMotion>
+      </circle>
+    </g>
+  </svg>
+</div>
+
 <!-- ========================================================================
      1. DESKTOP VIEWPORT (> 768px): Full-Width Glass Header + 2-Col Hero Grid
      ======================================================================== -->

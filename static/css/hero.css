@@ -498,6 +498,43 @@
   }
 }
 
+/* ============================================================
+   Animated background ring overlay (behind foreground content)
+   ============================================================ */
+.nh-bg-rings-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 56%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.nh-bg-rings-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+  width: 110%;
+  height: 110%;
+  will-change: transform;
+}
+
+/* On mobile, hide rings to keep it clean */
+@media (max-width: 768px) {
+  .nh-bg-rings-overlay {
+    display: none;
+  }
+}
+
+/* Ensure foreground content (header, text, CTAs) renders above the ring overlay */
+.nh-hero-banner-art-wrap > *:not(.nh-bg-rings-overlay) {
+  position: relative;
+  z-index: 2;
+}
+
 /* Hero Grid - 2 Column Layout */
 .nh-hero-grid-redesign {
   display: grid;
