@@ -42,9 +42,9 @@ html, body {
 
 @media (min-width: 769px) {
   .nh-hero-banner-art-wrap {
-    background-position: center 36% !important;
+    background-position: center 20% !important;
     background-size: cover !important;
-    min-height: clamp(520px, 38vw, 680px) !important;
+    min-height: clamp(560px, 40vw, 700px) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
