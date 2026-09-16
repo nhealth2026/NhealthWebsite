@@ -19,7 +19,7 @@ html, body {
 
 /* Root & Page Wrapper */
 .p-dash-body {
-  background: linear-gradient(180deg, #5ec9f8 0%, #9de3fb 140px, #d7f1fa 280px, #EDF7FD 380px, #F8FAFC 100%) !important;
+  background: #F8FAFC !important;
   min-height: 100vh;
   width: 100%;
   max-width: 100vw;
@@ -27,6 +27,57 @@ html, body {
   font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
   color: #0F172A;
   padding-bottom: 120px; /* Clearance above floating bottom dock */
+}
+
+/* Master Banner Artwork (Extracted in high resolution from master PDF) */
+.nh-hero-banner-art-wrap {
+  width: 100%;
+  position: relative;
+  background-color: #E8F7FD !important;
+  background-image: url('../images/hero_banner_art.png') !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  overflow: hidden;
+}
+
+@media (min-width: 769px) {
+  .nh-hero-banner-art-wrap {
+    background-position: center 36% !important;
+    background-size: cover !important;
+    min-height: clamp(520px, 38vw, 680px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding-bottom: 2.75rem !important;
+  }
+  .p-desktop-hero-section {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 2.5rem 0 2.5rem 0 !important;
+  }
+  .p-desktop-hero-map-col {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    min-height: 480px !important;
+  }
+  .p-desktop-hero-map-col .nh-map-stage {
+    min-height: 480px !important;
+    aspect-ratio: 540 / 480 !important;
+    max-width: 540px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nh-hero-banner-art-wrap {
+    background-position: right 30% top !important;
+    background-size: cover !important;
+    padding: 0.65rem 0.75rem 1.75rem 0.75rem !important;
+  }
+  .p-mobile-hero-map-wrap {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 .p-dash-container {
@@ -1268,8 +1319,8 @@ html, body {
   /* Clean Mobile Hero Stage with Laptop 3D Map & Profile Icon */
   .p-mobile-view-wrap {
     width: 100%;
-    background: linear-gradient(180deg, #E0F2FE 0%, #BAE6FD 30%, #E0F7FA 65%, #F8FAFC 100%) !important;
-    padding: 10px 12px 18px 12px !important;
+    background: transparent !important;
+    padding: 6px 4px 10px 4px !important;
     box-sizing: border-box !important;
     position: relative !important;
   }

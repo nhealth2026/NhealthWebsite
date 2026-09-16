@@ -436,15 +436,66 @@
    REDESIGNED HERO SECTION (Matching Mockup - Sky Blue Gradient)
    ========================================================================== */
 
-/* Hero Background - Sky Blue Gradient (same as patient dashboard) */
+/* Hero Background */
 .nh-hero-redesign,
 .nh-hero-redesign-canvas {
   position: relative;
-  background: linear-gradient(180deg, #5ec9f8 0%, #9de3fb 140px, #d7f1fa 280px, #EDF7FD 380px, #F8FAFC 100%) !important;
+  background: #F8FAFC !important;
   padding: 0 0 2rem 0;
   overflow: hidden;
   min-height: auto;
   width: 100%;
+}
+
+/* Master Banner Artwork (Extracted in high resolution from master PDF) */
+.nh-hero-banner-art-wrap {
+  width: 100%;
+  position: relative;
+  background-color: #E8F7FD !important;
+  background-image: url('../images/hero_banner_art.png') !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  overflow: hidden;
+}
+
+@media (min-width: 769px) {
+  .nh-hero-banner-art-wrap {
+    background-position: center 36% !important;
+    background-size: cover !important;
+    min-height: clamp(520px, 38vw, 680px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding-bottom: 2.75rem !important;
+  }
+  .p-desktop-hero-section {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 2.5rem 0 2.5rem 0 !important;
+  }
+  .p-desktop-hero-map-col {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    min-height: 480px !important;
+  }
+  .p-desktop-hero-map-col .nh-map-stage {
+    min-height: 480px !important;
+    aspect-ratio: 540 / 480 !important;
+    max-width: 540px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nh-hero-banner-art-wrap {
+    background-position: right 30% top !important;
+    background-size: cover !important;
+    padding: 0.65rem 0.75rem 1.75rem 0.75rem !important;
+  }
+  .p-mobile-hero-map-wrap {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 /* Hero Grid - 2 Column Layout */
@@ -1208,7 +1259,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #5ec9f8 0%, #9de3fb 140px, #d7f1fa 280px, #EDF7FD 380px, #F8FAFC 100%) !important;
+  background: #F8FAFC !important;
   padding: 0 0 2rem 0;
 }
 
@@ -1224,10 +1275,10 @@
   z-index: 50;
 }
 
-/* Full-Width Desktop Hero Layout - Compact & Balanced */
+/* Full-Width Desktop Hero Layout - Balanced & Roomy */
 .p-desktop-hero-section {
   width: 100%;
-  padding: 1rem 0 1.25rem 0 !important;
+  padding: 2.25rem 0 2.5rem 0 !important;
   position: relative;
 }
 
@@ -1353,8 +1404,9 @@
 .p-desktop-hero-map-col .nh-map-stage {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  aspect-ratio: 512 / 416;
+  max-width: 540px;
+  min-height: 480px;
+  aspect-ratio: 540 / 480;
   margin: 0 auto;
 }
 
@@ -1506,8 +1558,8 @@
   /* Clean Mobile Hero Stage with Laptop 3D Map & Profile Icon */
   .p-mobile-view-wrap {
     width: 100%;
-    background: linear-gradient(180deg, #E0F2FE 0%, #BAE6FD 30%, #E0F7FA 65%, #F8FAFC 100%) !important;
-    padding: 10px 12px 18px 12px !important;
+    background: transparent !important;
+    padding: 6px 4px 10px 4px !important;
     box-sizing: border-box !important;
     position: relative !important;
   }
